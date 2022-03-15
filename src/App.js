@@ -1,7 +1,13 @@
-import "./App.css";
+import GlobalStyle from "./styles/global";
+import Routes from "../src/routes";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <GlobalStyle />
+      <Routes />
+    </>
+  );
 }
 
 export default App;
