@@ -13,7 +13,7 @@ const Container = styled.div`
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 5% 60px;
+    padding: 16px 20px 60px;
     width: min(400px, 90%);
     height: min-content;
 
@@ -41,17 +41,10 @@ const Container = styled.div`
     form {
       display: flex;
       flex-direction: column;
-
-      input + label {
-        margin-top: 15px;
-      }
-
-      label + input {
-        margin-top: 8px;
-      }
+      gap: 15px;
 
       button {
-        margin-top: 50px;
+        margin-top: 30px;
       }
     }
   }
