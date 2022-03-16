@@ -30,6 +30,8 @@ export default createGlobalStyle`
         --color-secondary-100: #83F3FA;
         --color-secondary-50: #84F6FF80;
         --color-input: #F2F2F2;
+        --color-placeholder: #9EA8BD;
+        --color-text-box: #FFF3E9;
         --grey-1: #222428;
     }
 
