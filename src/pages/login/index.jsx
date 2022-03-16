@@ -15,10 +15,8 @@ function Login() {
           </span>
         </figure>
         <form>
-          <label>Email</label>
-          <Input placeholder="Email" />
-          <label>Senha</label>
-          <Input placeholder="Senha" type="password" />
+          <Input label="Email" placeholder="Email" />
+          <Input label="Senha" placeholder="Senha" type="password" />
           <Button>Login</Button>
         </form>
       </section>
