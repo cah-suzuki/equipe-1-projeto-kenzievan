@@ -24,11 +24,18 @@ export default createGlobalStyle`
         flex-direction: column;
         align-content: center;
         align-items: center;
+
+        --color-primary-100: #FA8223;
+        --color-primary-50: #F79527;
+        --color-secondary-100: #83F3FA;
+        --color-secondary-50: #84F6FF80;
+        --color-input: #F2F2F2;
+        --grey-1: #222428;
     }
 
     body,button{
- 
         font-size:16px;
+        font-family: 'Nunito', sans-serif;
     }
 
     h1,h2,h3{
