@@ -18,8 +18,13 @@ export const Container = styled.div`
     background: var(--color-input);
     margin-top: 8px;
 
+    :focus {
+      outline: var(--color-text-box);
+    }
+
     ::placeholder {
       font-size: inherit;
+      color: var(--color-input);
     }
   }
 `;
