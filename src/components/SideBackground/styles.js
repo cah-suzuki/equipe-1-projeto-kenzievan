@@ -1,20 +1,19 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: max(40%, 450px);
-  flex-shrink: 0;
-  position: relative;
+  width: 40%;
   height: 100%;
-  max-height: 800px;
-  min-width: 600px;
+  min-height: 600px;
+  max-height: 720px;
+  min-width: 550px;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     max-width: 100%;
     max-height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 `;
 
