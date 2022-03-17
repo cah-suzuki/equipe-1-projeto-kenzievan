@@ -3,6 +3,9 @@ import Container from "./styles";
 import Button from "../../components/button";
 import Input from "../../components/Input";
 
+import SideBackground from "../../components/SideBackground";
+import SideImage from "../../assets/BackgroundImage.png";
+
 function Login() {
   return (
     <Container>
@@ -22,6 +25,7 @@ function Login() {
           <Button>Login</Button>
         </form>
       </section>
+      <SideBackground image={SideImage} />
     </Container>
   );
 }

@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
   padding: 0 10%;
   width: 100%;
-  align-items: center;
   height: 100%;
-  gap: 30px;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 5% 60px;
+    padding: 16px 30px 60px;
     width: min(400px, 90%);
+    min-width: 300px;
     height: min-content;
 
     figure {
