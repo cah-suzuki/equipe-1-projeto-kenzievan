@@ -1,6 +1,8 @@
+import StudentCard from "../../components/studentCard";
+
 function Home() {
     return (
-        <h1>HOME PAGE</h1>
+        <StudentCard/>
     );
 };
 
