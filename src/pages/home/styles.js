@@ -47,12 +47,12 @@ export const Header = styled.header`
 
 export const Main = styled.main`
   display: flex;
-  align-items: center;
+  padding: 0 10%;
+  width: 100%;
+  height: 100%;
   justify-content: center;
-  img {
-    width: 50%;
-    height: 100%;
-  }
+  align-items: center;
+  gap: 40px;
 
   p {
     margin: 0 20px;

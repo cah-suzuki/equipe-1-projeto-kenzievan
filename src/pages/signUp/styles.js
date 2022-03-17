@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   //ESTILIZAÇÃO
 `;
+
+export default Container;

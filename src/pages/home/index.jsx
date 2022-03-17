@@ -4,6 +4,9 @@ import TeamIcon from "./assets/TeamIcon.png";
 import LandingImage from "./assets/LandingImage.png";
 import { useHistory } from "react-router-dom";
 
+import SideBackground from "../../components/SideBackground";
+import SideImage from "../../assets/BackgroundImage.png";
+
 function Home() {
   const history = useHistory();
   return (
@@ -24,7 +27,7 @@ function Home() {
           descriçãoAcesso ao histórico de viagenstexto
           textotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotexto
         </p>
-        <img src={LandingImage} alt="asdasd" />
+        <SideBackground image={SideImage} />
       </Main>
       <Bottom>
         <span>
