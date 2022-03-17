@@ -39,7 +39,7 @@ function SignUp() {
 
   return (
     <>
-      <NavBar login register />
+      <NavBar />
       <Container>
         <section>
           <figure>
