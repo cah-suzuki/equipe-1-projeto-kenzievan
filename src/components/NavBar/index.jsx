@@ -1,7 +1,6 @@
 import { Container, Content } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 const NavBar = ({ register, login }) => {
   const history = useHistory();
@@ -18,7 +17,9 @@ const NavBar = ({ register, login }) => {
           <Button onClick={() => handleNavigation("login")}>Entrar</Button>
         )}{" "}
         {register && (
-          <Button onClick={() => handleNavigation("signup")}>Cadastre-se</Button>
+          <Button onClick={() => handleNavigation("signup")}>
+            Cadastre-se
+          </Button>
         )}
       </Content>
     </Container>
