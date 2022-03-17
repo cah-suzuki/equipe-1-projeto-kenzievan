@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./styles";
 import Input from "../../components/Input";
-import Button from "../../components/Input";
+import Button from "../../components/button";
 
 function Register() {
   const formSchema = yup.object().shape({
