@@ -4,7 +4,7 @@
 
 import React from "react";
 import { Container } from "./style";
-import Button from "../Button";
+import Button from "../button";
 import { useState } from "react";
 
 ////
@@ -18,7 +18,7 @@ const StudentList = ({ isDriver }) => {
   // esse registerStudent vai sei passado então como onClick do botão
 
   //teste abertura dos cards
-  const [isOpen, setIsOpen] = useState("false");
+  const [isOpen, setIsOpen] = useState(false);
 
   //teste se handleClick do novo cadastro,deve ser deletado apos teste
   const handleClick = () => {
@@ -28,18 +28,10 @@ const StudentList = ({ isDriver }) => {
   //teste de troca de true ou false para openCard
   //na verdade o state Global vai salvar isso
   //cada card ao ser criado recebe um handleClick parecido com esse abaixo
-  //(quando usei booleano ele deu erro por isso coloquei string)
   //no componente card vai existir a renderização condicional para mostrar todos os dados ou so o nome
-  const openCard = (isOpen) => {
-    if (isOpen === "true") {
-      setIsOpen("false");
-    } else {
-      setIsOpen("true");
-    }
+  const openCard = (isOpen) => setIsOpen(!isOpen);
 
-    console.log(isOpen);
-  };
-
+  console.log(isOpen);
   //lista de teste,deve ser deletada apos teste
   //a lista oficial também vai ser recebida por context assim como o registerStudent
   let students = [{ name: "joao" }, { name: "maria" }, { name: "carla" }];
