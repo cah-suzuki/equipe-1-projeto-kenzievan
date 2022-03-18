@@ -4,10 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Container from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/button";
+import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/BackgroundImage.png";
 import LoginImage from "../../assets/login_icon.png";
-import NavBar from "../../components/NavBar";
 
 function SignUp() {
   const formSchema = yup.object().shape({

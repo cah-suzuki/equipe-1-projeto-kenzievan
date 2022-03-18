@@ -1,23 +1,16 @@
-import { Contanier, Header, Main, Bottom } from "./styles";
-import Button from "../../components/button";
+import { Contanier, Main, Bottom } from "./styles";
 import TeamIcon from "./assets/TeamIcon.png";
-import LandingImage from "./assets/LandingImage.png";
 import { useHistory } from "react-router-dom";
 
 import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/BackgroundImage.png";
+import NavBar from "../../components/NavBar";
 
 function Home() {
   const history = useHistory();
   return (
     <Contanier>
-      <Header>
-        <p>KenzieVan</p>
-        <div>
-          <Button onClick={() => history.push("/login")}>Login</Button>
-          <Button onClick={() => history.push("/signup")}>Cadastre-se</Button>
-        </div>
-      </Header>
+      <NavBar login register />
       <Main>
         <p>
           KenzieVan é uma plataforma de comunicação entre responsáveis e
