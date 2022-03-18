@@ -33,6 +33,7 @@ export default createGlobalStyle`
         --color-placeholder: #9EA8BD;
         --color-text-box: #FFF3E9;
         --grey-1: #222428;
+        --color-primary-fading: rgba(247, 149, 39, 0.5);
     }
 
     body,button{

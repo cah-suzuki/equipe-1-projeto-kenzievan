@@ -54,27 +54,23 @@ function SignUp() {
               placeholder="Preencha seu nome completo"
               {...register("name")}
             />
-            <p>{errors.name?.message}</p>
             <Input
               label="Email"
               placeholder="exemplo@exemplo.com"
               {...register("email")}
             />
-            <p>{errors.email?.message}</p>
             <Input
               type="password"
               label="Senha"
               placeholder="Insira sua senha"
               {...register("password")}
             />
-            <p>{errors.password?.message}</p>
             <Input
               type="paswword"
               label="Confirmação de senha"
               placeholder="Confirme sua senha"
               {...register("confirmPassword")}
             />
-            <p>{errors.confirmPassword?.message}</p>
             <select name="Categoria">
               <option value="parent">Responsável</option>
               <option value="driver">Motorista</option>

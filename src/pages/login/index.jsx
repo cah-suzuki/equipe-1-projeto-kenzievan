@@ -1,3 +1,7 @@
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
 import LoginImage from "../../assets/login_icon.png";
 import Container from "./styles";
 import Button from "../../components/button";
@@ -8,6 +12,26 @@ import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/BackgroundImage.png";
 
 function Login() {
+  const formSchema = yup.object().shape({
+    email: yup.string().required("Email obrigatório").email("Email Inválido"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .min(8, "A senha deve ter no mínimo 8 caractéres"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
       <NavBar />
@@ -20,11 +44,22 @@ function Login() {
               Efetue seu <span>Login</span>
             </span>
           </figure>
-          <form>
-            <label>Email</label>
-            <Input placeholder="Email" />
-            <label>Senha</label>
-            <Input placeholder="Senha" type="password" />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              label="Email"
+              name="email"
+              placeholder="Email"
+              register={register}
+              error={errors?.email}
+            />
+            <Input
+              label="Senha"
+              name="password"
+              placeholder="Senha"
+              type="password"
+              register={register}
+              error={errors?.password}
+            />
             <Button>Login</Button>
           </form>
         </section>
