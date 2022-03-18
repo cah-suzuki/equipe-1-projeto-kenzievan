@@ -7,7 +7,7 @@ export const Container = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-size: 1236px;
+  background-size: 100% 100%;
 
   h2 {
     color: #fa8223;
