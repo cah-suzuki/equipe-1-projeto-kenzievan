@@ -1,7 +1,5 @@
 function Register() {
-    return (
-        <h2>REGISTER PAGE</h2>
-    );
-};
+  return <h1>REGISTER PAGE</h1>;
+}
 
 export default Register;

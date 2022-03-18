@@ -8,6 +8,9 @@ import Button from "../../components/button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
 
+import SideBackground from "../../components/SideBackground";
+import SideImage from "../../assets/BackgroundImage.png";
+
 function Login() {
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email Inválido"),
@@ -60,6 +63,7 @@ function Login() {
             <Button>Login</Button>
           </form>
         </section>
+        <SideBackground image={SideImage} />
       </Container>
     </>
   );
