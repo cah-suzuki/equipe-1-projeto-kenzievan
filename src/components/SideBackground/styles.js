@@ -15,6 +15,9 @@ const Container = styled.div`
     max-width: 100%;
     max-height: 100%;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export default Container;
