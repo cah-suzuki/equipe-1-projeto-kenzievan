@@ -40,7 +40,7 @@ function SignUp() {
 
   return (
     <>
-      <NavBar />
+      <NavBar home />
       <Container>
         <section>
           <figure>
