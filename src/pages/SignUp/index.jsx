@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
-import SideImage from "../../assets/BackgroundImage.png";
+import SideImage from "../../assets/SideImage.svg";
 import LoginImage from "../../assets/login_icon.png";
 import { FiUsers } from "react-icons/fi";
 
