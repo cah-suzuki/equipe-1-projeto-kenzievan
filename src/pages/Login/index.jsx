@@ -2,14 +2,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import LoginImage from "../../assets/login_icon.png";
 import Container from "./styles";
 import Button from "../../components/button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
 
 import SideBackground from "../../components/SideBackground";
-import SideImage from "../../assets/BackgroundImage.png";
+import SideImage from "../../assets/SideImage.svg";
+import { FiLogIn } from "react-icons/fi";
 
 function Login() {
   const formSchema = yup.object().shape({
@@ -34,11 +34,11 @@ function Login() {
 
   return (
     <>
-      <NavBar home login register logout />
+      <NavBar home />
       <Container>
         <section>
           <figure>
-            <img src={LoginImage} alt="Imagem com três pessoas juntas" />
+            <FiLogIn />
             <span>Bem vindo de volta!</span>
             <span>
               Efetue seu <span>Login</span>

@@ -28,8 +28,9 @@ const Container = styled.div`
       gap: 10px;
       margin-bottom: 20px;
 
-      img {
-        width: 50px;
+      svg {
+        width: 40px;
+        height: 40px;
       }
 
       span {

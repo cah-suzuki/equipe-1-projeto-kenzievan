@@ -10,13 +10,13 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(${(props) => props.image}) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  display: none;
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  @media (max-width: 1024px) {
-    display: none;
+  @media (min-width: 1024px) {
+    display: block;
   }
 `;
 
