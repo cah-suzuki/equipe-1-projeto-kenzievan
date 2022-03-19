@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  position: relative;
+  padding-bottom: 20px;
 
   label {
     width: 100%;
@@ -26,5 +28,13 @@ export const Container = styled.div`
       font-size: inherit;
       color: var(--color-input);
     }
+  }
+  span {
+    position: absolute;
+    color: #d22;
+    bottom: 0;
+    left: 10px;
+    line-height: 13px;
+    font-size: 13px;
   }
 `;
