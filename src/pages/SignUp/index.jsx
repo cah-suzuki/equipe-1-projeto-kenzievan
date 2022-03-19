@@ -1,13 +1,14 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import Container from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
+
 import SideImage from "../../assets/SideImage.svg";
-import LoginImage from "../../assets/login_icon.png";
 import { FiUsers } from "react-icons/fi";
 
 function SignUp() {
@@ -38,6 +39,8 @@ function SignUp() {
     resolver: yupResolver(formSchema),
   });
 
+  const onSubmit = (data) => console.log(data);
+
   return (
     <>
       <NavBar home />
@@ -49,18 +52,20 @@ function SignUp() {
               Olá! Preencha seus dados para efetuar seu <span>Cadastro</span>
             </span>
           </figure>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Nome"
               placeholder="Preencha seu nome completo"
               name="name"
               register={register}
+              error={errors?.name}
             />
             <Input
               label="Email"
               placeholder="Preencha seu e-mail"
               name="email"
               register={register}
+              error={errors?.email}
             />
             <Input
               type="password"
@@ -68,13 +73,15 @@ function SignUp() {
               placeholder="Insira sua senha"
               name="password"
               register={register}
+              error={errors?.password}
             />
             <Input
-              type="paswword"
+              type="password"
               label="Confirmação de senha"
               placeholder="Confirme sua senha"
               name="passwordConfirm"
               register={register}
+              error={errors?.passwordConfirm}
             />
             <select name="Categoria">
               <option value="parent">Responsável</option>
