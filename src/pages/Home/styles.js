@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BottomImg from "./assets/BottomImg.png";
+import FooterBackground from "../../assets/FooterBackground.svg";
 
 export const Contanier = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const Main = styled.main`
 
 export const Bottom = styled.footer`
   align-self: flex-end;
-  background-image: url(${BottomImg});
+  background-image: url(${FooterBackground});
   width: 100%;
   height: 98px;
   display: flex;

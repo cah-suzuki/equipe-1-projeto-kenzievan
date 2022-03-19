@@ -1,13 +1,11 @@
 import { Contanier, Main, Bottom } from "./styles";
-import TeamIcon from "./assets/TeamIcon.png";
-import { useHistory } from "react-router-dom";
+import TeamIcon from "../../assets/TeamIcon.png";
 
 import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
 
 function Home() {
-  const history = useHistory();
   return (
     <Contanier>
       <NavBar login register />
