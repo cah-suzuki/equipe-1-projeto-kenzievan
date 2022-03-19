@@ -14,10 +14,7 @@ import { FiLogIn } from "react-icons/fi";
 function Login() {
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email Inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .min(8, "A senha deve ter no mínimo 8 caractéres"),
+    password: yup.string().required("Senha obrigatória"),
   });
 
   const {
@@ -31,6 +28,7 @@ function Login() {
   const onSubmit = (data) => {
     console.log(data);
   };
+  console.log(errors);
 
   return (
     <>
