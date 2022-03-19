@@ -2,11 +2,16 @@ import { Container, Content } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
 
-const NavBar = ({ register, login }) => {
+const NavBar = ({ register, login, home, logout }) => {
   const history = useHistory();
 
   const handleNavigation = (path) => {
     return history.push(path);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    handleNavigation("/");
   };
 
   return (
@@ -21,6 +26,8 @@ const NavBar = ({ register, login }) => {
             Cadastre-se
           </Button>
         )}
+        {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
+        {logout && <Button onClick={() => handleLogout()}>Sair</Button>}
       </Content>
     </Container>
   );
