@@ -34,7 +34,7 @@ function Login() {
 
   return (
     <>
-      <NavBar />
+      <NavBar home login register logout />
       <Container>
         <section>
           <figure>

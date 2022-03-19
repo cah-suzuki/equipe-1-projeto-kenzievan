@@ -1,4 +1,4 @@
-import { Container, Content } from "./styles";
+import { Container } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const NavBar = ({ register, login, home, logout }) => {
   return (
     <Container>
       <h2>KenzieVan</h2>
-      <Content>
+      <nav>
         {login && (
           <Button onClick={() => handleNavigation("login")}>Entrar</Button>
         )}{" "}
@@ -28,7 +28,7 @@ const NavBar = ({ register, login, home, logout }) => {
         )}
         {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
         {logout && <Button onClick={() => handleLogout()}>Sair</Button>}
-      </Content>
+      </nav>
     </Container>
   );
 };

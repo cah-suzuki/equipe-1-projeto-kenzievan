@@ -1,32 +1,34 @@
 import styled from "styled-components";
-import HeaderImg from "../../assets/HeaderImg.png";
+import NavBackground from "../../assets/NavBackground.svg";
 
 export const Container = styled.header`
-  background-image: url(${HeaderImg});
-  height: 188px;
+  background: url(${NavBackground}) no-repeat;
   width: 100%;
+  min-height: calc(13.05vw + 15px);
   display: flex;
   justify-content: space-between;
-  background-size: 100% 100%;
+  align-items: center;
+  background-size: 100vw;
+  border-top: 15px solid var(--color-secondary-100);
+  padding: 0 3%;
 
   h2 {
+    margin-top: -30px;
     color: #fa8223;
     font-weight: 700;
     font-size: 60px;
-    margin: 40px 30px;
+    font-size: max(4.16vw, 20px);
+    /* margin: 2vw 0 0 1.5vw; */
   }
 
-  div {
-    margin: 0 35px;
-    align-self: center;
-    width: 20%;
+  nav {
     display: flex;
-    justify-content: space-around;
+    margin-top: -30px;
   }
+
   button {
     font-weight: 700;
-    font-size: 26px;
-    line-height: 24px;
+    font-size: max(2vw, 18px);
     color: #fa8223;
     background-color: transparent;
     border: none;
