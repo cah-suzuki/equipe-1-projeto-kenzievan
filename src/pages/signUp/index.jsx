@@ -6,7 +6,7 @@ import Input from "../../components/Input";
 import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
-import SideImage from "../../assets/BackgroundImage.png";
+import SideImage from "../../assets/SideImage.svg";
 import LoginImage from "../../assets/login_icon.png";
 
 function SignUp() {
@@ -23,7 +23,7 @@ function SignUp() {
         /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Sua senha deve ter pelo menos 8 caracteres, uma letra, um número e um símbolo"
       ),
-    confirmPassword: yup
+    passwordConfirm: yup
       .string()
       .required("Confirmação de senha obrigatória")
       .oneOf([yup.ref("password")], "As senhas não são iguais"),
@@ -52,24 +52,28 @@ function SignUp() {
             <Input
               label="Nome"
               placeholder="Preencha seu nome completo"
-              {...register("name")}
+              name="name"
+              register={register}
             />
             <Input
               label="Email"
               placeholder="exemplo@exemplo.com"
-              {...register("email")}
+              name="email"
+              register={register}
             />
             <Input
               type="password"
               label="Senha"
               placeholder="Insira sua senha"
-              {...register("password")}
+              name="password"
+              register={register}
             />
             <Input
               type="paswword"
               label="Confirmação de senha"
               placeholder="Confirme sua senha"
-              {...register("confirmPassword")}
+              name="passwordConfirm"
+              register={register}
             />
             <select name="Categoria">
               <option value="parent">Responsável</option>
