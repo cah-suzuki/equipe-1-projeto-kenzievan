@@ -29,10 +29,11 @@ export default createGlobalStyle`
         --color-primary-50: #F79527;
         --color-secondary-100: #83F3FA;
         --color-secondary-50: #84F6FF80;
-        --color-input: #F2F2F2;
         --color-placeholder: #9EA8BD;
         --color-text-box: #FFF3E9;
+        --color-error: #F33;
         --grey-1: #222428;
+        --white: #FFF;
         --color-primary-fading: rgba(247, 149, 39, 0.5);
     }
 

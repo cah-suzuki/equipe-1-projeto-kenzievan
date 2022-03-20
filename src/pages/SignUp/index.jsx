@@ -22,9 +22,19 @@ function SignUp() {
     password: yup
       .string()
       .required("Senha obrigatória")
+      .min(8, "A senha deve ter pelo menos 8 caractéres")
       .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Sua senha deve ter pelo menos 8 caracteres, uma letra, um número e um símbolo"
+        "^(?=.*[a-z])",
+        "A senha deve conter pelo menos uma letra minúscula"
+      )
+      .matches(
+        "^(?=.*[A-Z])",
+        "A senha deve conter pelo menos uma letra maiúscula"
+      )
+      .matches("^(?=.*[0-9])", "A senha deve conter pelo menos um número")
+      .matches(
+        "^(?=.*[!@#$%^&*])",
+        "A senha deve conter pelo menos um símbolo"
       ),
     passwordConfirm: yup
       .string()
