@@ -8,6 +8,7 @@ const SelectInput = ({ label, error, ...rest }) => {
         styles={customStyles}
         placeholder="Selecione o tipo de usuário"
         menuPlacement="auto"
+        error={!!error}
         {...rest}
       />
       {error && <span>{error.message}</span>}

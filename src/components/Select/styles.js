@@ -6,22 +6,25 @@ export const Container = styled.div`
   padding-bottom: 10px;
 
   span {
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: bold;
     color: var(--color-error);
     position: absolute;
-    left: 0;
+    left: 5px;
     top: 90%;
   }
 `;
 
 export const customStyles = {
   // INPUT BOX
-  control: (base) => ({
+  control: (base, { selectProps: { error } }) => ({
     ...base,
     minHeight: "48px",
-    background: "#fff",
+    background: "var(--white)",
     color: "var(--black)",
-    border: "2px solid var(--color-placeholder)",
+    border: `2px solid ${
+      error ? "var(--color-error) !important" : "var(--color-placeholder)"
+    }`,
     borderRadius: "8px",
     cursor: "pointer",
     boxShadow: "none",
@@ -58,16 +61,18 @@ export const customStyles = {
     color: "var(--black)",
   }),
   // PLACEHOLDER
-  placeholder: (base) => ({
+  placeholder: (base, { selectProps: { error } }) => ({
     ...base,
-    color: "var(--color-placeholder)",
+    color: error ? "var(--color-error)" : "var(--color-placeholder)",
   }),
   indicatorSeparator: (base) => ({}),
-  dropdownIndicator: (base) => ({
+  dropdownIndicator: (base, { selectProps: { error } }) => ({
     ...base,
-    color: "var(--color-placeholder)",
+    color: error ? "var(--color-error) !important" : "var(--color-placeholder)",
     "&:hover": {
-      color: "var(--color-placeholder)",
+      color: error
+        ? "var(--color-error) !important"
+        : "var(--color-placeholder)",
     },
   }),
 };
