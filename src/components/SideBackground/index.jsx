@@ -1,7 +1,7 @@
 import Container from "./styles";
 
-function SideBackground({ image }) {
-  return <Container image={image} />;
+function SideBackground({ image, className }) {
+  return <Container image={image} className={className} />;
 }
 
 export default SideBackground;
