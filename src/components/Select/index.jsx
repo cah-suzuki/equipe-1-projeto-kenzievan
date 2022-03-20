@@ -4,10 +4,9 @@ import Select from "react-select";
 const SelectInput = ({ label, error, ...rest }) => {
   return (
     <Container>
-      {/* <label>{label}</label> */}
       <Select
         styles={customStyles}
-        placeholder="Selecione"
+        placeholder="Selecione o tipo de usuário"
         menuPlacement="auto"
         {...rest}
       />

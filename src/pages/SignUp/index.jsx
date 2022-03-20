@@ -10,7 +10,7 @@ import SideBackground from "../../components/SideBackground";
 import Select from "../../components/Select";
 
 import SideImage from "../../assets/SideImage.svg";
-import { FiUsers, FiUser } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 
 function SignUp() {
   const formSchema = yup.object().shape({
@@ -99,7 +99,6 @@ function SignUp() {
               name="select"
               render={({ field: { name, value, onChange } }) => (
                 <Select
-                  label="Selecione"
                   name={name}
                   value={value}
                   error={errors.select?.value}

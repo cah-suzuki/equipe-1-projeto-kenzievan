@@ -5,16 +5,9 @@ export const Container = styled.div`
   width: 100%;
   padding-bottom: 10px;
 
-  /* label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 12px;
-    display: block;
-  } */
-
   span {
     font-size: 12px;
-    color: red;
+    color: var(--color-error);
     position: absolute;
     left: 0;
     top: 90%;
@@ -27,54 +20,54 @@ export const customStyles = {
     ...base,
     minHeight: "48px",
     background: "#fff",
-    color: "#000",
-    border: "2px solid #aaa",
+    color: "var(--black)",
+    border: "2px solid var(--color-placeholder)",
+    borderRadius: "8px",
     cursor: "pointer",
     boxShadow: "none",
     fontSize: "16px",
     "&:hover": {
-      borderColor: "#aaa",
+      borderColor: "var(--color-placeholder)",
     },
   }),
   // OPTION ESCOLHIDA
   singleValue: (base) => ({
     ...base,
-    color: "#000",
+    color: "var(--black)",
   }),
   // MENU BOX
   menu: (base) => ({
     ...base,
-    background: "#fff",
+    background: "var(--white)",
   }),
   // OPTION IN MENU BOX
   option: (base, state) => ({
     ...base,
-    color: "#000",
+    color: "var(--black)",
     cursor: "pointer",
     transition: "0.2s",
-    backgroundColor: state.isSelected ? "#e4e4e4" : "#fff",
+    backgroundColor: state.isSelected ? "#ebeced" : "var(--white)",
     fontSize: "16px",
     "&:hover": {
-      backgroundColor: "#d8d8d8",
+      backgroundColor: "#e1e3e6",
     },
   }),
   // INPUT ESCREVER
   input: (base) => ({
     ...base,
-    color: "#fff",
+    color: "var(--black)",
   }),
   // PLACEHOLDER
   placeholder: (base) => ({
     ...base,
-    color: "#aaa",
-    fontWeight: "bold",
+    color: "var(--color-placeholder)",
   }),
   indicatorSeparator: (base) => ({}),
   dropdownIndicator: (base) => ({
     ...base,
-    color: "#aaa",
+    color: "var(--color-placeholder)",
     "&:hover": {
-      color: "#aaa",
+      color: "var(--color-placeholder)",
     },
   }),
 };
