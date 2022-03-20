@@ -1,4 +1,4 @@
-import { Contanier, Main, Bottom } from "./styles";
+import { Contanier, Main, Footer, FooterTop } from "./styles";
 import TeamIcon from "../../assets/TeamIcon.png";
 
 import SideBackground from "../../components/SideBackground";
@@ -10,7 +10,7 @@ function Home() {
     <Contanier>
       <NavBar login register />
       <Main>
-        <p>
+        {/* <p>
           KenzieVan é uma plataforma de comunicação entre responsáveis e
           motoristas de vans escolares. Com kenzieVan você pode comunicar sobre
           faltas e atrasos de forma simples e evitar qualquer stress entre ambas
@@ -18,24 +18,23 @@ function Home() {
           descriçãoAcesso ao histórico de viagenstexto
           textotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotexto
         </p>
-        <SideBackground image={SideImage} />
+        <SideBackground image={SideImage} /> */}
       </Main>
-      <Bottom>
-        <span>
-          <p>About us:</p>
-          <p>projeto desenvolvido no capstone do módulo 3 da kenzie Academy </p>
-        </span>
+      <Footer>
+        <h2>Projeto desenvolvido por alunos da Kenzie Academy</h2>
 
         <div>
-          <p>Meet the team:</p>
-          <img src={TeamIcon} alt="asdasd" />
-          <img src={TeamIcon} alt="asdasd" />
-          <img src={TeamIcon} alt="asdasd" />
-          <img src={TeamIcon} alt="asdasd" />
-          <img src={TeamIcon} alt="asdasd" />
-          <img src={TeamIcon} alt="asdasd" />
+          <h3>Meet the Team</h3>
+          <div>
+            <img src={TeamIcon} alt="asdasd" />
+            <img src={TeamIcon} alt="asdasd" />
+            <img src={TeamIcon} alt="asdasd" />
+            <img src={TeamIcon} alt="asdasd" />
+            <img src={TeamIcon} alt="asdasd" />
+            <img src={TeamIcon} alt="asdasd" />
+          </div>
         </div>
-      </Bottom>
+      </Footer>
     </Contanier>
   );
 }
