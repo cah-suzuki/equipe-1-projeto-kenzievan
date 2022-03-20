@@ -3,7 +3,7 @@ import TeamIcon from "./assets/TeamIcon.png";
 import { useHistory } from "react-router-dom";
 
 import SideBackground from "../../components/SideBackground";
-import SideImage from "../../assets/BackgroundImage.png";
+import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
 
 function Home() {

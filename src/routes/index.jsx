@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import DriverDashboard from "../pages/driverDashboard";
 import Home from "../pages/home";
-import Login from "../pages/login";
+import Login from "../pages/Login";
 import ParentDashboard from "../pages/parentDashboard";
 import Register from "../pages/register";
 import SignUp from "../pages/SignUp";
