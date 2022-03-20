@@ -16,8 +16,8 @@ const Container = styled.div`
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 20px 60px;
-    width: min(400px, 100%);
+    padding: 16px 20px 40px;
+    width: min(480px, 100%);
     flex-shrink: 0;
     height: min-content;
 
@@ -37,6 +37,7 @@ const Container = styled.div`
         font-weight: bold;
         font-size: 22px;
         text-align: center;
+        max-width: 350px;
         > span {
           color: var(--color-primary-100);
         }
@@ -45,11 +46,20 @@ const Container = styled.div`
 
     form {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 15px;
+      justify-content: center;
 
       button {
-        margin-top: 30px;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      @media (min-width: 500px) {
+        > div:nth-child(3),
+        > div:nth-child(4) {
+          width: calc(50% - 7.5px);
+        }
       }
     }
   }
