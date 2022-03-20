@@ -4,7 +4,7 @@ import Home from "../pages/home";
 import Login from "../pages/Login";
 import ParentDashboard from "../pages/parentDashboard";
 import Register from "../pages/register";
-import SignUp from "../pages/signUp";
+import SignUp from "../pages/SignUp";
 
 const Routes = () => {
   return (

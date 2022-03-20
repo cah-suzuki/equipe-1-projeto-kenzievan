@@ -1,40 +1,65 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
+const Container = styled.div`
   position: relative;
+  width: 100%;
   padding-bottom: 20px;
 
-  label {
+  input {
+    padding: 14px 16px;
+    background-color: var(--white);
+    box-shadow: 5px 2px 20px -15px rgba(0, 0, 0, 0.8);
+    border: 1px solid;
+    border-color: var(--color-placeholder);
+    border-radius: 8px;
     width: 100%;
-    font-size: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+
+    &:focus {
+      outline: 0;
+      border-color: var(--color-primary-100);
+    }
+    &:focus ~ label {
+      top: -11px;
+      left: 12px;
+      font-size: 14px;
+      color: var(--color-primary-100);
+      font-weight: bold;
+    }
   }
 
-  input {
-    width: 100%;
-    padding: 12px 20px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    box-shadow: 0px 4px 18px rgba(158, 168, 189, 0.31);
-    background: var(--color-input);
-    margin-top: 8px;
+  &.input--error input {
+    border-color: var(--color-error) !important;
+  }
 
-    :focus {
-      outline: var(--color-text-box);
-    }
+  &.input--error label {
+    color: var(--color-error) !important;
+  }
 
-    ::placeholder {
-      font-size: inherit;
-      color: var(--color-input);
-    }
+  label {
+    position: absolute;
+    top: ${(props) => (props.isInputEmpty ? "13px" : "-11px")};
+    left: 12px;
+    background-color: var(--white);
+    padding: 0 5px;
+    transition: 0.2s;
+    color: var(--color-placeholder);
+    font-weight: 600;
+    font-size: ${(props) => (props.isInputEmpty ? "16px" : "14px")};
+    font-weight: ${(props) => (props.isInputEmpty ? "normal" : "bold")};
+    pointer-events: none;
   }
   span {
+    width: 100%;
+    font-size: 11px;
+    font-weight: bold;
+    box-sizing: border-box;
+    color: var(--color-error);
     position: absolute;
-    color: #d22;
-    bottom: 0;
-    left: 10px;
-    line-height: 13px;
-    font-size: 13px;
+    top: 49px;
+    left: 5px;
   }
 `;
+
+export default Container;

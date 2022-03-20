@@ -1,13 +1,16 @@
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+
 import Container from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
+import Select from "../../components/Select";
+
 import SideImage from "../../assets/SideImage.svg";
-import LoginImage from "../../assets/login_icon.png";
+import { FiUsers } from "react-icons/fi";
 
 function SignUp() {
   const formSchema = yup.object().shape({
@@ -19,66 +22,100 @@ function SignUp() {
     password: yup
       .string()
       .required("Senha obrigatória")
+      .min(8, "A senha deve ter pelo menos 8 caractéres")
       .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Sua senha deve ter pelo menos 8 caracteres, uma letra, um número e um símbolo"
+        "^(?=.*[a-z])",
+        "A senha deve conter pelo menos uma letra minúscula"
+      )
+      .matches(
+        "^(?=.*[A-Z])",
+        "A senha deve conter pelo menos uma letra maiúscula"
+      )
+      .matches("^(?=.*[0-9])", "A senha deve conter pelo menos um número")
+      .matches(
+        "^(?=.*[!@#$%^&*])",
+        "A senha deve conter pelo menos um símbolo"
       ),
     passwordConfirm: yup
       .string()
       .required("Confirmação de senha obrigatória")
       .oneOf([yup.ref("password")], "As senhas não são iguais"),
+    select: yup.object().shape({
+      value: yup.string().required("Selecione uma opção"),
+    }),
   });
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
 
+  const onSubmit = (data) => console.log(data);
+
   return (
     <>
-      <NavBar />
+      <NavBar home />
       <Container>
         <section>
           <figure>
-            <img src={LoginImage} alt="Imagem com três pessoas juntas" />
+            <FiUsers />
             <span>
               Olá! Preencha seus dados para efetuar seu <span>Cadastro</span>
             </span>
           </figure>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Nome"
-              placeholder="Preencha seu nome completo"
               name="name"
               register={register}
+              error={errors?.name}
             />
             <Input
               label="Email"
-              placeholder="exemplo@exemplo.com"
               name="email"
               register={register}
+              error={errors?.email}
             />
             <Input
               type="password"
               label="Senha"
-              placeholder="Insira sua senha"
               name="password"
               register={register}
+              error={errors?.password}
             />
             <Input
-              type="paswword"
+              type="password"
               label="Confirmação de senha"
-              placeholder="Confirme sua senha"
               name="passwordConfirm"
               register={register}
+              error={errors?.passwordConfirm}
             />
-            <select name="Categoria">
-              <option value="parent">Responsável</option>
-              <option value="driver">Motorista</option>
-            </select>
+            <Controller
+              control={control}
+              name="select"
+              render={({ field: { name, value, onChange } }) => (
+                <Select
+                  name={name}
+                  value={value}
+                  error={errors.select?.value}
+                  options={[
+                    {
+                      value: "Responsável",
+                      label: "Responsável",
+                    },
+                    {
+                      value: "Motorista",
+                      label: "Motorista",
+                    },
+                  ]}
+                  onChange={onChange}
+                />
+              )}
+            />
             <Button>Confirmar</Button>
           </form>
         </section>
