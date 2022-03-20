@@ -1,15 +1,16 @@
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
 
 import Container from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
+import Select from "../../components/Select";
 
 import SideImage from "../../assets/SideImage.svg";
-import { FiUsers } from "react-icons/fi";
+import { FiUsers, FiUser } from "react-icons/fi";
 
 function SignUp() {
   const formSchema = yup.object().shape({
@@ -29,11 +30,15 @@ function SignUp() {
       .string()
       .required("Confirmação de senha obrigatória")
       .oneOf([yup.ref("password")], "As senhas não são iguais"),
+    select: yup.object().shape({
+      value: yup.string().required("Selecione uma opção"),
+    }),
   });
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
@@ -55,14 +60,12 @@ function SignUp() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Nome"
-              placeholder="Preencha seu nome completo"
               name="name"
               register={register}
               error={errors?.name}
             />
             <Input
               label="Email"
-              placeholder="Preencha seu e-mail"
               name="email"
               register={register}
               error={errors?.email}
@@ -70,7 +73,6 @@ function SignUp() {
             <Input
               type="password"
               label="Senha"
-              placeholder="Insira sua senha"
               name="password"
               register={register}
               error={errors?.password}
@@ -78,15 +80,33 @@ function SignUp() {
             <Input
               type="password"
               label="Confirmação de senha"
-              placeholder="Confirme sua senha"
               name="passwordConfirm"
               register={register}
               error={errors?.passwordConfirm}
             />
-            <select name="Categoria">
-              <option value="parent">Responsável</option>
-              <option value="driver">Motorista</option>
-            </select>
+            <Controller
+              control={control}
+              name="select"
+              render={({ field: { name, value, onChange } }) => (
+                <Select
+                  label="Selecione"
+                  name={name}
+                  value={value}
+                  error={errors.select?.value}
+                  options={[
+                    {
+                      value: "Responsável",
+                      label: "Responsável",
+                    },
+                    {
+                      value: "Motorista",
+                      label: "Motorista",
+                    },
+                  ]}
+                  onChange={onChange}
+                />
+              )}
+            />
             <Button>Confirmar</Button>
           </form>
         </section>
