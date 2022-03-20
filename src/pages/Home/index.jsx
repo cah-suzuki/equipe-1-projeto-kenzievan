@@ -1,7 +1,7 @@
-import { Contanier, Main, Footer, FooterTop } from "./styles";
+import { Contanier, Main, Footer, SideBackground } from "./styles";
 import TeamIcon from "../../assets/TeamIcon.png";
 
-import SideBackground from "../../components/SideBackground";
+// import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
 
@@ -10,15 +10,24 @@ function Home() {
     <Contanier>
       <NavBar login register />
       <Main>
-        {/* <p>
-          KenzieVan é uma plataforma de comunicação entre responsáveis e
-          motoristas de vans escolares. Com kenzieVan você pode comunicar sobre
-          faltas e atrasos de forma simples e evitar qualquer stress entre ambas
-          as partesKey features:Encontrar a van de forma rápida e facil:
-          descriçãoAcesso ao histórico de viagenstexto
-          textotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotexto
+        {/* <div> */}
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+          labore consequuntur aspernatur. Fugit, distinctio molestias culpa
+          cumque neque vel dolores.
         </p>
-        <SideBackground image={SideImage} /> */}
+        <SideBackground image={SideImage} />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+          labore consequuntur aspernatur. Fugit, distinctio molestias culpa
+          cumque neque vel dolores.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+          labore consequuntur aspernatur. Fugit, distinctio molestias culpa
+          cumque neque vel dolores.
+        </p>
+        {/* </div> */}
       </Main>
       <Footer>
         <h2>Projeto desenvolvido por alunos da Kenzie Academy</h2>

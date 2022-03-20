@@ -1,27 +1,104 @@
 import styled from "styled-components";
 import FooterBackground from "../../assets/FooterBackground.svg";
+import SideBackgroundComponent from "../../components/SideBackground";
 
 export const Contanier = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: space-between;
 `;
 
 export const Main = styled.main`
-  display: flex;
-  padding: 0 10%;
+  padding: 10px 10% 40px;
   width: 100%;
+  display: grid;
   flex: 1;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
+  align-content: space-between;
+  gap: 0 20px;
 
   p {
-    margin: 0 20px;
-    word-break: break-all;
-    width: 40%;
+    font-size: 19px;
+    margin: 15px 0;
+  }
+
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    p:nth-child(n + 2) {
+      grid-column: 1 / 3;
+    }
+  }
+
+  @media (min-width: 800px) {
+    p:nth-child(3) {
+      grid-column: 1 / 2;
+    }
+  }
+  @media (min-width: 1000px) {
+    p {
+      font-size: 20px;
+    }
+    p:nth-child(1) {
+      grid-row: 2 / 3;
+    }
+    p:nth-child(3) {
+      grid-row: 3 / 4;
+    }
+    p:nth-child(4) {
+      grid-row: 4 / 5;
+      grid-column: 1 / 2;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    p {
+      font-size: 22px;
+    }
+
+    p:nth-child(1) {
+      grid-row: 2 / 3;
+    }
+    p:nth-child(3) {
+      grid-row: 3 / 4;
+    }
+    p:nth-child(4) {
+      grid-row: 4 / 5;
+    }
+  }
+`;
+
+export const SideBackground = styled(SideBackgroundComponent)`
+  display: block;
+  width: 80vw;
+  min-width: 0;
+  height: 66vw;
+  order: -1;
+
+  @media (min-width: 600px) {
+    width: 45vw;
+    height: 38vw;
+    order: 0;
+    margin: auto;
+    grid-column: 2 / 3;
+  }
+
+  @media (min-width: 800px) {
+    grid-row: 1 / 3;
+  }
+  @media (min-width: 1000px) {
+    grid-row: 1 / 6;
+    width: 40vw;
+    height: 40vw;
+  }
+  @media (min-width: 1300px) {
+    grid-row: 1 / 6;
+    width: 40vw;
+    height: 40vw;
+    max-width: 549px;
+    max-height: 445px;
   }
 `;
 
