@@ -25,6 +25,9 @@ export const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 380px;
+  max-height: 400px;
+  overflow: auto;
 `;
 
 export const EmptyMessageContainer = styled.div`
@@ -45,7 +48,11 @@ export const EmptyMessageContainer = styled.div`
 
 export const MessageCard = styled.div`
   background-color: var(--color-primary-fading);
-  border: 1px solid var(--color-primary-100);
+  border: 2px solid
+    ${(props) =>
+      props.isRecent === false
+        ? "var(--color-secondary-100)"
+        : "var(--color-primary-100)"};
   color: var(--grey-1);
   padding: 8px;
   margin: 6px 0;
