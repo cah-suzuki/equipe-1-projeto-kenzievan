@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router";
+import Api from "../../services/api";
 
 export const UserContext = createContext({});
 
@@ -13,11 +14,9 @@ export const UserProvider = ({ children }) => {
   const history = useHistory();
 
   const login = (data) => {
-    console.log(data);
-    axios
-      .post("https://kenzievan-server.herokuapp.com/login", data)
+    Api.post("/login", data)
       .then((response) => {
-        setUser(response.data);
+        setUser(response);
         localStorage.setItem("@KenzieVan:user", JSON.stringify(user));
         history.push(`/dashboard`);
         toast.success("Login efetuado com sucesso");
