@@ -43,6 +43,27 @@ const Container = styled.div`
       }
     }
 
+    footer {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      p {
+        text-align: center;
+      }
+      button {
+        font-size: 18px;
+        width: 20%;
+        border: none;
+        background-color: transparent;
+        color: var(--color-primary-50);
+        font-weight: 700;
+        text-decoration: underline;
+      }
+    }
+
     form {
       display: flex;
       flex-wrap: wrap;
