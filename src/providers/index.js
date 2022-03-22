@@ -1,11 +1,7 @@
-import { UserProvider } from "./user";
+import { UserProvider } from "./User";
 
 const Providers = ({ children }) => {
-    return (
-        <UserProvider>
-            {children}
-        </UserProvider>
-    )
-}
+  return <UserProvider>{children}</UserProvider>;
+};
 
 export default Providers;
