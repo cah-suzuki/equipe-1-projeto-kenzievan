@@ -15,7 +15,7 @@ const Container = styled.div`
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 20px 40px;
+    padding: 16px 20px 20px;
     width: min(480px, 100%);
     flex-shrink: 0;
     height: min-content;
@@ -44,7 +44,7 @@ const Container = styled.div`
     }
 
     footer {
-      margin-top: 20px;
+      margin-top: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
