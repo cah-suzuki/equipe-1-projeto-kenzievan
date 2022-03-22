@@ -9,7 +9,7 @@ export const MessagesProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
 
   //   Descomentar linha abaixo + import quando o userProvider estiver pronto
-  //   const {userId, token} = useContext(userProvider)
+  //   const {user.id, token} = useContext(userProvider)
 
   // A pagar proximas 2 linhas quando user Provider estiver pronto
   const userId = 2;
@@ -26,12 +26,11 @@ export const MessagesProvider = ({ children }) => {
       .catch((error) => console.log(error));
   }, []);
 
-  const postMessage = (message) => {
+  const postMessage = (message, clearInput) => {
     const data = {
       message,
       driverId: userId,
     };
-    console.log(data);
 
     Api.post(`/public_messages`, data, {
       headers: {
@@ -40,6 +39,7 @@ export const MessagesProvider = ({ children }) => {
     })
       .then(() => {
         setMessages([...messages, data]);
+        clearInput();
       })
       .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
   };
