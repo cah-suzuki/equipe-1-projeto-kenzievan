@@ -11,17 +11,22 @@ export const MessagesProvider = ({ children }) => {
   const {
     user: { id },
     token,
+    isAuth,
   } = useContext(UserContext);
 
   useEffect(() => {
-    Api.get("/public_messages", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => setMessages(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+    if (isAuth) {
+      Api.get("/public_messages", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => setMessages(res.data))
+        .catch((error) => console.log(error));
+    } else {
+      setMessages([]);
+    }
+  }, [isAuth]);
 
   const postMessage = (message, clearInput) => {
     const data = {

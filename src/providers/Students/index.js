@@ -9,24 +9,29 @@ export const StudentProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
   const {
     token,
-    user: { userId },
+    user: { id },
+    isAuth,
   } = useContext(UserContext);
 
   useEffect(() => {
-    Api.get("/students", {
-      headers: { Authorization: `Bearer ${token}` },
-    }).then((response) => {
-      const filteredList = filterListById(response.data);
-      const sortedList = sortListAlphabetically(filteredList);
-      setStudents(sortedList);
-    });
-  }, []);
+    if (isAuth) {
+      Api.get("/students", {
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((response) => {
+        const filteredList = filterListById(response.data);
+        const sortedList = sortListAlphabetically(filteredList);
+        setStudents(sortedList);
+      });
+    } else {
+      setStudents([]);
+    }
+  }, [isAuth]);
 
   const filterListById = (list) => {
     const filteredList = list.filter((student) => {
       return (
-        String(userId) === String(student.parentId) ||
-        String(userId) === String(student.driverId)
+        String(id) === String(student.parentId) ||
+        String(id) === String(student.driverId)
       );
     });
     return filteredList;
