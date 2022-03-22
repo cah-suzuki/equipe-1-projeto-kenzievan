@@ -1,6 +1,5 @@
 import { Container } from "./styled";
 
-
 const ButtonSmall = ({ figcaption, src, ...rest }) => {
   return (
     <Container {...rest}>

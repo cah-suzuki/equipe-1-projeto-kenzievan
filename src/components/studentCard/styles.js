@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 90%;
-  height: 200px;
+  width: 100%;
   border: 1px solid var(--color-primary-50);
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
+  margin: 10px 0;
 
   span {
     font-size: 16px;
@@ -24,8 +24,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 650px) {
-    flex-direction: row;
-    height: 200px;
+    flex-direction: column;
     padding: 1rem;
 
     span {
@@ -36,7 +35,7 @@ export const Container = styled.div`
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
       font-style: normal;
       font-weight: 400;
       text-align: left;
@@ -44,41 +43,46 @@ export const Container = styled.div`
   }
 `;
 
-export const About = styled.div`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const Content = styled.div`
+export const Aberto = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: flex-start;
 
   @media (min-width: 650px) {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
 export const Times = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: flex-start;
-  width: 100%;
-  justify-content: flex-start;
-
-  section + section {
-    margin-left: 1rem;
-  }
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   section {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+
+  section + section {
+    margin-top: 0.5rem;
+  }
+
   span {
     margin-right: 5px;
   }
@@ -88,13 +92,16 @@ export const Times = styled.div`
   }
 
   @media (min-width: 650px) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    height: 20%;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    section {
+      justify-content: flex-end;
+    }
 
     section + section {
-      margin-left: 40px;
+      margin-top: 0.5rem;
     }
 
     span {
@@ -105,6 +112,24 @@ export const Times = styled.div`
       margin-left: 10px;
     }
   }
+`;
+
+export const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @media (min-width: 650px) {
+    flex-direction: row;
+  }
+`;
+
+export const About = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 export const CardInput = styled.div`
