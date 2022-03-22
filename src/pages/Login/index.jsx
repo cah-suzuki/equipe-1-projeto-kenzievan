@@ -1,15 +1,17 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { FiLogIn } from "react-icons/fi";
 
 import Container from "./styles";
 import Button from "../../components/button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
-
 import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
-import { FiLogIn } from "react-icons/fi";
+
+import { UserContext } from "../../providers/User";
 
 function Login() {
   const formSchema = yup.object().shape({
@@ -25,10 +27,11 @@ function Login() {
     resolver: yupResolver(formSchema),
   });
 
+  const { login } = useContext(UserContext);
+
   const onSubmit = (data) => {
-    console.log(data);
+    login(data);
   };
-  console.log(errors);
 
   return (
     <>
