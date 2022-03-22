@@ -1,36 +1,34 @@
-import { Container, Content } from "./styles";
+import { Container } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
-const NavBar = ({ homePage, signupPage }) => {
+const NavBar = ({ register, login, home, logout }) => {
   const history = useHistory();
 
   const handleNavigation = (path) => {
     return history.push(path);
   };
 
-  const { home, login } = useParams();
-
-  console.log({ home });
-  console.log({login})
+  const handleLogout = () => {
+    localStorage.clear();
+    handleNavigation("/");
+  };
 
   return (
     <Container>
       <h2>KenzieVan</h2>
-      {homePage && (
-        <Content>
+      <nav>
+        {login && (
           <Button onClick={() => handleNavigation("login")}>Entrar</Button>
+        )}{" "}
+        {register && (
           <Button onClick={() => handleNavigation("signup")}>
             Cadastre-se
           </Button>
-        </Content>
-      )}
-      {signupPage && (
-        <Content>
-          <Button onClick={() => handleNavigation("login")}>Entrar</Button>
-        </Content>
-      )}
+        )}
+        {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
+        {logout && <Button onClick={() => handleLogout()}>Sair</Button>}
+      </nav>
     </Container>
   );
 };
