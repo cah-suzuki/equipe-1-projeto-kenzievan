@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import Container from "./styles";
 import Input from "../../components/Input";
@@ -8,9 +9,11 @@ import Button from "../../components/button";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
 import Select from "../../components/Select";
+import Api from "../../services/api";
 
 import SideImage from "../../assets/SideImage.svg";
 import { FiUsers } from "react-icons/fi";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignUp() {
   const formSchema = yup.object().shape({
@@ -40,7 +43,7 @@ function SignUp() {
       .string()
       .required("Confirmação de senha obrigatória")
       .oneOf([yup.ref("password")], "As senhas não são iguais"),
-    select: yup.object().shape({
+    role: yup.object().shape({
       value: yup.string().required("Selecione uma opção"),
     }),
   });
@@ -54,7 +57,18 @@ function SignUp() {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const history = useHistory();
+
+  const onSubmit = ({ name, email, password, role: { value } }) => {
+    const newUser = { name, email, password, role: value };
+
+    Api.post("/signup", newUser)
+      .then(() => {
+        history.push("/login");
+        toast.success("Conta cadastrada com sucesso!");
+      })
+      .catch(() => toast.error("Não foi possível cadastrar a conta!"));
+  };
 
   return (
     <>
@@ -96,19 +110,19 @@ function SignUp() {
             />
             <Controller
               control={control}
-              name="select"
+              name="role"
               render={({ field: { name, value, onChange } }) => (
                 <Select
                   name={name}
                   value={value}
-                  error={errors.select?.value}
+                  error={errors.role?.value}
                   options={[
                     {
-                      value: "Responsável",
+                      value: "parent",
                       label: "Responsável",
                     },
                     {
-                      value: "Motorista",
+                      value: "driver",
                       label: "Motorista",
                     },
                   ]}
