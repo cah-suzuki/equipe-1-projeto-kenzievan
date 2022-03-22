@@ -49,14 +49,12 @@ function Login() {
             <Input
               label="Email"
               name="email"
-              placeholder="Email"
               register={register}
               error={errors?.email}
             />
             <Input
               label="Senha"
               name="password"
-              placeholder="Senha"
               type="password"
               register={register}
               error={errors?.password}
