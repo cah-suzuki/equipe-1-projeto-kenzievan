@@ -56,11 +56,16 @@ export const StudentProvider = ({ children }) => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
-        const filteredList = filterListById(response.data);
+        const studentList = [...students, response.data];
+        const filteredList = filterListById(studentList);
         const sortedList = sortListAlphabetically(filteredList);
         setStudents(sortedList);
+        toast.success("Aluno cadastrado com sucesso");
       })
-      .catch(() => toast.error("Não foi possível cadastrar o aluno"));
+      .catch((error) => {
+        console.log(error);
+        toast.error("Não foi possível cadastrar o aluno");
+      });
   };
 
   const deleteStudent = (id) => {

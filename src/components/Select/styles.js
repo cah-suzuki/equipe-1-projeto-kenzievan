@@ -19,7 +19,7 @@ export const customStyles = {
   // INPUT BOX
   control: (base, { selectProps: { error } }) => ({
     ...base,
-    minHeight: "48px",
+    minHeight: "40px",
     background: "var(--white)",
     color: "var(--black)",
     border: `2px solid ${
