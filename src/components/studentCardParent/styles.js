@@ -57,54 +57,6 @@ export const OpenContainer = styled.div`
   }
 `;
 
-export const Times = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  section {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  span {
-    margin-right: 5px;
-  }
-
-  p + span {
-    margin-left: 5px;
-  }
-
-  @media (min-width: 650px) {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-
-    section {
-      justify-content: flex-end;
-    }
-
-    span {
-      margin-right: 5px;
-    }
-
-    p + span {
-      margin-left: 10px;
-    }
-  }
-`;
 
 export const Name = styled.div`
   height: 100%;
@@ -130,10 +82,16 @@ export const Content = styled.div`
 `;
 
 export const About = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 15px;
+
+  @media (min-width: 650px) {
+   margin-right: 15px;
+   margin-bottom: 0px;
+  }
 `;
 
 export const CardInput = styled.div`

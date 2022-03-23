@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Contanier, DateFilter, ListItem } from "./styles";
 
-function TripList() {
+function TripList({tripsList}) {
   const triplistExemple = [
-    { date: "2022-03-01", entryTime: "06:45", leaveTime: "12:45" },
-    { date: "2022-03-02", entryTime: "07:55", leaveTime: "11:35" },
-    { date: "2022-03-03", entryTime: "08:35", leaveTime: "10:25" },
+    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
+    { date: "2022-03-02", entryTime: "07:55", departureTime: "11:35" },
+    { date: "2022-03-03", entryTime: "08:35", departureTime: "10:25" },
   ];
   const [triplist, setTriplist] = useState(triplistExemple);
   const today = new Date().toISOString().split("T")[0];
@@ -29,13 +29,13 @@ function TripList() {
       <ul>
         {triplist.map((item, index) => (
           <ListItem key={index}>
-            <span>
-              <p>Hora de Entrada:</p> <p>{item.entryTime}</p>
-            </span>
-            <span>
-              <p>Hora de sáida:</p> <p>{item.leaveTime}</p>
-            </span>
             <p>{item.date.split("-").reverse().join("/")}</p>
+            <span>
+              <p>Entrada:</p> <p>{item.entryTime}</p>
+            </span>
+            <span>
+              <p>Saída:</p> <p>{item.departureTime}</p>
+            </span>
           </ListItem>
         ))}
       </ul>

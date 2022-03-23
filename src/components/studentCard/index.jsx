@@ -1,7 +1,6 @@
 import {
-  Aberto,
+  OpenContainer,
   About,
-  BoxInput,
   CardInput,
   Container,
   Content,
@@ -9,16 +8,8 @@ import {
   Times,
 } from "./styles";
 import {
-  FiArrowLeft,
-  FiArrowRight,
-  FiArrowRightCircle,
-  FiCheck,
   FiChevronDown,
-  FiChevronRight,
-  FiXCircle,
 } from "react-icons/fi";
-import ButtonSmall from "../buttonSmall";
-import { useForm } from "react-hook-form";
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -94,16 +85,15 @@ const StudentCard = ({ student }) => {
   };
 
   const Fechado = (e) => {
-    console.log(expanded);
     setExpanded(true);
   };
 
   return (
     <Container>
-      <Aberto expand={expanded} aria-expanded={expanded} aria-label="show more">
+      <OpenContainer expand={expanded} aria-expanded={expanded} aria-label="show more">
         <Name>
-          <span>{student.name}</span>
-          <p>{student.parentName}</p>
+          <span>Aluno: {student.name}</span>
+          <p>Responsável: {student.parentName}</p>
         </Name>
         <Times>
           <section>
@@ -138,7 +128,7 @@ const StudentCard = ({ student }) => {
             />
           </section>
         </Times>
-      </Aberto>
+      </OpenContainer>
       
       <ExpandMore
         expand={expanded}
@@ -152,8 +142,8 @@ const StudentCard = ({ student }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <Content>
           <About>
-            <p>{student.address}</p>
-            <p>{student.school}</p>
+            <p>Endereço: {student.address}</p>
+            <p>Escola: {student.school}</p>
           </About>
           <CardInput onClick={(e) => Fechado(e)}>
             <p>Mensagem para o responsável:</p>

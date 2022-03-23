@@ -5,9 +5,10 @@ import { Container } from "./style";
 import Button from "../button";
 import { useState, useContext } from "react";
 import { StudentContext } from "../../providers/Students";
+import StudentCardParent from "../studentCardParent";
 
 const StudentList = ({ isDriver }) => {
-  const { students } = useContext(StudentContext);
+  // const { students } = useContext(StudentContext);
 
   //teste abertura dos cards
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,6 @@ const StudentList = ({ isDriver }) => {
   //teste se handleClick do novo cadastro,deve ser deletado apos teste
   const handleClick = () => {
     let counter = 0;
-    console.log(counter);
   };
   //teste de troca de true ou false para openCard
   //na verdade o state Global vai salvar isso
@@ -23,7 +23,51 @@ const StudentList = ({ isDriver }) => {
   //no componente card vai existir a renderização condicional para mostrar todos os dados ou so o nome
   const openCard = (isOpen) => setIsOpen(!isOpen);
 
-  console.log(isOpen);
+  const list = [
+    {
+      name: "name",
+      school: "school",
+      schoolAddress: "schoolAddress",
+      address: "address",
+      parentName: "parentName",
+      parentId: "parentId",
+      driverId: "driverId",
+      entryTime: "entryTime",
+      leaveTime: "leaveTime",
+      tripsList: [],
+      messages: [],
+      id: 3,
+    },
+    {
+      name: "name",
+      school: "school",
+      schoolAddress: "schoolAddress",
+      address: "address",
+      parentName: "parentName",
+      parentId: "parentId",
+      driverId: "driverId",
+      entryTime: "entryTime",
+      leaveTime: "leaveTime",
+      tripsList: [],
+      messages: [],
+      id: 3,
+    },
+    {
+      name: "name",
+      school: "school",
+      schoolAddress: "schoolAddress",
+      address: "address",
+      parentName: "parentName",
+      parentId: "parentId",
+      driverId: "driverId",
+      entryTime: "entryTime",
+      leaveTime: "leaveTime",
+      tripsList: [],
+      messages: [],
+      id: 3,
+    },
+  ];
+
 
   return (
     <Container>
@@ -32,15 +76,9 @@ const StudentList = ({ isDriver }) => {
         {isDriver && <Button onClick={handleClick}>Novo Cadastro</Button>}
       </header>
       <ul>
-        {React.Children.toArray(
-          students.map(({ name }) => (
-            //trocar li por studentCard com dados necessarios
-            //name,parent,address,school,entryTime,departureTime
-            <Button onClick={() => openCard(isOpen)} className="buttonList">
-              <li>{name}</li>
-            </Button>
-          ))
-        )}
+        {list.map((item) => (
+          <StudentCardParent student={item} />
+        ))}
       </ul>
     </Container>
   );
