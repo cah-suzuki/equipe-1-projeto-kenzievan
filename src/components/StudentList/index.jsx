@@ -7,8 +7,6 @@ import { Container } from "./style";
 import Button from "../button";
 import { useState } from "react";
 
-import StudentCard from "../studentCard"
-
 ////
 ///Para testar comentei todo o arquivo routes e as chamadas
 ///de routes e globalstyle do app.js,o estilo precisa arrumar com a tela pronta
@@ -36,46 +34,7 @@ const StudentList = ({ isDriver }) => {
   console.log(isOpen);
   //lista de teste,deve ser deletada apos teste
   //a lista oficial também vai ser recebida por context assim como o registerStudent
-  let students = [{
-    "name": "asdfasd",
-    "school": "asdfasdf",
-    "schoolAddress": "schoolAddress",
-    "address": "asdfasdf",
-    "parentName": "asdfasdf",
-    "parentId": "parentId",
-    "driverId": "driverId",
-    "entryTime": "entryTime",
-    "leaveTime": "leaveTime",
-    "tripsList": [],
-    "messages": [],
-    "id": 1
-  }, {
-    "name": "fghjghjk",
-    "school": "ghjkghjk",
-    "schoolAddress": "schoolAddress",
-    "address": "ghjkghjk",
-    "parentName": "ghjkghjk",
-    "parentId": "parentId",
-    "driverId": "driverId",
-    "entryTime": "entryTime",
-    "leaveTime": "leaveTime",
-    "tripsList": [],
-    "messages": [],
-    "id": 2
-  }, {
-    "name": "qwerqwer",
-    "school": "qwerqwer",
-    "schoolAddress": "schoolAddress",
-    "address": "qwerqwer",
-    "parentName": "qwerqwer",
-    "parentId": "parentId",
-    "driverId": "driverId",
-    "entryTime": "entryTime",
-    "leaveTime": "leaveTime",
-    "tripsList": [],
-    "messages": [],
-    "id": 3
-  }];
+  let students = [{ name: "joao" }, { name: "maria" }, { name: "carla" }];
 
   return (
     <Container>
@@ -85,8 +44,12 @@ const StudentList = ({ isDriver }) => {
       </header>
       <ul>
         {React.Children.toArray(
-          students.map((student) => (
-            <StudentCard student={student}/>
+          students.map(({ name }) => (
+            //trocar li por studentCard com dados necessarios
+            //name,parent,address,school,entryTime,departureTime
+            <Button onClick={() => openCard(isOpen)} className="buttonList">
+              <li>{name}</li>
+            </Button>
           ))
         )}
       </ul>
