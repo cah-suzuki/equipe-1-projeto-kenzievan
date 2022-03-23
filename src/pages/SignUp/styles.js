@@ -15,7 +15,7 @@ const Container = styled.div`
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 20px 40px;
+    padding: 16px 20px 20px;
     width: min(480px, 100%);
     flex-shrink: 0;
     height: min-content;
@@ -40,6 +40,27 @@ const Container = styled.div`
         > span {
           color: var(--color-primary-100);
         }
+      }
+    }
+
+    footer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      p {
+        text-align: center;
+      }
+      button {
+        font-size: 18px;
+        width: 20%;
+        border: none;
+        background-color: transparent;
+        color: var(--color-primary-50);
+        font-weight: 700;
+        text-decoration: underline;
       }
     }
 

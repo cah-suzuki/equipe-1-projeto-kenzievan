@@ -14,6 +14,7 @@ import Api from "../../services/api";
 import SideImage from "../../assets/SideImage.svg";
 import { FiUsers } from "react-icons/fi";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const formSchema = yup.object().shape({
@@ -63,7 +64,10 @@ function SignUp() {
     const newUser = { name, email, password, role: value };
 
     Api.post("/signup", newUser)
-      .then(() => {
+      .then((response) => {
+        delete newUser.password;
+        newUser.id = response.data.id;
+        Api.post("/_users", newUser).catch((error) => console.log(error));
         history.push("/login");
         toast.success("Conta cadastrada com sucesso!");
       })
@@ -132,6 +136,12 @@ function SignUp() {
             />
             <Button>Confirmar</Button>
           </form>
+          <footer>
+            <p>Já tem uma conta?</p>
+            <Link to="/login">
+              <button>Entrar</button>
+            </Link>
+          </footer>
         </section>
         <SideBackground image={SideImage} />
       </Container>
