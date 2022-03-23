@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border-radius: 5px;
-  border: 1px solid var(--color-primary-fading);
+  width: 100%;
+  height: 135px;
+  border: 1px solid var(--color-primary-50);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
 
   section {
     padding: 8px;
@@ -44,8 +49,7 @@ export const MessageCard = styled.div`
 
 export const InputContainer = styled.div`
   position: relative;
-  padding: 8px;
-  border-top: 1px solid var(--color-primary-fading);
+  padding: 5px;
   box-sizing: border-box;
 
   input {
@@ -54,7 +58,7 @@ export const InputContainer = styled.div`
     padding: 12px 45px 12px 15px;
     border: none;
     border-radius: 5px;
-    border: 1px solid var(--color-primary-fading);
+    border: 2px solid var(--color-primary-50);
   }
 
   button {
