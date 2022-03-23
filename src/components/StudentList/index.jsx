@@ -1,8 +1,8 @@
-// import StudentCard from "../StudentCard"
-
 import React from "react";
 import { Container } from "./style";
 import Button from "../button";
+import studentCard from "../studentCard";
+import Register from "../Register";
 import { useState, useContext } from "react";
 import { StudentContext } from "../../providers/Students";
 
@@ -11,9 +11,11 @@ const StudentList = ({ isDriver }) => {
 
   //teste abertura dos cards
   const [isOpen, setIsOpen] = useState(false);
+  const [isRegisterActive, setIsRegisterActive] = useState(false);
 
   //teste se handleClick do novo cadastro,deve ser deletado apos teste
   const handleClick = () => {
+    setIsRegisterActive(true);
     let counter = 0;
     console.log(counter);
   };
@@ -30,14 +32,20 @@ const StudentList = ({ isDriver }) => {
       <header>
         <h2>Lista de alunos cadastrados</h2>
         {isDriver && <Button onClick={handleClick}>Novo Cadastro</Button>}
+        {isRegisterActive ? (
+          <Register
+            isRegisterActive={isRegisterActive}
+            setIsRegisterActive={setIsRegisterActive}
+          ></Register>
+        ) : null}
       </header>
       <ul>
         {React.Children.toArray(
-          students.map(({ name }) => (
+          students.map(({ student }) => (
             //trocar li por studentCard com dados necessarios
             //name,parent,address,school,entryTime,departureTime
             <Button onClick={() => openCard(isOpen)} className="buttonList">
-              <li>{name}</li>
+              <studentCard key={student.id} student={student} />
             </Button>
           ))
         )}
