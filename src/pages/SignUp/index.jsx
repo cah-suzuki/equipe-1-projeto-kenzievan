@@ -81,9 +81,12 @@ function SignUp() {
         <section>
           <figure>
             <FiUsers />
-            <span>
+            <h3>
               Olá! Preencha seus dados para efetuar seu <span>Cadastro</span>
-            </span>
+            </h3>
+            <p onClick={() => history.push("/login")}>
+              Já tem uma conta? Faça login!
+            </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -136,12 +139,6 @@ function SignUp() {
             />
             <Button>Confirmar</Button>
           </form>
-          <footer>
-            <p>Já tem uma conta?</p>
-            <Link to="/login">
-              <button>Entrar</button>
-            </Link>
-          </footer>
         </section>
         <SideBackground image={SideImage} />
       </Container>
