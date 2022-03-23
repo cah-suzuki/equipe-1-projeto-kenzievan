@@ -4,13 +4,12 @@ const Container = styled.div`
   display: flex;
   padding: 0 5%;
   width: 100%;
-  height: 100%;
   justify-content: center;
   align-items: center;
   gap: 40px;
 
   @media (min-width: 1024px) {
-    padding: 0 2% 0 5%;
+    padding: 0 2% 2% 5%;
   }
 
   section {
@@ -21,6 +20,9 @@ const Container = styled.div`
     flex-shrink: 0;
     height: min-content;
 
+    @media (max-width: 1024px) {
+      margin-top: 10px;
+    }
     figure {
       display: flex;
       flex-direction: column;
@@ -51,6 +53,14 @@ const Container = styled.div`
       button {
         margin-top: 30px;
       }
+    }
+
+    p {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 17px;
+      text-align: center;
+      text-decoration: underline;
     }
   }
 `;

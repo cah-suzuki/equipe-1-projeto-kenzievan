@@ -15,7 +15,7 @@ const Container = styled.div`
   section {
     box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
     border-radius: 20px;
-    padding: 16px 20px 40px;
+    padding: 16px 20px 20px;
     width: min(480px, 100%);
     flex-shrink: 0;
     height: min-content;
@@ -32,7 +32,7 @@ const Container = styled.div`
         height: 40px;
       }
 
-      span {
+      h3 {
         font-weight: bold;
         font-size: 22px;
         text-align: center;
@@ -50,7 +50,7 @@ const Container = styled.div`
       justify-content: center;
 
       button {
-        margin-top: 10px;
+        margin: 10px 0;
         width: 100%;
       }
 
@@ -60,6 +60,13 @@ const Container = styled.div`
           width: calc(50% - 7.5px);
         }
       }
+    }
+    p {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 17px;
+      text-align: center;
+      text-decoration: underline;
     }
   }
 `;
