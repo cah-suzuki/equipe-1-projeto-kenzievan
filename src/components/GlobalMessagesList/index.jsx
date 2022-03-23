@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { MessagesContext } from "../../providers/Messages/index.js";
 import {
   Container,
   MessageContainer,
@@ -5,27 +7,17 @@ import {
   EmptyMessageContainer,
 } from "./styles.js";
 
-function MessagesList({
-  list = [
-    {
-      date: "dd/mm/aaaa",
-      hour: "00:00",
-      message: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      date: "dd/mm/aaaa",
-      hour: "00:00",
-      message: "Lorem ipsum dolor sit amet.",
-    },
-  ],
-}) {
-  // OBS: Remover a lista padrão dos props quando tivermos contato com a api!
+function GlobalMessagesList() {
+  const { messages } = useContext(MessagesContext);
+
+  const reversedMessages = [...messages].reverse();
+
   return (
     <Container>
       <h3>Histórico de mensagens</h3>
-      {list.length > 0 ? (
+      {messages.length > 0 ? (
         <MessageContainer>
-          {list.map((item, index) => (
+          {reversedMessages.map((item, index) => (
             <MessageCard key={index}>
               <div>
                 <h3>{item.date}</h3>
@@ -44,4 +36,4 @@ function MessagesList({
   );
 }
 
-export default MessagesList;
+export default GlobalMessagesList;
