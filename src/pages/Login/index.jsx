@@ -47,7 +47,7 @@ function Login() {
               Efetue seu <span>Login</span>
             </span>
             <p onClick={() => history.push("/signup")}>
-              Ainda Não pussui um login? Cadastre-se
+              Ainda não possui um login? Cadastre-se
             </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
