@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router";
 import Api from "../../services/api";
@@ -12,6 +12,23 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("@KenzieVan:token")) || {}
   );
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (token && Object.entries(user).length > 0) {
+      Api.get(`/users/${user.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then(() => setIsAuth(true))
+        .catch(() => {
+          setIsAuth(false);
+          localStorage.clear();
+        });
+    } else {
+      setIsAuth(false);
+      localStorage.clear();
+    }
+  }, [token, user]);
 
   const history = useHistory();
 
@@ -37,12 +54,11 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser({});
     setToken("");
-    localStorage.clear();
     history.push("/");
   };
 
   return (
-    <UserContext.Provider value={{ user, token, login, logout }}>
+    <UserContext.Provider value={{ user, token, isAuth, login, logout }}>
       {children}
     </UserContext.Provider>
   );

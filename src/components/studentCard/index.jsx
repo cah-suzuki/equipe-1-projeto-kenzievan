@@ -14,6 +14,8 @@ import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
+import { useContext } from "react";
+import { StudentContext } from "../../providers/Students";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,9 +28,24 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const getTime = () => {
+  const now = new Date();
+
+  const day = now.getDate();
+  const month = now.getMonth();
+  const year = now.getFullYear();
+
+  const date = `${day}/${month}/${year}`;
+  const hour = now.toTimeString().substring(0, 5);
+
+  return { date, hour };
+};
+
 const StudentCard = ({ student }) => {
   const { register, handleSubmit, reset } = useForm();
   const [expanded, setExpanded] = useState(false);
+  const [entryText, setEntryText] = useState("xx:xx");
+  const [departureText, setDepartureText] = useState("xx:xx");
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
@@ -39,14 +56,34 @@ const StudentCard = ({ student }) => {
     reset();
   };
 
-  const entryTime = () => {
-    const now = new Date();
-    console.log(now.toLocaleString());
+  const { updateTodayTrip } = useContext(StudentContext);
+
+  const handleEntryCheckBox = () => {
+    const { hour } = getTime();
+
+    const updatedValue = { entryTime: hour };
+
+    setEntryText(hour);
+    sentTripToApi(updatedValue);
   };
 
-  const departureTime = () => {
-    const now = new Date();
-    console.log(now.toLocaleString());
+  const handleDepartureCheckBox = () => {
+    const { hour } = getTime();
+
+    const updatedValue = { departureTime: hour };
+
+    setDepartureText(hour);
+    sentTripToApi(updatedValue);
+  };
+
+  const sentTripToApi = (updatedValue) => {
+    const { date } = getTime();
+
+    const todayTrip =
+      student.tripsList.find((trip) => trip.date === date) || {};
+
+    const updatedTrip = { ...todayTrip, ...updatedValue, date };
+    updateTodayTrip(student.id, updatedTrip, date);
   };
 
   return (
@@ -60,21 +97,20 @@ const StudentCard = ({ student }) => {
           <section>
             <div>
               <p>Entrada:</p>
-              <span>xx:xx</span>
+              <span>{entryText}</span>
             </div>
-            <ButtonSmall onClick={() => entryTime()}>
-              <FiCheck />
-            </ButtonSmall>
+            <ButtonSmall icon={FiCheck} onClick={() => handleEntryCheckBox()} />
           </section>
 
           <section>
             <div>
               <p>Saída:</p>
-              <span>xx:xx</span>
+              <span>{departureText}</span>
             </div>
-            <ButtonSmall onClick={() => departureTime()}>
-              <FiCheck />
-            </ButtonSmall>
+            <ButtonSmall
+              icon={FiCheck}
+              onClick={() => handleDepartureCheckBox()}
+            />
           </section>
         </Times>
       </Aberto>
