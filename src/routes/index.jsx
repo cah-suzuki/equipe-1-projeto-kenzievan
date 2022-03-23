@@ -16,10 +16,10 @@ const Routes = () => {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/login">
+      <Route exact path="/login">
         <Login />
       </Route>
-      <Route path="/signup">
+      <Route exact path="/signup">
         <SignUp />
       </Route>
       <Route exact path="/driver">

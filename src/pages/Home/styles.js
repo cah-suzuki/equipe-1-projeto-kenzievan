@@ -18,6 +18,10 @@ export const Main = styled.main`
   align-content: space-between;
   gap: 0 20px;
 
+  ol {
+    list-style-type: disc;
+  }
+
   p {
     font-size: 19px;
     margin: 15px 0;

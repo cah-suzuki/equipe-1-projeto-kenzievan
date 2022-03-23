@@ -97,8 +97,6 @@ export const StudentProvider = ({ children }) => {
           );
           const updatedStudents = [...filteredStudents, response.data];
 
-          console.log(response.data.tripsList);
-          console.log(updatedStudents);
           setStudents(updatedStudents);
         });
       })
