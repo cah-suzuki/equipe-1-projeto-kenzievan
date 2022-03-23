@@ -108,9 +108,38 @@ export const StudentProvider = ({ children }) => {
       .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
   };
 
+  const sendMessage = (studentId, newMessage, clearInput) => {
+    Api.get(`/students/${studentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        const allMessages = response.data.messages;
+        const updatedMessages = {
+          messages: [newMessage, ...allMessages],
+        };
+
+        Api.patch(`/students/${studentId}`, updatedMessages, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((response) => {
+          const filteredStudents = students.filter(
+            (student) => student.id !== studentId
+          );
+          const updatedStudents = [...filteredStudents, response.data];
+
+          setStudents(updatedStudents);
+          clearInput();
+        });
+      })
+      .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
+  };
+
   return (
     <StudentContext.Provider
-      value={{ students, newStudent, deleteStudent, updateTodayTrip }}
+      value={{ students, newStudent, deleteStudent, updateTodayTrip, sendMessage }}
     >
       {children}
     </StudentContext.Provider>

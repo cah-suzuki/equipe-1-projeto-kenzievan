@@ -1,11 +1,23 @@
 import styled from "styled-components";
 
 export const Contanier = styled.div`
-  width: 270px;
+  width: 100%;
   height: 200px;
   border: 1px solid var(--color-primary-50);
   border-radius: 10px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  ul {
+    width: 100%;
+
+    li + li {
+      margin-top: 10px;
+    }
+  }
 
   ::-webkit-scrollbar {
     display: none;
@@ -24,23 +36,23 @@ export const DateFilter = styled.input`
 `;
 
 export const ListItem = styled.li`
-  width: 90%;
+  width: 100%;
   border: 1px solid var(--color-primary-50);
   border-radius: 10px;
-  margin: 0 0 20px 15px;
+  padding: 8px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
+
   span {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 37px;
-    padding-right: 25px;
 
     p + p {
       font-weight: bold;

@@ -16,7 +16,7 @@ export const Modal = styled.div`
 export const Container = styled.div`
   background: white;
   margin-top: 10px;
-  overflow: scroll;
+  overflow: auto;
   padding: 10px;
   border-radius: 20px;
   height: 80%;

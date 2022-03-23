@@ -11,13 +11,14 @@ const StudentMessagesDriver = ({ messages, studentId }) => {
   const handleClick = () => {
     const { date, hour } = getTime();
 
-    const newMessage = {
-      message: inputValue,
-      date,
-      hour,
-    };
-
-    sendMessage(studentId, newMessage, clearInput);
+    if (inputValue.length > 0) {
+      const newMessage = {
+        message: inputValue,
+        date,
+        hour,
+      };
+      sendMessage(studentId, newMessage, clearInput);
+    }
   };
 
   const clearInput = () => setInputValue("");
