@@ -1,21 +1,13 @@
 // import StudentCard from "../StudentCard"
-//useContext vai ser importado aqui assim como o provider
-//para fazer registo de aluno
 
 import React from "react";
 import { Container } from "./style";
 import Button from "../button";
-import { useState } from "react";
-
-////
-///Para testar comentei todo o arquivo routes e as chamadas
-///de routes e globalstyle do app.js,o estilo precisa arrumar com a tela pronta
-////
+import { useState, useContext } from "react";
+import { StudentContext } from "../../providers/Students";
 
 const StudentList = ({ isDriver }) => {
-  //declaração do método context para registro de aluno
-  // EX: const {registerStudent} = useContext(StudentContext)
-  // esse registerStudent vai sei passado então como onClick do botão
+  const { students } = useContext(StudentContext);
 
   //teste abertura dos cards
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +24,6 @@ const StudentList = ({ isDriver }) => {
   const openCard = (isOpen) => setIsOpen(!isOpen);
 
   console.log(isOpen);
-  //lista de teste,deve ser deletada apos teste
-  //a lista oficial também vai ser recebida por context assim como o registerStudent
-  let students = [{ name: "joao" }, { name: "maria" }, { name: "carla" }];
 
   return (
     <Container>
