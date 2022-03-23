@@ -5,8 +5,11 @@ import {
   DayContainer,
 } from "./styles";
 import NavBar from "../NavBar";
+import { UserContext } from "../../providers/User";
+import { useContext } from "react";
 
 function Header({ name }) {
+  const { user } = useContext(UserContext);
   const data = new Date();
   return (
     <Container>
@@ -14,7 +17,7 @@ function Header({ name }) {
       <HeaderContanier>
         <GreetingContainer>
           <p>Olá, </p>
-          <p>{name}</p>
+          <p>{user.name}</p>
         </GreetingContainer>
         <DayContainer>Hoje é: {data.toLocaleDateString()} </DayContainer>
       </HeaderContanier>
