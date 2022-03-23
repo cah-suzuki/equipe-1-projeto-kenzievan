@@ -1,37 +1,28 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
-
-// import { useState, useEffect } from "react";
-
 import Input from "../../components/Input";
 import Button from "../../components/button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-
 import { FiUserPlus } from "react-icons/fi";
-import { Container, Modal } from "./style";
-import { useEffect, useState } from "react";
-//Importar o userContext para usar o token
-// import { UserContext } from "../../providers/User";
 
-//Importar student para fazer o post do novo student na api
-// import { StudentContext } from "../../providers/Student";
+import { Container, Modal } from "./style";
+import { useEffect, useState, useContext } from "react";
+
+import { UserContext } from "../../providers/User";
+
+import { StudentContext } from "../../providers/Students";
 
 function Register({ isRegisterActive, setIsRegisterActive }) {
-  //instanciar o token se for necessario no get users
-  //instanciar o user para pegar o id necessário para criar o novo student (driverId)
-  // const { token,user } = useContext(UserContext);
-  //seguestão : manter state local com a lista e dentro da chamada da api usar o setUserList
-  //em seguida chamar o método handleList passando a lista da api
+  const { user } = useContext(UserContext);
 
-  //instanciar o método utilizado do student context
-  //const {newStudent} = useContext(StudentContext)
-  //Adicionar onClick do button chamando o método newStudent passando os dados
-  //do método handleData
+  const { newStudent } = useContext(StudentContext);
+
   let selectTimerMinutes = [];
   let selectTimerHour = [];
   let newList = [];
+
   const formSchema = yup.object().shape({
     name: yup
       .string()
@@ -88,12 +79,11 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-
-  //fazer método get com useEffect e usar o token do usuario para fazer requisição get e receber a lista de usuarios
 
   const [allUsers, setAllUsers] = useState([]);
 
@@ -103,26 +93,9 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     });
   }, []);
 
-  let userList = [
-    {
-      email: "leoliska98@gmail.com",
-      password: "$2a$10$Hhtu4znvDINTYnMMwxa7AuYB1ORan2KWvkDMj0ji.O5OxmoWUpd6e",
-      name: "Leonardo",
-      role: "parent",
-      id: 2,
-    },
-    {
-      email: "leoliska98@gmail.com",
-      password: "$2a$10$Hhtu4znvDINTYnMMwxa7AuYB1ORan2KWvkDMj0ji.O5OxmoWUpd6e",
-      name: "Leonardo",
-      role: "driver",
-      id: 3,
-    },
-  ];
-
   const handleList = (list) => {
     for (let i = 0; i < list.length; i++) {
-      if (list[i].role === "parent") {
+      if (list[i].role === "driver") {
         newList.push({
           value: list[i].id,
           label: list[i].name,
@@ -131,7 +104,7 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     }
   };
 
-  handleList(userList);
+  handleList(allUsers);
 
   const selectTimer = () => {
     for (let i = 0; i < 60; i++) {
@@ -153,7 +126,6 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     setIsRegisterActive(false);
   };
 
-  //handle data faz a conversão dos inputs para o obj que será enviado para api
   const handleData = (data) => {
     let newObj = {
       name: data.name,
@@ -161,8 +133,8 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
       schoolAddress: `${data.schoolAddress} ${data.schoolAddressDistrict} ${data.schoolAddressNumber}`,
       address: `${data.address} ${data.addressDistrict} ${data.addressNumber}`,
       parentName: data.select.label,
-      parentId: Number(data.select.value),
-      driverId: 1,
+      parentId: data.select.value,
+      driverId: user.id + "",
       entryTime: `${data.selectTimeArrival.value}:${data.selectTimeArrivalMinutes.value}`,
       leaveTime: `${data.selectTimeDeparture.value}:${data.selectTimeDepartureMinutes.value}`,
       tripsList: [],
@@ -172,16 +144,16 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     return newObj;
   };
 
-  //limpar imputs assim que abrir o modal
   const onSubmit = (data) => {
-    handleData(data);
+    let newData = handleData(data);
+    newStudent(newData);
+    reset();
     handleNavigation("/");
   };
-  //no onSubmit,fazer o tratamento dos dados e passar os dados tratados como parametro da função newStudent
-  //newStudent(handleData(data))
 
   //substituir o botão do header para um smallButton com reactIcon fiX
-
+  //diminuir o tamanho do box das options do select
+  //após atualização de buttonSmall trocar o button de dentro do header
   return (
     <>
       {isRegisterActive && (
@@ -214,7 +186,6 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
                     name={name}
                     value={value}
                     error={errors.select?.value}
-                    //select vai chamar o newList do estado local
                     options={newList}
                     onChange={onChange}
                   />

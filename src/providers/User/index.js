@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
           "@KenzieVan:token",
           JSON.stringify(response.data.accessToken)
         );
-        history.push(`/dashboard`);
+        history.push(`/driver`);
         toast.success("Login efetuado com sucesso");
       })
       .catch(() => toast.error("Algo deu errado, tente novamente"));
