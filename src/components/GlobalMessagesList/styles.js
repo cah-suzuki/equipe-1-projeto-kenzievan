@@ -23,7 +23,9 @@ export const MessageContainer = styled.div`
   padding: 6px 12px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  max-height: 300px;
+  overflow-y: auto;
   width: 100%;
 `;
 
@@ -38,7 +40,6 @@ export const EmptyMessageContainer = styled.div`
   align-items: center;
   h3 {
     margin: 0;
-    color: var(--color-primary-50);
     font-size: 14px;
   }
 `;

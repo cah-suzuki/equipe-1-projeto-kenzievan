@@ -20,13 +20,9 @@ export const UserProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(() => setIsAuth(true))
-        .catch(() => {
-          setIsAuth(false);
-          localStorage.clear();
-        });
+        .catch((error) => setIsAuth(false));
     } else {
       setIsAuth(false);
-      localStorage.clear();
     }
   }, [token, user]);
 
@@ -54,6 +50,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser({});
     setToken("");
+    localStorage.clear();
     history.push("/");
   };
 

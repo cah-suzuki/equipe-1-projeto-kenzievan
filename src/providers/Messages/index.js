@@ -8,11 +8,7 @@ export const MessagesContext = createContext([]);
 export const MessagesProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
 
-  const {
-    user: { id },
-    token,
-    isAuth,
-  } = useContext(UserContext);
+  const { user, token, isAuth } = useContext(UserContext);
 
   useEffect(() => {
     if (isAuth) {
@@ -21,33 +17,39 @@ export const MessagesProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((res) => setMessages(res.data))
+        .then((response) => {
+          const filteredList = filterListById(response.data);
+          setMessages(filteredList);
+        })
         .catch((error) => console.log(error));
     } else {
       setMessages([]);
     }
   }, [isAuth]);
 
-  const postMessage = (message, clearInput) => {
-    const data = {
-      message,
-      driverId: id,
-    };
-
-    Api.post(`/public_messages`, data, {
+  const sendGlobalMessage = (newMessage, clearInput) => {
+    Api.post(`/public_messages`, newMessage, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then(() => {
-        setMessages([...messages, data]);
+      .then((response) => {
+        const updatedMessages = [...messages, response.data];
+        setMessages(updatedMessages);
         clearInput();
       })
       .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
   };
 
+  const filterListById = (list) => {
+    const filteredList = list.filter(
+      (message) => String(user.id) === String(message.driverId)
+    );
+    return filteredList;
+  };
+
   return (
-    <MessagesContext.Provider value={{ messages, postMessage }}>
+    <MessagesContext.Provider value={{ messages, sendGlobalMessage }}>
       {children}
     </MessagesContext.Provider>
   );
