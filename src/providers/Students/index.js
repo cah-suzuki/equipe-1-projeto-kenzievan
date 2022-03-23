@@ -18,7 +18,7 @@ export const StudentProvider = ({ children }) => {
       Api.get("/students", {
         headers: { Authorization: `Bearer ${token}` },
       }).then((response) => {
-        console.log(students);
+        console.log(response);
         const filteredList = filterListById(response.data);
         const sortedList = sortListAlphabetically(filteredList);
         setStudents(sortedList);

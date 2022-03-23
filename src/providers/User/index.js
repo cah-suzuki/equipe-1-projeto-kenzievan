@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(() => setIsAuth(true))
-        .catch((error) => setIsAuth(false));
+        .catch(() => setIsAuth(false));
     } else {
       setIsAuth(false);
     }
