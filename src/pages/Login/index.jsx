@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { FiLogIn } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 
 import Container from "./styles";
 import Button from "../../components/button";
@@ -33,6 +34,7 @@ function Login() {
     login(data);
   };
 
+  const history = useHistory();
   return (
     <>
       <NavBar home />
@@ -44,6 +46,9 @@ function Login() {
             <span>
               Efetue seu <span>Login</span>
             </span>
+            <p onClick={() => history.push("/signup")}>
+              Ainda não possui um login? Cadastre-se
+            </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -59,7 +64,7 @@ function Login() {
               register={register}
               error={errors?.password}
             />
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
           </form>
         </section>
         <SideBackground image={SideImage} />
