@@ -32,7 +32,7 @@ const Container = styled.div`
         height: 40px;
       }
 
-      span {
+      h3 {
         font-weight: bold;
         font-size: 22px;
         text-align: center;
@@ -43,27 +43,6 @@ const Container = styled.div`
       }
     }
 
-    footer {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-weight: bold;
-      font-size: 18px;
-      p {
-        text-align: center;
-      }
-      button {
-        font-size: 18px;
-        width: 20%;
-        border: none;
-        background-color: transparent;
-        color: var(--color-primary-50);
-        font-weight: 700;
-        text-decoration: underline;
-      }
-    }
-
     form {
       display: flex;
       flex-wrap: wrap;
@@ -71,7 +50,7 @@ const Container = styled.div`
       justify-content: center;
 
       button {
-        margin-top: 10px;
+        margin: 10px 0;
         width: 100%;
       }
 
@@ -81,6 +60,13 @@ const Container = styled.div`
           width: calc(50% - 7.5px);
         }
       }
+    }
+    p {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 17px;
+      text-align: center;
+      text-decoration: underline;
     }
   }
 `;
