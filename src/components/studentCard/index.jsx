@@ -5,9 +5,18 @@ import {
   CardInput,
   Container,
   Content,
+  Name,
   Times,
 } from "./styles";
-import { FiCheck, FiChevronRight } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiArrowRight,
+  FiArrowRightCircle,
+  FiCheck,
+  FiChevronDown,
+  FiChevronRight,
+  FiXCircle,
+} from "react-icons/fi";
 import ButtonSmall from "../buttonSmall";
 import { useForm } from "react-hook-form";
 import { styled } from "@mui/material/styles";
@@ -16,6 +25,8 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { useContext } from "react";
 import { StudentContext } from "../../providers/Students";
+import { Checkbox } from "@mui/material";
+import StudentMessagesDriver from "../StudentMessagesDriver";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,7 +53,6 @@ const getTime = () => {
 };
 
 const StudentCard = ({ student }) => {
-  const { register, handleSubmit, reset } = useForm();
   const [expanded, setExpanded] = useState(false);
   const [entryText, setEntryText] = useState("xx:xx");
   const [departureText, setDepartureText] = useState("xx:xx");
@@ -51,29 +61,26 @@ const StudentCard = ({ student }) => {
     setExpanded(!expanded);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
-
   const { updateTodayTrip } = useContext(StudentContext);
 
   const handleEntryCheckBox = () => {
     const { hour } = getTime();
-
     const updatedValue = { entryTime: hour };
-
-    setEntryText(hour);
-    sentTripToApi(updatedValue);
+    entryText !== "xx:xx" ? setEntryText("xx:xx") : setEntryText(hour);
+    entryText !== "xx:xx"
+      ? sentTripToApi("xx:xx")
+      : sentTripToApi(updatedValue);
   };
 
   const handleDepartureCheckBox = () => {
     const { hour } = getTime();
-
     const updatedValue = { departureTime: hour };
-
-    setDepartureText(hour);
-    sentTripToApi(updatedValue);
+    departureText !== "xx:xx"
+      ? setDepartureText("xx:xx")
+      : setDepartureText(hour);
+    departureText !== "xx:xx"
+      ? sentTripToApi("xx:xx")
+      : sentTripToApi(updatedValue);
   };
 
   const sentTripToApi = (updatedValue) => {
@@ -86,20 +93,33 @@ const StudentCard = ({ student }) => {
     updateTodayTrip(student.id, updatedTrip, date);
   };
 
+  const Fechado = (e) => {
+    console.log(expanded);
+    setExpanded(true);
+  };
+
   return (
-    <Container onClick={(e) => handleExpandClick(e)}>
+    <Container>
       <Aberto expand={expanded} aria-expanded={expanded} aria-label="show more">
-        <section>
+        <Name>
           <span>{student.name}</span>
           <p>{student.parentName}</p>
-        </section>
+        </Name>
         <Times>
           <section>
             <div>
               <p>Entrada:</p>
               <span>{entryText}</span>
             </div>
-            <ButtonSmall icon={FiCheck} onClick={() => handleEntryCheckBox()} />
+            <Checkbox
+              sx={{
+                color: "#FA8223",
+                "&.Mui-checked": {
+                  color: "#FA8223",
+                },
+              }}
+              onChange={() => handleEntryCheckBox()}
+            />
           </section>
 
           <section>
@@ -107,13 +127,27 @@ const StudentCard = ({ student }) => {
               <p>Saída:</p>
               <span>{departureText}</span>
             </div>
-            <ButtonSmall
-              icon={FiCheck}
-              onClick={() => handleDepartureCheckBox()}
+            <Checkbox
+              sx={{
+                color: "#FA8223",
+                "&.Mui-checked": {
+                  color: "#FA8223",
+                },
+              }}
+              onChange={() => handleDepartureCheckBox()}
             />
           </section>
         </Times>
       </Aberto>
+      
+      <ExpandMore
+        expand={expanded}
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+      >
+        <FiChevronDown />
+      </ExpandMore>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <Content>
@@ -121,19 +155,12 @@ const StudentCard = ({ student }) => {
             <p>{student.address}</p>
             <p>{student.school}</p>
           </About>
-          <CardInput>
+          <CardInput onClick={(e) => Fechado(e)}>
             <p>Mensagem para o responsável:</p>
-            <BoxInput>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <textarea
-                  {...register("message")}
-                  placeholder="Digite sua mensagem"
-                />
-                <ButtonSmall type="sumbit">
-                  <FiChevronRight />
-                </ButtonSmall>
-              </form>
-            </BoxInput>
+            <StudentMessagesDriver
+              messages={student.messages}
+              studentId={student.id}
+            />
           </CardInput>
         </Content>
       </Collapse>

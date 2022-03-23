@@ -79,10 +79,6 @@ export const Times = styled.div`
     }
   }
 
-  section + section {
-    margin-top: 0.5rem;
-  }
-
   span {
     margin-right: 5px;
   }
@@ -100,10 +96,6 @@ export const Times = styled.div`
       justify-content: flex-end;
     }
 
-    section + section {
-      margin-top: 0.5rem;
-    }
-
     span {
       margin-right: 5px;
     }
@@ -111,6 +103,18 @@ export const Times = styled.div`
     p + span {
       margin-left: 10px;
     }
+  }
+`;
+
+export const Name = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  span + p {
+    margin-top: 10px;
   }
 `;
 

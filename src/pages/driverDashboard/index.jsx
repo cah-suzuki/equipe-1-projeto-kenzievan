@@ -1,5 +1,7 @@
+import StudentList from "../../components/StudentList";
+
 function DriverDashboard() {
-  return <h1>DRIVER DASHBOARD PAGE</h1>;
+  return <StudentList/>;
 }
 
 export default DriverDashboard;
