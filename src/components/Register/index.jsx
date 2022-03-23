@@ -19,9 +19,10 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
 
   const { newStudent } = useContext(StudentContext);
 
+  const [allParents, setAllParents] = useState([]);
+
   let selectTimerMinutes = [];
   let selectTimerHour = [];
-  let newList = [];
 
   const formSchema = yup.object().shape({
     name: yup
@@ -85,26 +86,19 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     resolver: yupResolver(formSchema),
   });
 
-  const [allUsers, setAllUsers] = useState([]);
-
   useEffect(() => {
     Api.get("/_users").then((response) => {
-      setAllUsers(response.data);
+      const allParents = response.data.map((user) => {
+        if (user.role === "parent") {
+          return {
+            value: user.id,
+            label: user.name,
+          };
+        }
+      });
+      setAllParents(allParents);
     });
   }, []);
-
-  const handleList = (list) => {
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].role === "driver") {
-        newList.push({
-          value: list[i].id,
-          label: list[i].name,
-        });
-      }
-    }
-  };
-
-  handleList(allUsers);
 
   const selectTimer = () => {
     for (let i = 0; i < 60; i++) {
@@ -186,7 +180,7 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
                     name={name}
                     value={value}
                     error={errors.select?.value}
-                    options={newList}
+                    options={allParents}
                     onChange={onChange}
                   />
                 )}
