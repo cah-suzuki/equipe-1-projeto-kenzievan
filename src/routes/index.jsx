@@ -4,16 +4,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ParentDashboard from "../pages/parentDashboard";
 import SignUp from "../pages/SignUp";
-<<<<<<< HEAD
 import StudentCard from "../components/studentCard";
 import { useContext } from "react";
 import { StudentContext } from "../providers/Students";
-=======
-import StudentMessagesDriver from "../components/StudentMessagesDriver";
-import { useContext } from "react";
-import { StudentContext } from "../providers/Students";
-import { UserContext } from "../providers/User";
->>>>>>> feature/student-messages-driver
 
 const Routes = () => {
   const { students } = useContext(StudentContext);
