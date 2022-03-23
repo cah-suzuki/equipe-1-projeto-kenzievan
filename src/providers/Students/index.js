@@ -18,6 +18,7 @@ export const StudentProvider = ({ children }) => {
       Api.get("/students", {
         headers: { Authorization: `Bearer ${token}` },
       }).then((response) => {
+        console.log(students);
         const filteredList = filterListById(response.data);
         const sortedList = sortListAlphabetically(filteredList);
         setStudents(sortedList);
@@ -73,8 +74,39 @@ export const StudentProvider = ({ children }) => {
       .catch((error) => console.log(error));
   };
 
+  const updateTodayTrip = (studentId, updatedTrip, date) => {
+    Api.get(`/students/${studentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        const allTrips = response.data.tripsList;
+
+        const filteredTrips = allTrips.filter((trip) => trip.date !== date);
+
+        const updatedTripsList = { tripsList: [...filteredTrips, updatedTrip] };
+
+        Api.patch(`/students/${studentId}`, updatedTripsList, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((response) => {
+          const filteredStudents = students.filter(
+            (student) => student.id !== studentId
+          );
+          const updatedStudents = [...filteredStudents, response.data];
+
+          setStudents(updatedStudents);
+        });
+      })
+      .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
+  };
+
   return (
-    <StudentContext.Provider value={{ students, newStudent, deleteStudent }}>
+    <StudentContext.Provider
+      value={{ students, newStudent, deleteStudent, updateTodayTrip }}
+    >
       {children}
     </StudentContext.Provider>
   );
