@@ -22,11 +22,9 @@ export const UserProvider = ({ children }) => {
         .then(() => setIsAuth(true))
         .catch(() => {
           setIsAuth(false);
-          localStorage.clear();
         });
     } else {
       setIsAuth(false);
-      localStorage.clear();
     }
   }, [token, user]);
 
@@ -45,7 +43,7 @@ export const UserProvider = ({ children }) => {
           "@KenzieVan:token",
           JSON.stringify(response.data.accessToken)
         );
-        history.push(`/driver`);
+        history.push(`/dashboard`);
         toast.success("Login efetuado com sucesso");
       })
       .catch(() => toast.error("Algo deu errado, tente novamente"));
@@ -54,6 +52,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser({});
     setToken("");
+    localStorage.clear();
     history.push("/");
   };
 
