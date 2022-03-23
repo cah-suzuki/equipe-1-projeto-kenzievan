@@ -64,7 +64,10 @@ function SignUp() {
     const newUser = { name, email, password, role: value };
 
     Api.post("/signup", newUser)
-      .then(() => {
+      .then((response) => {
+        delete newUser.password;
+        newUser.id = response.data.id;
+        Api.post("/_users", newUser).catch((error) => console.log(error));
         history.push("/login");
         toast.success("Conta cadastrada com sucesso!");
       })
