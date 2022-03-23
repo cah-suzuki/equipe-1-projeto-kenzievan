@@ -7,8 +7,11 @@ import { useForm, Controller } from "react-hook-form";
 import Input from "../../components/Input";
 import Button from "../../components/button";
 import Select from "../../components/Select";
+import Api from "../../services/api";
+
 import { FiUserPlus } from "react-icons/fi";
 import { Container, Modal } from "./style";
+import { useEffect, useState } from "react";
 //Importar o userContext para usar o token
 // import { UserContext } from "../../providers/User";
 
@@ -91,6 +94,14 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
   });
 
   //fazer método get com useEffect e usar o token do usuario para fazer requisição get e receber a lista de usuarios
+
+  const [allUsers, setAllUsers] = useState([]);
+
+  useEffect(() => {
+    Api.get("/_users").then((response) => {
+      setAllUsers(response.data);
+    });
+  }, []);
 
   let userList = [
     {
