@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: 70%;
   border: solid orange 1px;
   display: flex;
   flex-direction: column;
   padding: 22px;
   font-family: "Nunito", sans-serif;
   border-radius: 10px;
+  width: 100%;
 
   header {
     display: flex;
@@ -37,7 +37,6 @@ export const Container = styled.div`
         width: 96%;
         height: 70px;
         padding: 12px;
-        }
       }
     }
   }

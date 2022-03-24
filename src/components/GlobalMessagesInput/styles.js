@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 300px;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid var(--color-primary-50);
   display: flex;
@@ -12,7 +12,8 @@ export const Container = styled.div`
   color: var(--grey-1);
   h1 {
     font-size: 20px;
-    margin: 15px 0;
+    text-align: center;
+    padding: 15px;
   }
 
   button {

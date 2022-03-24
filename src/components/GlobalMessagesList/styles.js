@@ -4,7 +4,7 @@ export const Container = styled.div`
   border: 1px solid var(--color-primary-50);
   background-color: white;
   border-radius: 10px;
-  min-width: 300px;
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export const MessageContainer = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse;
-  max-height: 300px;
+  max-height: 290px;
   overflow-y: auto;
   width: 100%;
 `;
