@@ -75,6 +75,7 @@ export const Container = styled.header`
     background-color: transparent;
     border: none;
     text-decoration: underline;
+    z-index: 4;
   }
   button + button {
     color: #222428;

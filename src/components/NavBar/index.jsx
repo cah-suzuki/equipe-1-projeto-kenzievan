@@ -76,8 +76,16 @@ const NavBar = ({ register, login, home, logout }) => {
             Cadastre-se
           </Button>
         )}
-        {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
-        {logout && <Button onClick={() => handleLogout()}>Sair</Button>}
+        {home && (
+          <Button className="btn-one" onClick={() => handleNavigation("/")}>
+            Voltar
+          </Button>
+        )}
+        {logout && (
+          <Button className="btn-two" onClick={() => handleLogout()}>
+            Sair
+          </Button>
+        )}
       </nav>
     </Container>
   );
