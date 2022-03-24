@@ -13,6 +13,7 @@ import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 
 import { UserContext } from "../../providers/User";
+import { Redirect } from "react-router-dom";
 
 function Login() {
   const formSchema = yup.object().shape({
@@ -28,13 +29,18 @@ function Login() {
     resolver: yupResolver(formSchema),
   });
 
-  const { login } = useContext(UserContext);
+  const { login, isAuth } = useContext(UserContext);
 
   const onSubmit = (data) => {
     login(data);
   };
 
   const history = useHistory();
+
+  if (isAuth) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <>
       <NavBar home />

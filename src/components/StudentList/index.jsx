@@ -26,9 +26,13 @@ const StudentList = ({ isDriver }) => {
       </header>
       <ul>
         {React.Children.toArray(
-          students.map((student) => (
-            <StudentCard key={student.id} student={student} />
-          ))
+          students.map((student) => {
+            return isDriver ? (
+              <StudentCard key={student.id} student={student} />
+            ) : (
+              <></>
+            );
+          })
         )}
       </ul>
     </Container>
