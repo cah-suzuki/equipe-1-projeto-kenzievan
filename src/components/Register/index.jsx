@@ -14,7 +14,7 @@ import { UserContext } from "../../providers/User";
 
 import { StudentContext } from "../../providers/Students";
 
-function Register({ isRegisterActive, setIsRegisterActive }) {
+function Register({ handleModal }) {
   const { user } = useContext(UserContext);
 
   const { newStudent } = useContext(StudentContext);
@@ -116,10 +116,6 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
 
   selectTimer();
 
-  const handleNavigation = (path) => {
-    setIsRegisterActive(false);
-  };
-
   const handleData = (data) => {
     let newObj = {
       name: data.name,
@@ -142,166 +138,161 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     let newData = handleData(data);
     newStudent(newData);
     reset();
-    handleNavigation("/");
   };
 
   //substituir o botão do header para um smallButton com reactIcon fiX
   //diminuir o tamanho do box das options do select
   //após atualização de buttonSmall trocar o button de dentro do header
   return (
-    <>
-      {isRegisterActive && (
-        <Modal>
-          <Container>
-            <header>
-              <figure>
-                <FiUserPlus />
-                <span>
-                  Registro de <span>Novo Aluno</span>
-                </span>
-              </figure>
-              <button onClick={() => handleNavigation("/")}>X</button>
-            </header>
+    <Modal>
+      <Container>
+        <header>
+          <figure>
+            <FiUserPlus />
+            <span>
+              Registro de <span>Novo Aluno</span>
+            </span>
+          </figure>
+          <button onClick={() => handleModal()}>X</button>
+        </header>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Input
-                label="Nome"
-                name="name"
-                register={register}
-                error={errors?.name}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label="Nome"
+            name="name"
+            register={register}
+            error={errors?.name}
+          />
+
+          <Controller
+            control={control}
+            name="select"
+            render={({ field: { name, value, onChange } }) => (
+              <Select
+                placeholder={"Selecione nome do responsável"}
+                name={name}
+                value={value}
+                error={errors.select?.value}
+                options={allParents}
+                onChange={onChange}
               />
+            )}
+          />
 
+          <Input
+            label="Endereço"
+            name="address"
+            register={register}
+            error={errors?.address}
+          />
+          <div className="flex">
+            <Input
+              label="Bairro"
+              name="addressDistrict"
+              register={register}
+              error={errors?.addressDistrict}
+            />
+            <Input
+              label="Nº"
+              name="addressNumber"
+              register={register}
+              error={errors?.addressNumber}
+            />
+          </div>
+
+          <Input
+            label="Escola"
+            name="school"
+            register={register}
+            error={errors?.school}
+          />
+
+          <Input
+            label="Endereço"
+            name="schoolAddress"
+            register={register}
+            error={errors?.schoolAddress}
+          />
+          <div className="flex">
+            <Input
+              label="Bairro"
+              name="schoolAddressDistrict"
+              register={register}
+              error={errors?.schoolAddressDistrict}
+            />
+            <Input
+              label="Nº"
+              name="schoolAddressNumber"
+              register={register}
+              error={errors?.schoolAddressNumber}
+            />
+          </div>
+          <div>
+            <div className="flex">
               <Controller
                 control={control}
-                name="select"
+                name="selectTimeDeparture"
                 render={({ field: { name, value, onChange } }) => (
                   <Select
-                    placeholder={"Selecione nome do responsável"}
+                    placeholder={"Horário de entrada HH:xx"}
                     name={name}
                     value={value}
-                    error={errors.select?.value}
-                    options={allParents}
+                    error={errors.selectTimeDeparture?.value}
+                    options={selectTimerHour}
                     onChange={onChange}
                   />
                 )}
               />
-
-              <Input
-                label="Endereço"
-                name="address"
-                register={register}
-                error={errors?.address}
+              <Controller
+                control={control}
+                name="selectTimeDepartureMinutes"
+                render={({ field: { name, value, onChange } }) => (
+                  <Select
+                    placeholder={"Horário de entrada xx:MM"}
+                    name={name}
+                    value={value}
+                    error={errors.selectTimeDepartureMinutes?.value}
+                    options={selectTimerMinutes}
+                    onChange={onChange}
+                  />
+                )}
               />
-              <div className="flex">
-                <Input
-                  label="Bairro"
-                  name="addressDistrict"
-                  register={register}
-                  error={errors?.addressDistrict}
-                />
-                <Input
-                  label="Nº"
-                  name="addressNumber"
-                  register={register}
-                  error={errors?.addressNumber}
-                />
-              </div>
-
-              <Input
-                label="Escola"
-                name="school"
-                register={register}
-                error={errors?.school}
+              <Controller
+                control={control}
+                name="selectTimeArrival"
+                render={({ field: { name, value, onChange } }) => (
+                  <Select
+                    placeholder={"Horário de saída HH:xx"}
+                    name={name}
+                    value={value}
+                    error={errors.selectTimeArrival?.value}
+                    options={selectTimerHour}
+                    onChange={onChange}
+                  />
+                )}
               />
-
-              <Input
-                label="Endereço"
-                name="schoolAddress"
-                register={register}
-                error={errors?.schoolAddress}
+              <Controller
+                control={control}
+                name="selectTimeArrivalMinutes"
+                render={({ field: { name, value, onChange } }) => (
+                  <Select
+                    placeholder={"Horário de saída xx:MM"}
+                    name={name}
+                    value={value}
+                    error={errors.selectTimeArrivalMinutes?.value}
+                    options={selectTimerMinutes}
+                    onChange={onChange}
+                  />
+                )}
               />
-              <div className="flex">
-                <Input
-                  label="Bairro"
-                  name="schoolAddressDistrict"
-                  register={register}
-                  error={errors?.schoolAddressDistrict}
-                />
-                <Input
-                  label="Nº"
-                  name="schoolAddressNumber"
-                  register={register}
-                  error={errors?.schoolAddressNumber}
-                />
-              </div>
-              <div>
-                <div className="flex">
-                  <Controller
-                    control={control}
-                    name="selectTimeDeparture"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDeparture?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeDepartureMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDepartureMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrival"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrival?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrivalMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrivalMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </div>
-              </div>
-              <div className="flex">
-                <Button>Confirmar</Button>
-              </div>
-            </form>
-          </Container>
-        </Modal>
-      )}
-    </>
+            </div>
+          </div>
+          <div className="flex">
+            <Button>Confirmar</Button>
+          </div>
+        </form>
+      </Container>
+    </Modal>
   );
 }
 
