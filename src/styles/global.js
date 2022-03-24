@@ -24,11 +24,27 @@ export default createGlobalStyle`
         flex-direction: column;
         align-content: center;
         align-items: center;
+
+        --white: #FFF;
+        --black: #000;
+
+        --color-primary-100: #FA8223;
+        --color-primary-50: #F79527;
+        --color-primary-fading: rgba(247, 149, 39, 0.5);
+
+        --color-secondary-100: #83F3FA;
+        --color-secondary-50: #84F6FF80;
+
+        --grey-1: #222428;
+
+        --color-placeholder: #9EA8BD;
+        --color-text-box: #FFF3E9;
+        --color-error: #F33;
     }
 
     body,button{
- 
         font-size:16px;
+        font-family: 'Nunito', sans-serif;
     }
 
     h1,h2,h3{

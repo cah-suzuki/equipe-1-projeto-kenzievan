@@ -1,31 +1,27 @@
 import { Switch, Route } from "react-router-dom";
-import DriverDashboard from "../pages/driverDashboard";
-import Home from "../pages/home";
-import Login from "../pages/login";
-import ParentDashboard from "../pages/parentDashboard";
-import Register from "../pages/register";
-import SignUp from "../pages/signUp";
-import useContext from 'react;'
-
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+// import Dashboard from '../components/Dashboard';
 
 const Routes = () => {
 
   return (
     <Switch>
-      <Route exact path='/'>
+      <Route exact path="/">
         <Home />
       </Route>
-      <Route path='/login'>
+      <Route exact path="/login">
         <Login />
       </Route>
-      <Route path='/signup'>
+      <Route exact path="/signup">
         <SignUp />
       </Route>
-      <Route path='/dashboard'>
-
+      <Route exact path='/dashboard'>
+        {/* <Dashboard /> */}
       </Route>
     </Switch>
-  )
+  );
 };
 
 export default Routes;
