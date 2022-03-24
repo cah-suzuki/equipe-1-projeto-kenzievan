@@ -20,11 +20,13 @@ export const UserProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(() => setIsAuth(true))
-        .catch(() => setIsAuth(false));
+        .catch(() => {
+          setIsAuth(false);
+        });
     } else {
       setIsAuth(false);
     }
-  }, [token, user]);
+  }, []);
 
   const history = useHistory();
 
@@ -41,7 +43,7 @@ export const UserProvider = ({ children }) => {
           "@KenzieVan:token",
           JSON.stringify(response.data.accessToken)
         );
-        history.push(`/driver`);
+        history.push(`/dashboard`);
         toast.success("Login efetuado com sucesso");
       })
       .catch(() => toast.error("Algo deu errado, tente novamente"));
