@@ -62,23 +62,8 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
       .typeError("Deve ser um valor numérico")
       .required("Número obrigatório"),
 
-    selectTimeDeparture: yup.object().shape({
-      value: yup
-        .string()
-        .required("Selecione uma opção")
-        .nullable()
-        .typeError("Error"),
-    }),
-    selectTimeDepartureMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-
-    selectTimeArrival: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-    selectTimeArrivalMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
+    entryTime: yup.string().required("Selecione um horário"),
+    departureTime: yup.string().required("Selecione um horário"),
   });
 
   const {
@@ -106,49 +91,43 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     });
   }, []);
 
-  console.log(allParents);
-
-  const selectTimer = () => {
-    for (let i = 0; i < 60; i++) {
-      if (i < 10) {
-        selectTimerMinutes.push({ value: "0" + i, label: "0" + i });
-        selectTimerHour.push({ value: "0" + i, label: "0" + i });
-      } else if (i < 24) {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-        selectTimerHour.push({ value: i + "", label: i + "" });
-      } else {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-      }
-    }
-  };
-
-  selectTimer();
-
   const handleNavigation = (path) => {
     setIsRegisterActive(false);
   };
 
-  const handleData = (data) => {
-    let newObj = {
-      name: data.name,
-      school: data.school,
-      schoolAddress: `${data.schoolAddress} ${data.schoolAddressDistrict} ${data.schoolAddressNumber}`,
-      address: `${data.address} ${data.addressDistrict} ${data.addressNumber}`,
-      parentName: data.select.label,
-      parentId: data.select.value,
-      driverId: user.id + "",
-      entryTime: `${data.selectTimeArrival.value}:${data.selectTimeArrivalMinutes.value}`,
-      leaveTime: `${data.selectTimeDeparture.value}:${data.selectTimeDepartureMinutes.value}`,
+  const formatData = ({
+    name,
+    school,
+    schoolAddress,
+    schoolAddressDistrict,
+    schoolAddressNumber,
+    address,
+    addressDistrict,
+    addressNumber,
+    entryTime,
+    departureTime,
+    select,
+  }) => {
+    const formattedData = {
+      name,
+      school,
+      schoolAddress: `${schoolAddress} ${schoolAddressDistrict} ${schoolAddressNumber}`,
+      address: `${address} ${addressDistrict} ${addressNumber}`,
+      parentName: select.label,
+      parentId: select.value,
+      driverId: String(user.id),
+      entryTime,
+      departureTime,
       tripsList: [],
       messages: [],
     };
-    console.log(newObj);
-    return newObj;
+    return formattedData;
   };
 
   const onSubmit = (data) => {
-    let newData = handleData(data);
-    newStudent(newData);
+    const formattedData = formatData(data);
+    console.log(formattedData);
+    newStudent(formattedData);
     reset();
     handleNavigation("/");
   };
@@ -244,90 +223,19 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
               </div>
               <div>
                 <div className="flex">
-                  {/* <Input
+                  <Input
                     type="time"
-                    label="Horário de entrada HH:xx"
-                    name="selectTimeDeparture"
+                    label="Saída"
+                    name="departureTime"
                     register={register}
-                    error={errors?.selectTimeDeparture}
+                    error={errors?.departureTime}
                   />
                   <Input
                     type="time"
-                    label="Horário de entrada xx:MM"
-                    name="selectTimeDepartureMinutes"
+                    label="Entrada"
+                    name="entryTime"
                     register={register}
-                    error={errors?.selectTimeDepartureMinutes}
-                  />
-                  <Input
-                    type="time"
-                    label="Horário de saída HH:xx"
-                    name="selectTimeArrival"
-                    register={register}
-                    error={errors?.selectTimeArrival}
-                  />
-                  <Input
-                    type="time"
-                    label="Horário de saída xx:MM"
-                    name="selectTimeArrivalMinutes"
-                    register={register}
-                    error={errors?.selectTimeArrivalMinutes}
-                  /> */}
-
-                  <Controller
-                    control={control}
-                    name="selectTimeDeparture"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDeparture?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeDepartureMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDepartureMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrival"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrival?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrivalMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrivalMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
+                    error={errors?.entryTime}
                   />
                 </div>
               </div>
