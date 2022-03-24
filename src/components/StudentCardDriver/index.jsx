@@ -46,7 +46,7 @@ const getTime = () => {
   const now = new Date();
 
   const day = now.getDate();
-  const month = now.getMonth();
+  const month = now.getMonth() + 1;
   const year = now.getFullYear();
 
   const date = `${day}/${month}/${year}`;
@@ -59,6 +59,7 @@ const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
 
   const { updateTodayTrip } = useContext(StudentContext);
+
   const { hour, date } = getTime();
 
   const todayTrip = student.tripsList.find((trip) => trip.date === date) || {};
