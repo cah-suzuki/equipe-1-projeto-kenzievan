@@ -3,8 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   max-height: 225px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   padding-top: 8px;
 
   section {
