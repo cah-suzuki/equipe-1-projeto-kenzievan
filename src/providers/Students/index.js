@@ -90,6 +90,7 @@ export const StudentProvider = ({ children }) => {
         const filteredTrips = allTrips.filter((trip) => trip.date !== date);
 
         const updatedTripsList = { tripsList: [...filteredTrips, updatedTrip] };
+        console.log(updatedTrip);
 
         Api.patch(`/students/${studentId}`, updatedTripsList, {
           headers: {

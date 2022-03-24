@@ -59,40 +59,53 @@ const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
   const [entryText, setEntryText] = useState("xx:xx");
   const [departureText, setDepartureText] = useState("xx:xx");
+  const [isEntryChecked, setIsEntryChecked] = useState(false);
+  const [isDepartureChecked, setIsDepartureChecked] = useState(false);
+  const { updateTodayTrip } = useContext(StudentContext);
+
+  console.log(getTime());
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
   };
 
-  const { updateTodayTrip } = useContext(StudentContext);
-
   const handleEntryCheckBox = () => {
-    const { hour } = getTime();
-    const updatedValue = { entryTime: hour };
-    entryText !== "xx:xx" ? setEntryText("xx:xx") : setEntryText(hour);
-    entryText !== "xx:xx"
-      ? sentTripToApi("xx:xx")
-      : sentTripToApi(updatedValue);
-  };
-
-  const handleDepartureCheckBox = () => {
-    const { hour } = getTime();
-    const updatedValue = { departureTime: hour };
-    departureText !== "xx:xx"
-      ? setDepartureText("xx:xx")
-      : setDepartureText(hour);
-    departureText !== "xx:xx"
-      ? sentTripToApi("xx:xx")
-      : sentTripToApi(updatedValue);
-  };
-
-  const sentTripToApi = (updatedValue) => {
-    const { date } = getTime();
+    // const { hour } = getTime();
+    // const updatedValue = isEntryChecked ? null : { entryTime: hour };
+    // setEntryText(hour);
+    // handleTrip(updatedValue);
+    const { hour, date } = getTime();
+    const updatedValue = isEntryChecked ? null : { entryTime: hour };
 
     const todayTrip =
       student.tripsList.find((trip) => trip.date === date) || {};
 
-    const updatedTrip = { ...todayTrip, ...updatedValue, date };
+    if (!updatedValue) delete todayTrip.entryTime;
+
+    const updatedTrip = updatedValue
+      ? { ...todayTrip, ...updatedValue, date }
+      : { ...todayTrip, date };
+
+    console.log(updatedTrip);
+    setDepartureText(hour);
+    updateTodayTrip(student.id, updatedTrip, date);
+  };
+
+  const handleDepartureCheckBox = () => {
+    const { hour, date } = getTime();
+    const updatedValue = isDepartureChecked ? null : { departureTime: hour };
+
+    const todayTrip =
+      student.tripsList.find((trip) => trip.date === date) || {};
+
+    if (!updatedValue) delete todayTrip.departureTime;
+
+    const updatedTrip = updatedValue
+      ? { ...todayTrip, ...updatedValue, date }
+      : { ...todayTrip, date };
+    console.log(updatedTrip);
+
+    setDepartureText(hour);
     updateTodayTrip(student.id, updatedTrip, date);
   };
 
@@ -127,7 +140,11 @@ const StudentCard = ({ student }) => {
                   color: "#FA8223",
                 },
               }}
-              onChange={() => handleEntryCheckBox()}
+              checked={isEntryChecked}
+              onClick={() => {
+                setIsEntryChecked(!isEntryChecked);
+                handleEntryCheckBox();
+              }}
             />
           </div>
           <div>
@@ -139,7 +156,11 @@ const StudentCard = ({ student }) => {
                   color: "#FA8223",
                 },
               }}
-              onChange={() => handleDepartureCheckBox()}
+              checked={isDepartureChecked}
+              onClick={() => {
+                setIsDepartureChecked(!isDepartureChecked);
+                handleDepartureCheckBox();
+              }}
             />
           </div>
         </TimesContainer>
