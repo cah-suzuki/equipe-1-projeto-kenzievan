@@ -7,14 +7,27 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-top: 8px;
 
   section {
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
-    padding: 0 12px;
+    padding: 5px 12px;
+    gap: 5px;
     flex: 1;
+    border-top: 1px solid var(--color-primary-100);
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      border: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    border: none;
+    padding: 0 0 10px;
   }
 `;
 
@@ -24,7 +37,6 @@ export const MessageCard = styled.div`
   color: var(--grey-1);
   width: 100%;
   padding: 8px;
-  margin: 6px 0;
   display: flex;
   flex-direction: column;
   border-radius: 10px;

@@ -1,7 +1,8 @@
 import React from "react";
 import { Container } from "./style";
 import Button from "../button";
-import StudentCard from "../studentCard";
+import StudentCardDriver from "../StudentCardDriver";
+import StudentCardParent from "../StudentCardParent";
 import Register from "../Register";
 import { useState, useContext } from "react";
 import { StudentContext } from "../../providers/Students";
@@ -28,9 +29,9 @@ const StudentList = ({ isDriver }) => {
         {React.Children.toArray(
           students.map((student) => {
             return isDriver ? (
-              <StudentCard key={student.id} student={student} />
+              <StudentCardDriver key={student.id} student={student} />
             ) : (
-              <></>
+              <StudentCardParent key={student.id} student={student} />
             );
           })
         )}

@@ -3,7 +3,7 @@ import ButtonSmall from "../buttonSmall";
 import { useContext, useState } from "react";
 import { StudentContext } from "../../providers/Students";
 
-const StudentMessagesDriver = ({ messages, studentId }) => {
+const StudentMessages = ({ messages, studentId }) => {
   const [inputValue, setInputValue] = useState("");
 
   const { sendMessage } = useContext(StudentContext);
@@ -65,4 +65,4 @@ const StudentMessagesDriver = ({ messages, studentId }) => {
   );
 };
 
-export default StudentMessagesDriver;
+export default StudentMessages;
