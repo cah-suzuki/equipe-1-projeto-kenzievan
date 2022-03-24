@@ -44,6 +44,7 @@ export const UserProvider = ({ children }) => {
           JSON.stringify(response.data.accessToken)
         );
         history.push(`/dashboard`);
+        setIsAuth(true);
         toast.success("Login efetuado com sucesso");
       })
       .catch(() => toast.error("Algo deu errado, tente novamente"));
@@ -52,6 +53,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser({});
     setToken("");
+    setIsAuth(false);
     localStorage.clear();
     history.push("/");
   };

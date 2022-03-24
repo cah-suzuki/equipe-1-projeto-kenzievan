@@ -13,7 +13,7 @@ function Header() {
   const data = new Date();
   return (
     <Container>
-      <NavBar logout />
+      <NavBar logoutButton />
       <HeaderContanier>
         <GreetingContainer>
           <p>Olá, </p>
