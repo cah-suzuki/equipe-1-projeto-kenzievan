@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 
   span {
     font-size: 11px;

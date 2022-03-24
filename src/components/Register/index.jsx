@@ -5,8 +5,9 @@ import Input from "../../components/Input";
 import Button from "../../components/button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-import { FiUserPlus } from "react-icons/fi";
+import { FiUserPlus, FiX } from "react-icons/fi";
 
+import ButtomSmall from "../buttonSmall/index";
 import { Container, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 
@@ -62,7 +63,11 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
       .required("Número obrigatório"),
 
     selectTimeDeparture: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
+      value: yup
+        .string()
+        .required("Selecione uma opção")
+        .nullable()
+        .typeError("Error"),
     }),
     selectTimeDepartureMinutes: yup.object().shape({
       value: yup.string().required("Selecione uma opção"),
@@ -96,9 +101,12 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
           };
         }
       });
+
       setAllParents(allParents);
     });
   }, []);
+
+  console.log(allParents);
 
   const selectTimer = () => {
     for (let i = 0; i < 60; i++) {
@@ -145,9 +153,6 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
     handleNavigation("/");
   };
 
-  //substituir o botão do header para um smallButton com reactIcon fiX
-  //diminuir o tamanho do box das options do select
-  //após atualização de buttonSmall trocar o button de dentro do header
   return (
     <>
       {isRegisterActive && (
@@ -160,7 +165,10 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
                   Registro de <span>Novo Aluno</span>
                 </span>
               </figure>
-              <button onClick={() => handleNavigation("/")}>X</button>
+              <ButtomSmall
+                icon={FiX}
+                onClick={() => handleNavigation("/")}
+              ></ButtomSmall>
             </header>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -236,6 +244,35 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
               </div>
               <div>
                 <div className="flex">
+                  {/* <Input
+                    type="time"
+                    label="Horário de entrada HH:xx"
+                    name="selectTimeDeparture"
+                    register={register}
+                    error={errors?.selectTimeDeparture}
+                  />
+                  <Input
+                    type="time"
+                    label="Horário de entrada xx:MM"
+                    name="selectTimeDepartureMinutes"
+                    register={register}
+                    error={errors?.selectTimeDepartureMinutes}
+                  />
+                  <Input
+                    type="time"
+                    label="Horário de saída HH:xx"
+                    name="selectTimeArrival"
+                    register={register}
+                    error={errors?.selectTimeArrival}
+                  />
+                  <Input
+                    type="time"
+                    label="Horário de saída xx:MM"
+                    name="selectTimeArrivalMinutes"
+                    register={register}
+                    error={errors?.selectTimeArrivalMinutes}
+                  /> */}
+
                   <Controller
                     control={control}
                     name="selectTimeDeparture"

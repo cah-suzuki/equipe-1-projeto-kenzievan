@@ -26,6 +26,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top:15px;
   }
 
   header {
@@ -36,6 +37,7 @@ export const Container = styled.div`
     border-radius: 4px;
     padding-left: 5px;
     height: 80px;
+    margin-top:10px;
 
     figure {
       display: flex;
@@ -54,7 +56,7 @@ export const Container = styled.div`
         //retirar font na integração
         font-family: "Nunito", sans-serif;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
 
         span {
           color: orange;
@@ -63,14 +65,13 @@ export const Container = styled.div`
     }
 
     form {
-      div {
-        display: flex;
+      select {
+        padding-bottom: 15px;
+   
       }
-    }
 
-    button {
-      flex: 0.3;
     }
+     }
   }
 
   @media screen and (min-width: 500px) {

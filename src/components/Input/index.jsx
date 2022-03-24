@@ -1,11 +1,21 @@
 import { useState } from "react";
 import Container from "./styles";
 
-const Input = ({ label, register, name, error, classname, icon, ...rest }) => {
+const Input = ({
+  label,
+  register,
+  name,
+  error,
+  classname,
+  icon,
+
+  ...rest
+}) => {
   const [isInputEmpty, setIsInputEmpty] = useState(true);
 
   return (
     <Container
+      modal
       className={`${classname ? classname : ""} ${error ? "input--error" : ""}`}
       isInputEmpty={isInputEmpty}
       error={!!error}
