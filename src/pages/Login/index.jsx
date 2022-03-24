@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { FiLogIn } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 import Container from "./styles";
 import Button from "../../components/button";
@@ -28,13 +28,18 @@ function Login() {
     resolver: yupResolver(formSchema),
   });
 
-  const { login } = useContext(UserContext);
+  const { login, isAuth } = useContext(UserContext);
 
   const onSubmit = (data) => {
     login(data);
   };
 
   const history = useHistory();
+
+  if (isAuth) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <>
       <NavBar home />
