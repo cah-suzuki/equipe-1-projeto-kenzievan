@@ -17,7 +17,7 @@ import { Checkbox } from "@mui/material";
 import { AiOutlineCaretDown } from "react-icons/ai";
 
 import { StudentContext } from "../../providers/Students";
-import StudentMessagesDriver from "../StudentMessagesDriver";
+import StudentMessages from "../StudentMessages";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -160,8 +160,8 @@ const StudentCard = ({ student }) => {
             <h3>Endereço: {student.address}</h3>
             <h3>Escola: {student.school}</h3>
           </About>
-          <CardInput onClick={(e) => handleExpandClick(e)}>
-            <StudentMessagesDriver
+          <CardInput>
+            <StudentMessages
               messages={student.messages}
               studentId={student.id}
             />
