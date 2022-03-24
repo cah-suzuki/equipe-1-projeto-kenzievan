@@ -13,8 +13,7 @@ import Api from "../../services/api";
 
 import SideImage from "../../assets/SideImage.svg";
 import { FiUsers } from "react-icons/fi";
-import { useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { Link } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User";
 
@@ -76,10 +75,10 @@ function SignUp() {
       .catch(() => toast.error("Não foi possível cadastrar a conta!"));
   };
 
-  const { isAuth, } = useContext(UserContext)
+  const { isAuth } = useContext(UserContext);
 
   if (isAuth) {
-    return <Redirect to='/dashboard' />
+    return <Redirect to="/dashboard" />;
   }
 
   return (

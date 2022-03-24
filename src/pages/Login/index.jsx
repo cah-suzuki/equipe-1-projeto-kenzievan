@@ -37,7 +37,7 @@ function Login() {
   const history = useHistory();
 
   if (isAuth) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (

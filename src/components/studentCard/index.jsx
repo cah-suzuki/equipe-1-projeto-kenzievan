@@ -57,47 +57,45 @@ const getTime = () => {
 
 const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
-  const [entryText, setEntryText] = useState("xx:xx");
-  const [departureText, setDepartureText] = useState("xx:xx");
+
+  const { updateTodayTrip } = useContext(StudentContext);
+  const { hour, date } = getTime();
+
+  const todayTrip = student.tripsList.find((trip) => trip.date === date) || {};
+  const [isEntryChecked, setIsEntryChecked] = useState(!!todayTrip.entryTime);
+  const [isDepartureChecked, setIsDepartureChecked] = useState(
+    !!todayTrip.departureTime
+  );
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
   };
 
-  const { updateTodayTrip } = useContext(StudentContext);
-
   const handleEntryCheckBox = () => {
-    const { hour } = getTime();
-    const updatedValue = { entryTime: hour };
-    entryText !== "xx:xx" ? setEntryText("xx:xx") : setEntryText(hour);
-    entryText !== "xx:xx"
-      ? sentTripToApi("xx:xx")
-      : sentTripToApi(updatedValue);
-  };
-
-  const handleDepartureCheckBox = () => {
-    const { hour } = getTime();
-    const updatedValue = { departureTime: hour };
-    departureText !== "xx:xx"
-      ? setDepartureText("xx:xx")
-      : setDepartureText(hour);
-    departureText !== "xx:xx"
-      ? sentTripToApi("xx:xx")
-      : sentTripToApi(updatedValue);
-  };
-
-  const sentTripToApi = (updatedValue) => {
-    const { date } = getTime();
+    const updatedValue = isEntryChecked ? null : { entryTime: hour };
 
     const todayTrip =
       student.tripsList.find((trip) => trip.date === date) || {};
 
-    const updatedTrip = { ...todayTrip, ...updatedValue, date };
+    if (!updatedValue) delete todayTrip.entryTime;
+
+    const updatedTrip = updatedValue
+      ? { ...todayTrip, ...updatedValue, date }
+      : { ...todayTrip, date };
+
     updateTodayTrip(student.id, updatedTrip, date);
   };
 
-  const Fechado = (e) => {
-    setExpanded(true);
+  const handleDepartureCheckBox = () => {
+    const updatedValue = isDepartureChecked ? null : { departureTime: hour };
+
+    if (!updatedValue) delete todayTrip.departureTime;
+
+    const updatedTrip = updatedValue
+      ? { ...todayTrip, ...updatedValue, date }
+      : { ...todayTrip, date };
+
+    updateTodayTrip(student.id, updatedTrip, date);
   };
 
   return (
@@ -119,7 +117,7 @@ const StudentCard = ({ student }) => {
         <h3>{student.name}</h3>
         <TimesContainer>
           <div>
-            <span>Entrada: {entryText}</span>
+            <span>Entrada: {todayTrip.entryTime || student.entryTime}</span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -127,11 +125,17 @@ const StudentCard = ({ student }) => {
                   color: "#FA8223",
                 },
               }}
-              onChange={() => handleEntryCheckBox()}
+              checked={isEntryChecked}
+              onClick={() => {
+                setIsEntryChecked(!isEntryChecked);
+                handleEntryCheckBox();
+              }}
             />
           </div>
           <div>
-            <span>Saída: {departureText}</span>
+            <span>
+              Saída: {todayTrip.departureTime || student.departureTime}
+            </span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -139,7 +143,11 @@ const StudentCard = ({ student }) => {
                   color: "#FA8223",
                 },
               }}
-              onChange={() => handleDepartureCheckBox()}
+              checked={isDepartureChecked}
+              onClick={() => {
+                setIsDepartureChecked(!isDepartureChecked);
+                handleDepartureCheckBox();
+              }}
             />
           </div>
         </TimesContainer>
@@ -152,7 +160,7 @@ const StudentCard = ({ student }) => {
             <h3>Endereço: {student.address}</h3>
             <h3>Escola: {student.school}</h3>
           </About>
-          <CardInput onClick={(e) => Fechado(e)}>
+          <CardInput onClick={(e) => handleExpandClick(e)}>
             <StudentMessagesDriver
               messages={student.messages}
               studentId={student.id}
