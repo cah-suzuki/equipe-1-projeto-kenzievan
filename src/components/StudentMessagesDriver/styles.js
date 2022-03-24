@@ -8,11 +8,10 @@ export const Container = styled.div`
   padding-top: 8px;
 
   section {
-    /* padding: 8px; */
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
-    padding: 0 5%;
+    padding: 0 12px;
     flex: 1;
   }
 `;
@@ -48,7 +47,7 @@ export const MessageCard = styled.div`
 
 export const InputContainer = styled.div`
   position: relative;
-  margin: 0 8px;
+  padding: 0 12px;
   border-radius: 5px;
   padding-top: 8px;
   box-sizing: border-box;
@@ -60,12 +59,11 @@ export const InputContainer = styled.div`
     border: none;
     border-radius: 5px;
     border: 1px solid var(--color-primary-100);
-    /* border: 2px solid var(--color-primary-50); */
   }
 
   button {
     position: absolute;
     top: 13px;
-    right: 7px;
+    right: 19px;
   }
 `;

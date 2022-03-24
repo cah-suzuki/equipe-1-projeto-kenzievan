@@ -52,6 +52,7 @@ export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--color-primary-100);
+  min-height: 200px;
 
   @media (min-width: 768px) {
     border-bottom: 1px solid var(--color-primary-100);
