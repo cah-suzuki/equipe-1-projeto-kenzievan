@@ -11,7 +11,7 @@ function DriverDashboard() {
         <GlobalMessagesList />
         <GlobalMessagesInput />
       </MessagesContainer>
-      <StudentList />
+      <StudentList isDriver />
     </Container>
   );
 }

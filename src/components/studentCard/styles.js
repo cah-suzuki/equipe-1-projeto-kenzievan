@@ -5,171 +5,82 @@ export const Container = styled.div`
   border: 1px solid var(--color-primary-50);
   display: flex;
   flex-direction: column;
-  padding: 10px;
   border-radius: 10px;
-  margin: 10px 0;
+  position: relative;
+  z-index: 1;
 
-  span {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    text-align: left;
+  h3 {
+    font-weight: bold;
+    font-size: 20px;
   }
 
-  p {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    text-align: left;
-  }
-
-  @media (min-width: 650px) {
-    flex-direction: column;
-    padding: 1rem;
-
-    span {
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 700;
-      text-align: left;
-    }
-
-    p {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      text-align: left;
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 26px;
     }
   }
 `;
 
-export const OpenContainer = styled.div`
-  width: 100%;
+export const TopContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  @media (min-width: 650px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-export const Times = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  gap: 8px 30px;
+  padding: 12px;
+`;
 
-  section {
-    width: 100%;
+export const TimesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-
-    div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  span {
-    margin-right: 5px;
-  }
-
-  p + span {
-    margin-left: 5px;
-  }
-
-  @media (min-width: 650px) {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-
-    section {
-      justify-content: flex-end;
-    }
+    gap: 0 5px;
 
     span {
-      margin-right: 5px;
-    }
-
-    p + span {
-      margin-left: 10px;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 700;
     }
   }
 `;
 
-export const Name = styled.div`
-  height: 100%;
+export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  border-top: 1px solid var(--color-primary-100);
 
-  span + p {
-    margin-top: 10px;
-  }
-`;
-
-export const Content = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  @media (min-width: 650px) {
+  @media (min-width: 768px) {
+    border-bottom: 1px solid var(--color-primary-100);
     flex-direction: row;
+    padding: 0;
+    border-bottom: none;
   }
 `;
 
 export const About = styled.div`
-  width: 70%;
+  padding: 12px;
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 5px;
+  border-bottom: 1px solid var(--color-primary-100);
+
+  @media (min-width: 768px) {
+    border-bottom: none;
+    border-right: 1px solid var(--color-primary-100);
+    width: 50%;
+    justify-content: space-evenly;
+  }
 `;
 
 export const CardInput = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media (min-width: 650px) {
-    align-items: flex-start;
-  }
-`;
-
-export const BoxInput = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 1px solid var(--color-primary-50);
-  background-color: var(--color-text-box);
-  padding: 5px;
-  border-radius: 10px;
-
-  form {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  textarea {
-    height: 100%;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    font-family: "Nunito", sans-serif;
-    resize: none;
+  /* padding: 12px; */
+  padding-bottom: 10px;
+  @media (min-width: 768px) {
+    width: 50%;
   }
 `;

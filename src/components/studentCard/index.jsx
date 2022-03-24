@@ -1,32 +1,44 @@
 import {
-  OpenContainer,
+  TopContainer,
   About,
   CardInput,
   Container,
-  Content,
-  Name,
-  Times,
+  BottomContainer,
+  TimesContainer,
 } from "./styles";
-import {
-  FiChevronDown,
-} from "react-icons/fi";
+
+import { useState } from "react";
+import { useContext } from "react";
+
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
-import { useContext } from "react";
-import { StudentContext } from "../../providers/Students";
 import { Checkbox } from "@mui/material";
+import { AiOutlineCaretDown } from "react-icons/ai";
+
+import { StudentContext } from "../../providers/Students";
 import StudentMessagesDriver from "../StudentMessagesDriver";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
-  return <IconButton {...other} />;
+  return <IconButton size="small" {...other} />;
 })(({ theme, expand }) => ({
+  position: "absolute",
+  bottom: "-22px",
+  color: "var(--color-primary-100)",
+  boxSizing: "border-box",
+  border: "1px solid var(--color-primary-100)",
+  borderRadius: expand ? "50% 50% 0 0" : "0 0 50% 50%",
+  padding: "2px 3px 0",
+  cursor: "pointer",
+  left: "calc(50% - 14px)",
+  "&:hover": {
+    color: "var(--white)",
+    background: "var(--color-primary-100)",
+  },
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
   transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
+    duration: 0,
   }),
 }));
 
@@ -89,18 +101,25 @@ const StudentCard = ({ student }) => {
   };
 
   return (
-    <Container>
-      <OpenContainer expand={expanded} aria-expanded={expanded} aria-label="show more">
-        <Name>
-          <span>Aluno: {student.name}</span>
-          <p>Responsável: {student.parentName}</p>
-        </Name>
-        <Times>
-          <section>
-            <div>
-              <p>Entrada:</p>
-              <span>{entryText}</span>
-            </div>
+    <Container isExpanded={expanded}>
+      <ExpandMore
+        expand={expanded}
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+      >
+        <AiOutlineCaretDown />
+      </ExpandMore>
+      <TopContainer
+        isExpanded={expanded}
+        expand={expanded}
+        aria-expanded={expanded}
+        aria-label="show more"
+      >
+        <h3>{student.name}</h3>
+        <TimesContainer>
+          <div>
+            <span>Entrada: {entryText}</span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -110,13 +129,9 @@ const StudentCard = ({ student }) => {
               }}
               onChange={() => handleEntryCheckBox()}
             />
-          </section>
-
-          <section>
-            <div>
-              <p>Saída:</p>
-              <span>{departureText}</span>
-            </div>
+          </div>
+          <div>
+            <span>Saída: {departureText}</span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -126,33 +141,24 @@ const StudentCard = ({ student }) => {
               }}
               onChange={() => handleDepartureCheckBox()}
             />
-          </section>
-        </Times>
-      </OpenContainer>
-      
-      <ExpandMore
-        expand={expanded}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-      >
-        <FiChevronDown />
-      </ExpandMore>
+          </div>
+        </TimesContainer>
+      </TopContainer>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <Content>
+        <BottomContainer>
           <About>
-            <p>Endereço: {student.address}</p>
-            <p>Escola: {student.school}</p>
+            <h3>Responsável: {student.parentName}</h3>
+            <h3>Endereço: {student.address}</h3>
+            <h3>Escola: {student.school}</h3>
           </About>
           <CardInput onClick={(e) => Fechado(e)}>
-            <p>Mensagem para o responsável:</p>
             <StudentMessagesDriver
               messages={student.messages}
               studentId={student.id}
             />
           </CardInput>
-        </Content>
+        </BottomContainer>
       </Collapse>
     </Container>
   );
