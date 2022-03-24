@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 8px;
+  padding-bottom: 15px;
 
   input {
     padding: 14px 16px;

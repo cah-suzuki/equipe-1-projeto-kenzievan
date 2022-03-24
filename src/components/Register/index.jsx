@@ -5,8 +5,9 @@ import Input from "../../components/Input";
 import Button from "../../components/button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-import { FiUserPlus } from "react-icons/fi";
+import { FiUserPlus, FiX } from "react-icons/fi";
 
+import ButtomSmall from "../buttonSmall/index";
 import { Container, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 
@@ -19,7 +20,7 @@ function Register({ handleModal }) {
 
   const { newStudent } = useContext(StudentContext);
 
-  const [allParents, setAllParents] = useState([]);
+  const [selectOptions, setSelectOptions] = useState([]);
 
   let selectTimerMinutes = [];
   let selectTimerHour = [];
@@ -61,19 +62,8 @@ function Register({ handleModal }) {
       .typeError("Deve ser um valor numérico")
       .required("Número obrigatório"),
 
-    selectTimeDeparture: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-    selectTimeDepartureMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-
-    selectTimeArrival: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-    selectTimeArrivalMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
+    entryTime: yup.string().required("Selecione um horário"),
+    departureTime: yup.string().required("Selecione um horário"),
   });
 
   const {
@@ -88,61 +78,51 @@ function Register({ handleModal }) {
 
   useEffect(() => {
     Api.get("/_users").then((response) => {
-      const allParents = response.data.map((user) => {
-        if (user.role === "parent") {
-          return {
-            value: user.id,
-            label: user.name,
-          };
-        }
-      });
-      setAllParents(allParents);
+      const allParents = response.data.filter((user) => user.role === "parent");
+      const selectOptions = allParents.map(({ id, name }) => ({
+        value: id,
+        label: name,
+      }));
+      setSelectOptions(selectOptions);
     });
   }, []);
 
-  const selectTimer = () => {
-    for (let i = 0; i < 60; i++) {
-      if (i < 10) {
-        selectTimerMinutes.push({ value: "0" + i, label: "0" + i });
-        selectTimerHour.push({ value: "0" + i, label: "0" + i });
-      } else if (i < 24) {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-        selectTimerHour.push({ value: i + "", label: i + "" });
-      } else {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-      }
-    }
-  };
-
-  selectTimer();
-
-  const handleData = (data) => {
-    let newObj = {
-      name: data.name,
-      school: data.school,
-      schoolAddress: `${data.schoolAddress} ${data.schoolAddressDistrict} ${data.schoolAddressNumber}`,
-      address: `${data.address} ${data.addressDistrict} ${data.addressNumber}`,
-      parentName: data.select.label,
-      parentId: data.select.value,
-      driverId: user.id + "",
-      entryTime: `${data.selectTimeArrival.value}:${data.selectTimeArrivalMinutes.value}`,
-      leaveTime: `${data.selectTimeDeparture.value}:${data.selectTimeDepartureMinutes.value}`,
+  const formatData = ({
+    name,
+    school,
+    schoolAddress,
+    schoolAddressDistrict,
+    schoolAddressNumber,
+    address,
+    addressDistrict,
+    addressNumber,
+    entryTime,
+    departureTime,
+    select,
+  }) => {
+    const formattedData = {
+      name,
+      school,
+      schoolAddress: `${schoolAddress} ${schoolAddressDistrict} ${schoolAddressNumber}`,
+      address: `${address} ${addressDistrict} ${addressNumber}`,
+      parentName: select.label,
+      parentId: select.value,
+      driverId: String(user.id),
+      entryTime,
+      departureTime,
       tripsList: [],
       messages: [],
     };
-    console.log(newObj);
-    return newObj;
+    return formattedData;
   };
 
   const onSubmit = (data) => {
-    let newData = handleData(data);
-    newStudent(newData);
+    const formattedData = formatData(data);
+    newStudent(formattedData);
     reset();
+    handleModal();
   };
 
-  //substituir o botão do header para um smallButton com reactIcon fiX
-  //diminuir o tamanho do box das options do select
-  //após atualização de buttonSmall trocar o button de dentro do header
   return (
     <Modal>
       <Container>
@@ -173,7 +153,7 @@ function Register({ handleModal }) {
                 name={name}
                 value={value}
                 error={errors.select?.value}
-                options={allParents}
+                options={selectOptions}
                 onChange={onChange}
               />
             )}
@@ -229,61 +209,19 @@ function Register({ handleModal }) {
           </div>
           <div>
             <div className="flex">
-              <Controller
-                control={control}
-                name="selectTimeDeparture"
-                render={({ field: { name, value, onChange } }) => (
-                  <Select
-                    placeholder={"Horário de entrada HH:xx"}
-                    name={name}
-                    value={value}
-                    error={errors.selectTimeDeparture?.value}
-                    options={selectTimerHour}
-                    onChange={onChange}
-                  />
-                )}
+              <Input
+                type="time"
+                label="Saída"
+                name="departureTime"
+                register={register}
+                error={errors?.departureTime}
               />
-              <Controller
-                control={control}
-                name="selectTimeDepartureMinutes"
-                render={({ field: { name, value, onChange } }) => (
-                  <Select
-                    placeholder={"Horário de entrada xx:MM"}
-                    name={name}
-                    value={value}
-                    error={errors.selectTimeDepartureMinutes?.value}
-                    options={selectTimerMinutes}
-                    onChange={onChange}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                name="selectTimeArrival"
-                render={({ field: { name, value, onChange } }) => (
-                  <Select
-                    placeholder={"Horário de saída HH:xx"}
-                    name={name}
-                    value={value}
-                    error={errors.selectTimeArrival?.value}
-                    options={selectTimerHour}
-                    onChange={onChange}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                name="selectTimeArrivalMinutes"
-                render={({ field: { name, value, onChange } }) => (
-                  <Select
-                    placeholder={"Horário de saída xx:MM"}
-                    name={name}
-                    value={value}
-                    error={errors.selectTimeArrivalMinutes?.value}
-                    options={selectTimerMinutes}
-                    onChange={onChange}
-                  />
-                )}
+              <Input
+                type="time"
+                label="Entrada"
+                name="entryTime"
+                register={register}
+                error={errors?.entryTime}
               />
             </div>
           </div>
