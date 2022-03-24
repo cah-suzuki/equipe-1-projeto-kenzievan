@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { FiLogIn } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 import Container from "./styles";
 import Button from "../../components/button";
@@ -13,7 +13,6 @@ import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 
 import { UserContext } from "../../providers/User";
-import { Redirect } from "react-router-dom";
 
 function Login() {
   const formSchema = yup.object().shape({

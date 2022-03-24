@@ -13,10 +13,9 @@ import Api from "../../services/api";
 
 import SideImage from "../../assets/SideImage.svg";
 import { FiUsers } from "react-icons/fi";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Redirect } from "react-router-dom";
-import { UserContext } from "../../providers/User";
+import { useHistory, Redirect } from "react-router-dom";
 import { useContext } from "react";
+import { UserContext } from "../../providers/User";
 
 function SignUp() {
   const formSchema = yup.object().shape({
