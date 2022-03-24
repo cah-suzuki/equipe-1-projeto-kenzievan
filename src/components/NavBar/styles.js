@@ -12,6 +12,31 @@ export const Container = styled.header`
   border-top: 15px solid var(--color-secondary-100);
   padding: 0 3%;
 
+  .clouds {
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+  }
+
+  .one {
+    animation: wheel1 30s;
+    animation-iteration-count: infinite;
+  }
+  .two {
+    animation: wheel1 15s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes wheel1 {
+    0% {
+      transform: translate(0vw, 0px);
+    }
+    100% {
+      transform: translate(86vw, 0px);
+    }
+  }
+
   .lottie {
     display: none;
   }
@@ -55,7 +80,14 @@ export const Container = styled.header`
     color: #222428;
   }
 
-  @media screen and (min-width: 500px) {
+  @media (min-width: 500px) {
+    .clouds {
+      width: 90px;
+      height: 50px;
+      position: absolute;
+      top: 0px;
+    }
+
     .lottie {
       display: flex;
       width: 60px;
@@ -72,9 +104,55 @@ export const Container = styled.header`
 
     .lottie-bus {
       display: flex;
-      width: 60px;
-      height: 40px;
+      width: 30px;
+      height: 25px;
       margin-top: -30px;
+    }
+  }
+
+  @media (min-width: 750px) {
+    .clouds {
+      width: 120px;
+      height: 70px;
+      position: absolute;
+      top: 0px;
+    }
+    .lottie-bus {
+      width: 40px;
+      height: 35px;
+    }
+    .lottie {
+      width: 100px;
+      height: 80px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .clouds {
+      width: 150px;
+      height: 70px;
+      position: absolute;
+      top: 0px;
+    }
+
+    .lottie {
+      width: 100px;
+      height: 80px;
+    }
+  }
+  @media (min-width: 1600px) {
+    .clouds {
+      width: 200px;
+      height: 70px;
+      position: absolute;
+      top: 0px;
+    }
+    .lottie-bus {
+      width: 100px;
+      height: 60px;
+    }
+    .lottie {
+      width: 150px;
+      height: 80px;
     }
   }
 `;

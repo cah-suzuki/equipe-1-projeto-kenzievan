@@ -3,7 +3,7 @@ import Button from "../button";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import Lottie from "react-lottie";
-import schoolBus from "../../assets/lotties/lottie4.json";
+import schoolBus from "../../assets/lotties/school-bus.json";
 import cloud from "../../assets/lotties/lottie2.json";
 import clouds from "../../assets/lotties/lottie3.json";
 
@@ -37,8 +37,26 @@ const NavBar = ({ register, login, home, logout }) => {
     },
   };
 
+  const defaultOptionsClouds = {
+    loop: true,
+    autoplay: true,
+    animationData: clouds,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <Container>
+      <div className="clouds">
+        <div className="one">
+          <Lottie resizeMode="contain" options={defaultOptionsClouds} />
+        </div>
+        <div className="two">
+          <Lottie resizeMode="contain" options={defaultOptionsClouds} />
+        </div>
+      </div>
+
       <span>
         <h2>KenzieVan</h2>
         <div className="lottie-bus">
