@@ -1,6 +1,11 @@
 import { Container } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
+import React from "react";
+import Lottie from "react-lottie";
+import schoolBus from "../../assets/lotties/lottie4.json";
+import cloud from "../../assets/lotties/lottie2.json";
+import clouds from "../../assets/lotties/lottie3.json";
 
 const NavBar = ({ register, login, home, logout }) => {
   const history = useHistory();
@@ -14,13 +19,40 @@ const NavBar = ({ register, login, home, logout }) => {
     handleNavigation("/");
   };
 
+  const defaultOptionsBus = {
+    loop: true,
+    autoplay: true,
+    animationData: schoolBus,
+
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const defaultOptionsCloud = {
+    loop: true,
+    autoplay: true,
+    animationData: cloud,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <Container>
-      <h2>KenzieVan</h2>
+      <span>
+        <h2>KenzieVan</h2>
+        <div className="lottie-bus">
+          <Lottie resizeMode="contain" options={defaultOptionsBus} />
+        </div>
+      </span>
+
       <nav>
+        <div className="lottie">
+          <Lottie resizeMode="contain" options={defaultOptionsCloud} />
+        </div>
         {login && (
           <Button onClick={() => handleNavigation("login")}>Entrar</Button>
-        )}{" "}
+        )}
         {register && (
           <Button onClick={() => handleNavigation("signup")}>
             Cadastre-se
