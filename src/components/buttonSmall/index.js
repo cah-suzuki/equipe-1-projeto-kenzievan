@@ -1,13 +1,11 @@
 import { Container } from "./styled";
+import { IoIosArrowForward } from "react-icons/io";
+import { fiX } from "react-icons/fi";
 
-
-const ButtonSmall = ({ figcaption, src, ...rest }) => {
+const ButtonSmall = ({ icon: Icon = IoIosArrowForward, isSquare, ...rest }) => {
   return (
-    <Container {...rest}>
-      <figure>
-        <img src={src}/>
-        <figcaption>{figcaption}</figcaption>
-      </figure>
+    <Container {...rest} isSquare={isSquare}>
+      <Icon />
     </Container>
   );
 };

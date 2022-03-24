@@ -1,31 +1,35 @@
 import { Switch, Route } from "react-router-dom";
 import DriverDashboard from "../pages/driverDashboard";
-import Home from "../pages/home";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ParentDashboard from "../pages/parentDashboard";
-import Register from "../pages/register";
-import SignUp from "../pages/signUp";
+import SignUp from "../pages/SignUp";
+import StudentCard from "../components/studentCard";
+import { useContext } from "react";
+import { StudentContext } from "../providers/Students";
 
 const Routes = () => {
+  const { students } = useContext(StudentContext);
+  console.log(students);
   return (
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/login">
+      <Route exact path="/login">
         <Login />
       </Route>
-      <Route path="/signup">
+      <Route exact path="/signup">
         <SignUp />
       </Route>
       <Route exact path="/driver">
         <DriverDashboard />
       </Route>
-      <Route path="/parent/:name_of_parent">
-        <ParentDashboard />
-      </Route>
-      <Route path="/driver/register">
-        <Register />
+      <Route path="/dashboard">
+        {students.length > 0 &&
+          students.map((student) => (
+            <StudentCard key={student.id} student={student} />
+          ))}
       </Route>
     </Switch>
   );

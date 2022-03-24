@@ -30,7 +30,7 @@ export const Container = styled.div`
   }
 `;
 
-export const MessageForm = styled.form`
+export const MessageForm = styled.div`
   width: 85%;
   height: 131px;
   background-color: #fff3e9;

@@ -1,26 +1,22 @@
-import { LeftContainer, RightContainer, MainContainer, PageContainer } from './styles';
-import NavBar from '../../components/NavBar';
-import StudentList from '../../components/StudentList';
-import MessagesList from '../../components/messagesList';
-import GroupMessages from '../../components/groupMessages';
-// import Header from '../../components/header';
+import { useState } from "react";
+import Register from "../../components/Register";
+import Button from "../../components/button";
 
 function DriverDashboard() {
+  const [isRegisterActive, setIsRegisterActive] = useState(false);
+  const handleRegister = () => {
+    setIsRegisterActive(true);
+  };
   return (
-    <PageContainer>
-      <NavBar />
-      {/* <Header /> */}
-      <MainContainer>
-        <LeftContainer>
-          <StudentList />
-        </LeftContainer>
-        <RightContainer>
-          <GroupMessages />
-          <MessagesList />
-        </RightContainer>
-      </MainContainer>
-    </PageContainer>
-  )
+    <>
+      <h1>DRIVER DASHBOARD PAGE</h1>;
+      <Button onClick={handleRegister}>Novo Cadastro</Button>
+      <Register
+        isRegisterActive={isRegisterActive}
+        setIsRegisterActive={setIsRegisterActive}
+      />
+    </>
+  );
 }
 
 export default DriverDashboard;

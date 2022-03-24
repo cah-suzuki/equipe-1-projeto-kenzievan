@@ -1,15 +1,18 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { FiLogIn } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 
 import Container from "./styles";
 import Button from "../../components/button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
-
 import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
-import { FiLogIn } from "react-icons/fi";
+
+import { UserContext } from "../../providers/User";
 
 function Login() {
   const formSchema = yup.object().shape({
@@ -25,11 +28,13 @@ function Login() {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  console.log(errors);
+  const { login } = useContext(UserContext);
 
+  const onSubmit = (data) => {
+    login(data);
+  };
+
+  const history = useHistory();
   return (
     <>
       <NavBar home />
@@ -41,24 +46,25 @@ function Login() {
             <span>
               Efetue seu <span>Login</span>
             </span>
+            <p onClick={() => history.push("/signup")}>
+              Ainda não possui um login? Cadastre-se
+            </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Email"
               name="email"
-              placeholder="Email"
               register={register}
               error={errors?.email}
             />
             <Input
               label="Senha"
               name="password"
-              placeholder="Senha"
               type="password"
               register={register}
               error={errors?.password}
             />
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
           </form>
         </section>
         <SideBackground image={SideImage} />
