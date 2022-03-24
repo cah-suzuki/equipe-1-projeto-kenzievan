@@ -5,6 +5,7 @@ import Login from "../pages/login";
 import ParentDashboard from "../pages/parentDashboard";
 import Register from "../pages/register";
 import SignUp from "../pages/signUp";
+import useContext from 'react;'
 
 
 const Routes = () => {
@@ -20,14 +21,8 @@ const Routes = () => {
       <Route path='/signup'>
         <SignUp />
       </Route>
-      <Route exact path='/driver'>
-        <DriverDashboard />
-      </Route>
-      <Route path='/parent/:name_of_parent'>
-        <ParentDashboard />
-      </Route>
-      <Route path='/driver/register'>
-        <Register />
+      <Route path='/dashboard'>
+
       </Route>
     </Switch>
   )
