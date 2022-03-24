@@ -38,7 +38,6 @@ export const DateContainer = styled.div`
 
   @media (min-width: 768px) {
     flex: 0;
-    padding-left: 0;
     border-right: 1px solid var(--color-primary-100);
     height: 100%;
 
@@ -98,6 +97,6 @@ export const MessagesContainer = styled.ul`
     flex: 1;
     max-height: 100px;
     border: none;
-    padding: 5px 0;
+    margin: 5px 0;
   }
 `;

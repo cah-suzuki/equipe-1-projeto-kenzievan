@@ -3,9 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   border: 1px solid var(--color-primary-50);
+  border-bottom: ${(props) =>
+    props.isExpanded ? "1px solid var(--color-primary-100)" : "none"};
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  /* border-radius: ${(props) =>
+    props.isExpanded ? "1px solid var(--color-primary-100)" : "none"}; */
   padding-bottom: 10px;
   position: relative;
   z-index: 1;
@@ -40,6 +44,8 @@ export const TopContainer = styled.div`
   gap: 8px 30px;
   padding: 12px;
   border-bottom: 1px solid var(--color-primary-100);
+  border-radius: ${(props) => (props.isExpanded ? "0" : "0 0 10px 10px")};
+  transition-delay: ${(props) => (props.isExpanded ? "0" : "0.18s")};
 `;
 
 export const TimesContainer = styled.div`
