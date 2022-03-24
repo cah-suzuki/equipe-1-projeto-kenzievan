@@ -19,7 +19,9 @@ const StudentList = ({ isDriver }) => {
     <Container>
       <header>
         <h2>Lista de alunos cadastrados</h2>
-        {isDriver && <Button onClick={handleModal}>Novo Cadastro</Button>}
+        {isDriver && (
+          <Button onClick={() => handleModal()}>Novo Cadastro</Button>
+        )}
         {isRegisterActive && <Register handleModal={handleModal}></Register>}
       </header>
       <ul>

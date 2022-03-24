@@ -18,7 +18,6 @@ export const StudentProvider = ({ children }) => {
       Api.get("/students", {
         headers: { Authorization: `Bearer ${token}` },
       }).then((response) => {
-        console.log(response);
         const filteredList = filterListById(response.data);
         const sortedList = sortListAlphabetically(filteredList);
         setStudents(sortedList);
@@ -139,7 +138,13 @@ export const StudentProvider = ({ children }) => {
 
   return (
     <StudentContext.Provider
-      value={{ students, newStudent, deleteStudent, updateTodayTrip, sendMessage }}
+      value={{
+        students,
+        newStudent,
+        deleteStudent,
+        updateTodayTrip,
+        sendMessage,
+      }}
     >
       {children}
     </StudentContext.Provider>

@@ -8,12 +8,12 @@ import NavBar from "../NavBar";
 import { UserContext } from "../../providers/User";
 import { useContext } from "react";
 
-function Header({ name }) {
+function Header() {
   const { user } = useContext(UserContext);
   const data = new Date();
   return (
     <Container>
-      <NavBar logout />
+      <NavBar logoutButton />
       <HeaderContanier>
         <GreetingContainer>
           <p>Olá, </p>

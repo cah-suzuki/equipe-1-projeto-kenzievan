@@ -1,18 +1,17 @@
 import { Container } from "./styles";
 import Button from "../button";
 import { useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../providers/User";
 
-const NavBar = ({ register, login, home, logout }) => {
+const NavBar = ({ register, login, home, logoutButton }) => {
   const history = useHistory();
 
   const handleNavigation = (path) => {
     return history.push(path);
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    handleNavigation("/");
-  };
+  const { logout } = useContext(UserContext);
 
   return (
     <Container>
@@ -27,7 +26,7 @@ const NavBar = ({ register, login, home, logout }) => {
           </Button>
         )}
         {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
-        {logout && <Button onClick={() => handleLogout()}>Sair</Button>}
+        {logoutButton && <Button onClick={() => logout()}>Sair</Button>}
       </nav>
     </Container>
   );
