@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   background-color: rgba(131, 243, 250, 0.5);
+
+  button {
+    font-size: 14px;
+  }
 `;
 
 export const HeaderContanier = styled.div`

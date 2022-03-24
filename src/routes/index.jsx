@@ -3,6 +3,7 @@ import Dashboard from "../components/Dashboard";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import MapContainer from "../pages/MapContainer";
 
 const Routes = () => {
   return (
@@ -18,6 +19,9 @@ const Routes = () => {
       </Route>
       <Route path="/dashboard">
         <Dashboard />
+      </Route>
+      <Route path="/map">
+        <MapContainer />
       </Route>
     </Switch>
   );
