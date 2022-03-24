@@ -22,13 +22,6 @@ export const Container = styled.div`
   height: 80%;
   width: 85%;
 
-  .flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 15px;
-  }
-
   header {
     display: flex;
     color: #f8f9fa;
@@ -75,10 +68,6 @@ export const Container = styled.div`
     max-width: 580px;
     width: 65%;
 
-    .flex {
-      flex-direction: row;
-    }
-
     header {
       height: 80px;
 
@@ -95,4 +84,33 @@ export const Container = styled.div`
       }
     }
   }
+`;
+
+export const ContentInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  div {
+     
+      margin-top: 7px;
+  
+  }
+
+  span {
+    margin-top: 5px;
+  }
+
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+  }  
 `;

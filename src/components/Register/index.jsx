@@ -8,7 +8,7 @@ import Api from "../../services/api";
 import { FiUserPlus, FiX } from "react-icons/fi";
 
 import ButtomSmall from "../buttonSmall/index";
-import { Container, Modal } from "./style";
+import { Container, Content, ContentInputs, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 
 import { UserContext } from "../../providers/User";
@@ -137,78 +137,80 @@ function Register({ handleModal }) {
         </header>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            label="Nome"
-            name="name"
-            register={register}
-            error={errors?.name}
-          />
+          <ContentInputs>
+            <Input
+              label="Nome"
+              name="name"
+              register={register}
+              error={errors?.name}
+            />
 
-          <Controller
-            control={control}
-            name="select"
-            render={({ field: { name, value, onChange } }) => (
-              <Select
-                placeholder={"Selecione nome do responsável"}
-                name={name}
-                value={value}
-                error={errors.select?.value}
-                options={selectOptions}
-                onChange={onChange}
+              <Controller
+                control={control}
+                name="select"
+                render={({ field: { name, value, onChange } }) => (
+                  <Select
+                    placeholder={"Selecione nome do responsável"}
+                    name={name}
+                    value={value}
+                    error={errors.select?.value}
+                    options={selectOptions}
+                    onChange={onChange}
+                  />
+                )}
               />
-            )}
-          />
 
-          <Input
-            label="Endereço"
-            name="address"
-            register={register}
-            error={errors?.address}
-          />
-          <div className="flex">
             <Input
-              label="Bairro"
-              name="addressDistrict"
+              label="Endereço"
+              name="address"
               register={register}
-              error={errors?.addressDistrict}
+              error={errors?.address}
             />
-            <Input
-              label="Nº"
-              name="addressNumber"
-              register={register}
-              error={errors?.addressNumber}
-            />
-          </div>
 
-          <Input
-            label="Escola"
-            name="school"
-            register={register}
-            error={errors?.school}
-          />
+            <Content>
+              <Input
+                label="Bairro"
+                name="addressDistrict"
+                register={register}
+                error={errors?.addressDistrict }
+              />
+              <Input
+                label="Nº"
+                name="addressNumber"
+                register={register}
+                error={errors?.addressNumber}
+              />
+            </Content>
 
-          <Input
-            label="Endereço"
-            name="schoolAddress"
-            register={register}
-            error={errors?.schoolAddress}
-          />
-          <div className="flex">
             <Input
-              label="Bairro"
-              name="schoolAddressDistrict"
+              label="Escola"
+              name="school"
               register={register}
-              error={errors?.schoolAddressDistrict}
+              error={errors?.school}
             />
+
             <Input
-              label="Nº"
-              name="schoolAddressNumber"
+              label="Endereço"
+              name="schoolAddress"
               register={register}
-              error={errors?.schoolAddressNumber}
+              error={errors?.schoolAddress}
             />
-          </div>
-          <div>
-            <div className="flex">
+            <Content>
+              <Input
+                label="Bairro"
+                name="schoolAddressDistrict"
+                register={register}
+                error={errors?.schoolAddressDistrict}
+              />
+              <Input
+                label="Nº"
+                name="schoolAddressNumber"
+                register={register}
+                error={errors?.schoolAddressNumber}
+              />
+            </Content>
+
+            <Content>
               <Input
                 type="time"
                 label="Saída"
@@ -223,11 +225,11 @@ function Register({ handleModal }) {
                 register={register}
                 error={errors?.entryTime}
               />
-            </div>
-          </div>
-          <div className="flex">
-            <Button>Confirmar</Button>
-          </div>
+            </Content>
+            <Content>
+              <Button>Confirmar</Button>
+            </Content>
+          </ContentInputs>
         </form>
       </Container>
     </Modal>
