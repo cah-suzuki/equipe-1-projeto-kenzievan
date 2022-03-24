@@ -57,24 +57,21 @@ const getTime = () => {
 
 const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
-  const [entryText, setEntryText] = useState("xx:xx");
-  const [departureText, setDepartureText] = useState("xx:xx");
-  const [isEntryChecked, setIsEntryChecked] = useState(false);
-  const [isDepartureChecked, setIsDepartureChecked] = useState(false);
-  const { updateTodayTrip } = useContext(StudentContext);
 
-  console.log(getTime());
+  const { updateTodayTrip } = useContext(StudentContext);
+  const { hour, date } = getTime();
+
+  const todayTrip = student.tripsList.find((trip) => trip.date === date) || {};
+  const [isEntryChecked, setIsEntryChecked] = useState(!!todayTrip.entryTime);
+  const [isDepartureChecked, setIsDepartureChecked] = useState(
+    !!todayTrip.departureTime
+  );
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
   };
 
   const handleEntryCheckBox = () => {
-    // const { hour } = getTime();
-    // const updatedValue = isEntryChecked ? null : { entryTime: hour };
-    // setEntryText(hour);
-    // handleTrip(updatedValue);
-    const { hour, date } = getTime();
     const updatedValue = isEntryChecked ? null : { entryTime: hour };
 
     const todayTrip =
@@ -86,31 +83,19 @@ const StudentCard = ({ student }) => {
       ? { ...todayTrip, ...updatedValue, date }
       : { ...todayTrip, date };
 
-    console.log(updatedTrip);
-    setDepartureText(hour);
     updateTodayTrip(student.id, updatedTrip, date);
   };
 
   const handleDepartureCheckBox = () => {
-    const { hour, date } = getTime();
     const updatedValue = isDepartureChecked ? null : { departureTime: hour };
-
-    const todayTrip =
-      student.tripsList.find((trip) => trip.date === date) || {};
 
     if (!updatedValue) delete todayTrip.departureTime;
 
     const updatedTrip = updatedValue
       ? { ...todayTrip, ...updatedValue, date }
       : { ...todayTrip, date };
-    console.log(updatedTrip);
 
-    setDepartureText(hour);
     updateTodayTrip(student.id, updatedTrip, date);
-  };
-
-  const Fechado = (e) => {
-    setExpanded(true);
   };
 
   return (
@@ -132,7 +117,7 @@ const StudentCard = ({ student }) => {
         <h3>{student.name}</h3>
         <TimesContainer>
           <div>
-            <span>Entrada: {entryText}</span>
+            <span>Entrada: {todayTrip.entryTime || student.entryTime}</span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -148,7 +133,9 @@ const StudentCard = ({ student }) => {
             />
           </div>
           <div>
-            <span>Saída: {departureText}</span>
+            <span>
+              Saída: {todayTrip.departureTime || student.departureTime}
+            </span>
             <Checkbox
               sx={{
                 color: "#FA8223",
@@ -173,7 +160,7 @@ const StudentCard = ({ student }) => {
             <h3>Endereço: {student.address}</h3>
             <h3>Escola: {student.school}</h3>
           </About>
-          <CardInput onClick={(e) => Fechado(e)}>
+          <CardInput onClick={(e) => handleExpandClick(e)}>
             <StudentMessagesDriver
               messages={student.messages}
               studentId={student.id}
