@@ -163,7 +163,7 @@ const StudentCard = ({ student }) => {
             <h4>Escola: {student.school}</h4>
           </About>
           <TripsContainer>
-            <TripList />
+            <TripList tripsList={student.tripsList} />
           </TripsContainer>
           <MessagesContainer>
             <StudentMessages
