@@ -2,6 +2,7 @@ import { Container, MessageCard, InputContainer } from "./styles";
 import ButtonSmall from "../buttonSmall";
 import { useContext, useState } from "react";
 import { StudentContext } from "../../providers/Students";
+import { getTime } from "../../utils";
 
 const StudentMessages = ({ messages, studentId }) => {
   const [inputValue, setInputValue] = useState("");
@@ -22,21 +23,6 @@ const StudentMessages = ({ messages, studentId }) => {
   };
 
   const clearInput = () => setInputValue("");
-
-  const getTime = () => {
-    const now = new Date();
-
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    const date = `${day}/${month}/${year}`;
-    const hour = `${hours}:${minutes}`;
-
-    return { date, hour };
-  };
 
   return (
     <Container>

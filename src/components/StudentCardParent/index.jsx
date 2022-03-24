@@ -9,15 +9,12 @@ import {
 } from "./styles";
 
 import { useState } from "react";
-import { useContext } from "react";
 
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import { Checkbox } from "@mui/material";
 import { AiOutlineCaretDown } from "react-icons/ai";
 
-import { StudentContext } from "../../providers/Students";
 import StudentMessages from "../StudentMessages";
 import TripList from "../TripList";
 
