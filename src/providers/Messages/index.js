@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { UserContext } from "../User";
 import Api from "../../services/api";
+import { filterListById } from "../../utils";
 
 export const MessagesContext = createContext([]);
 
@@ -18,7 +19,7 @@ export const MessagesProvider = ({ children }) => {
         },
       })
         .then((response) => {
-          const filteredList = filterListById(response.data);
+          const filteredList = filterListById(response.data, user.id);
           setMessages(filteredList);
         })
         .catch((error) => console.log(error));
@@ -39,13 +40,6 @@ export const MessagesProvider = ({ children }) => {
         clearInput();
       })
       .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
-  };
-
-  const filterListById = (list) => {
-    const filteredList = list.filter(
-      (message) => String(user.id) === String(message.driverId)
-    );
-    return filteredList;
   };
 
   return (
