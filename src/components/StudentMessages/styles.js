@@ -44,10 +44,23 @@ export const MessageCard = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+
     h3 {
+      margin-right: auto;
       color: var(--grey-1);
-      font-size: 14px;
+      font-size: 15px;
       margin: 0;
+    }
+
+    div {
+      display: flex;
+      gap: 10px;
+
+      span {
+        color: var(--grey-1);
+        font-size: 14px;
+        font-weight: bold;
+      }
     }
   }
   p {

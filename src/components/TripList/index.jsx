@@ -2,47 +2,45 @@ import { useState } from "react";
 import { Contanier, DateContainer, MessagesContainer } from "./styles";
 
 function TripList({ tripsList }) {
-  const triplistExemple = [
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-    { date: "2022-03-01", entryTime: "06:45", departureTime: "12:45" },
-  ];
-  const [triplist, setTriplist] = useState(triplistExemple);
-  const today = new Date().toISOString().split("T")[0];
-  const dateFilter = (dateValue) => {
-    const newTripList = triplistExemple.filter((item) => {
-      return item.date === dateValue;
+  const [tripsToShow, setTripsToShow] = useState(tripsList);
+
+  const selectTripByDay = (selectedDate) => {
+    const selectedTrip = tripsList.find((trip) => {
+      return (
+        trip.date ===
+        selectedDate
+          .split("-")
+          .reverse()
+          .map((e) => Number(e))
+          .join("/")
+      );
     });
-    if (newTripList.length <= 0) {
-      setTriplist(triplistExemple);
-    } else {
-      setTriplist(newTripList);
-    }
+    selectedTrip ? setTripsToShow([selectedTrip]) : setTripsToShow(tripsList);
   };
+
+  const today = new Date().toISOString().split("T")[0];
+
   return (
     <Contanier>
       <DateContainer>
         <h4>Lista de Viagens</h4>
         <input
           type="date"
-          onChange={(e) => dateFilter(e.target.value)}
+          onChange={(e) => selectTripByDay(e.target.value)}
           defaultValue={today}
         />
       </DateContainer>
       <MessagesContainer>
-        {triplist.map((item, index) => (
+        {tripsToShow.map((trip, index) => (
           <li key={index}>
-            <h3>{item.date.split("-").reverse().join("/")}</h3>
+            <h3>{trip.date}</h3>
             <div>
               <span>Entrada</span>
-              <span>{item.entryTime}</span>
+              <span>{trip.entryTime}</span>
             </div>
             <div>
               <span>Saída</span>
-              <span>{item.departureTime}</span>
+              <span>{trip.departureTime}</span>
             </div>
           </li>
         ))}

@@ -2,11 +2,14 @@ import { Container, MessageCard, InputContainer } from "./styles";
 import ButtonSmall from "../buttonSmall";
 import { useContext, useState } from "react";
 import { StudentContext } from "../../providers/Students";
+import { UserContext } from "../../providers/User";
+import { getTime } from "../../utils";
 
 const StudentMessages = ({ messages, studentId }) => {
   const [inputValue, setInputValue] = useState("");
 
   const { sendMessage } = useContext(StudentContext);
+  const { user } = useContext(UserContext);
 
   const handleClick = () => {
     const { date, hour } = getTime();
@@ -14,6 +17,7 @@ const StudentMessages = ({ messages, studentId }) => {
     if (inputValue.length > 0) {
       const newMessage = {
         message: inputValue,
+        sender: user.name,
         date,
         hour,
       };
@@ -23,30 +27,18 @@ const StudentMessages = ({ messages, studentId }) => {
 
   const clearInput = () => setInputValue("");
 
-  const getTime = () => {
-    const now = new Date();
-
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    const date = `${day}/${month}/${year}`;
-    const hour = `${hours}:${minutes}`;
-
-    return { date, hour };
-  };
-
   return (
     <Container>
       <section>
-        {messages.map(({ message, date, hour }, index) => {
+        {messages.map(({ message, sender, date, hour }, index) => {
           return (
             <MessageCard key={index}>
               <div>
-                <h3>{date}</h3>
-                <h3>{hour}</h3>
+                <h3>{sender?.split(" ")[0]}</h3>
+                <div>
+                  <span>{date}</span>
+                  <span>{hour}</span>
+                </div>
               </div>
               <p>{message}</p>
             </MessageCard>
