@@ -41,7 +41,6 @@ export const StudentProvider = ({ children }) => {
         toast.success("Aluno cadastrado com sucesso");
       })
       .catch((error) => {
-        console.log(error);
         toast.error("Não foi possível cadastrar o aluno");
       });
   };

@@ -30,9 +30,7 @@ function Header() {
     };
     Api.put("/driverCoords/1", newObj, {
       headers: { Authorization: `Bearer ${token}` },
-    }).then((res) => {
-      console.log(res);
-    });
+    }).then((res) => {});
   }
 
   const handleClick = () => {
