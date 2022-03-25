@@ -39,7 +39,7 @@ function Register({ handleModal }) {
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressDistrict: yup
       .string()
-      .required("Endereço obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressNumber: yup
       .number()
@@ -47,15 +47,15 @@ function Register({ handleModal }) {
       .required("Número obrigatório"),
     school: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Nome da escola obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddress: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Endereço obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressDistrict: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressNumber: yup
       .number()

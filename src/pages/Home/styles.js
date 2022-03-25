@@ -116,11 +116,10 @@ export const Footer = styled.footer`
   gap: 30px;
   justify-content: space-around;
   padding: 20px 8%;
-
   &::before {
     content: "";
     background-image: url(${FooterBackground});
-    min-width: 100vw;
+    min-width: 100%;
     position: absolute;
     top: -3.5vw;
     left: 0;

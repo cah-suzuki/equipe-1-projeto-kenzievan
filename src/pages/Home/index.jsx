@@ -10,8 +10,12 @@ import tiagoIcon from "../../assets/img/tiagoIcon.png";
 // import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home() {
+  const token = localStorage.getItem("@KenzieVan:token");
+  const history = useHistory();
+  token && history.push("/dashboard");
   return (
     <Contanier>
       <NavBar login register />
