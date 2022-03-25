@@ -11,12 +11,13 @@ import Button from "../Button";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { getTime } from "../../utils";
 
 function Header() {
   const { user } = useContext(UserContext);
-  const data = new Date();
   const [isLocationOn, setIsLocationOn] = useState(false);
   const [timerId, setTimerId] = useState();
+  const { date } = getTime();
   let geolocation;
 
   function sendLocationToApi({ coords }) {
@@ -69,7 +70,7 @@ function Header() {
             Localizar Motorista
           </Button>
         )}
-        <DayContainer>Hoje é: {data.toLocaleDateString()} </DayContainer>
+        <DayContainer>Hoje é: {date} </DayContainer>
       </HeaderContanier>
     </Container>
   );
