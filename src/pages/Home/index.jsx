@@ -10,7 +10,7 @@ import tiagoIcon from "../../assets/img/tiagoIcon.png";
 // import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 function Home() {
   const token = localStorage.getItem("@KenzieVan:token");
