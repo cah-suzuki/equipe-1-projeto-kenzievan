@@ -14,6 +14,9 @@ export const Modal = styled.div`
 `;
 
 export const Container = styled.div`
+  ::-webkit-scrollbar {
+    display: none;
+  }
   background: white;
   margin-top: 10px;
   overflow: auto;
@@ -28,7 +31,6 @@ export const Container = styled.div`
     justify-content: center;
     margin-top: 15px;
   }
-
   header {
     display: flex;
     color: #f8f9fa;
@@ -36,8 +38,7 @@ export const Container = styled.div`
     color: black;
     border-radius: 4px;
     padding-left: 5px;
-    height: 80px;
-    margin-top: 10px;
+    margin: 10px 0;
 
     figure {
       display: flex;
