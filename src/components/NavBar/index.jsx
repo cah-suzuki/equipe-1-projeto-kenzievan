@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import Button from "../button";
+import Button from "../Button";
 import { useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User";

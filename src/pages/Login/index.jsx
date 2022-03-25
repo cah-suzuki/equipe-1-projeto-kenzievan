@@ -6,7 +6,7 @@ import { FiLogIn } from "react-icons/fi";
 import { useHistory, Redirect } from "react-router-dom";
 
 import Container from "./styles";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";

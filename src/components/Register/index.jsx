@@ -2,12 +2,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../components/Input";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-import { FiUserPlus, FiX } from "react-icons/fi";
+import { FiUserPlus } from "react-icons/fi";
 
-import ButtomSmall from "../buttonSmall/index";
 import { Container, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 

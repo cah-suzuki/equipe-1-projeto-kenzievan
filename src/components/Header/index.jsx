@@ -7,8 +7,8 @@ import {
 import NavBar from "../NavBar";
 import { UserContext } from "../../providers/User";
 import { useContext } from "react";
-import Button from "../button/index";
-import { useEffect, useState } from "react";
+import Button from "../Button";
+import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 

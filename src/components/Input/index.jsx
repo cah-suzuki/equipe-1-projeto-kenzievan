@@ -31,11 +31,6 @@ const Input = ({
 
       {error && <span>{error.message}</span>}
     </Container>
-    // <Container>
-    //   <label>{label}</label>
-    //   <input {...rest} {...register(name)} />
-    //   {!!error && <span>{error.message}</span>}
-    // </Container>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Container, MessageCard, InputContainer } from "./styles";
-import ButtonSmall from "../buttonSmall";
+import ButtonSmall from "../ButtonSmall";
 import { useContext, useState } from "react";
 import { StudentContext } from "../../providers/Students";
 import { UserContext } from "../../providers/User";
