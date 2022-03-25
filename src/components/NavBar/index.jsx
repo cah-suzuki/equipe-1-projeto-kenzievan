@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User";
 
-const NavBar = ({ register, login, home, logoutButton }) => {
+const NavBar = ({ register, login, home, logoutButton, dashboard }) => {
   const history = useHistory();
 
   const handleNavigation = (path) => {
@@ -27,6 +27,9 @@ const NavBar = ({ register, login, home, logoutButton }) => {
         )}
         {home && <Button onClick={() => handleNavigation("/")}>Voltar</Button>}
         {logoutButton && <Button onClick={() => logout()}>Sair</Button>}
+        {dashboard && (
+          <Button onClick={() => handleNavigation("/")}>Voltar</Button>
+        )}
       </nav>
     </Container>
   );
