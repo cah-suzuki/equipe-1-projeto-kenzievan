@@ -22,7 +22,7 @@ export const Main = styled.main`
     list-style-type: disc;
   }
 
-  p {
+  span {
     font-size: 19px;
     margin: 15px 0;
   }
@@ -31,44 +31,44 @@ export const Main = styled.main`
     grid-template-columns: 1fr 1fr;
     align-items: center;
 
-    p:nth-child(n + 2) {
+    span:nth-child(n + 2) {
       grid-column: 1 / 3;
     }
   }
 
   @media (min-width: 800px) {
-    p:nth-child(3) {
+    span:nth-child(3) {
       grid-column: 1 / 2;
     }
   }
   @media (min-width: 1000px) {
-    p {
+    span {
       font-size: 20px;
     }
-    p:nth-child(1) {
+    span:nth-child(1) {
       grid-row: 2 / 3;
     }
-    p:nth-child(3) {
+    span:nth-child(3) {
       grid-row: 3 / 4;
     }
-    p:nth-child(4) {
+    span:nth-child(4) {
       grid-row: 4 / 5;
       grid-column: 1 / 2;
     }
   }
 
   @media (min-width: 1300px) {
-    p {
+    span {
       font-size: 22px;
     }
 
-    p:nth-child(1) {
+    span:nth-child(1) {
       grid-row: 2 / 3;
     }
-    p:nth-child(3) {
+    span:nth-child(3) {
       grid-row: 3 / 4;
     }
-    p:nth-child(4) {
+    span:nth-child(4) {
       grid-row: 4 / 5;
     }
   }
