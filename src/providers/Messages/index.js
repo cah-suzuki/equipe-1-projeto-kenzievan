@@ -19,8 +19,7 @@ export const MessagesProvider = ({ children }) => {
         },
       })
         .then((response) => {
-          const filteredList = filterListById(response.data, user.id);
-          setMessages(filteredList);
+          setMessages(response.data);
         })
         .catch((error) => console.log(error));
     } else {
