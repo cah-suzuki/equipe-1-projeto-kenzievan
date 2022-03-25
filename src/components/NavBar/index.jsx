@@ -6,18 +6,17 @@ import Lottie from "react-lottie";
 import schoolBus from "../../assets/lotties/school-bus.json";
 import cloud from "../../assets/lotties/lottie2.json";
 import clouds from "../../assets/lotties/lottie3.json";
+import { useContext } from "react";
+import { UserContext } from "../../providers/User";
 
-const NavBar = ({ register, login, home, logout }) => {
+const NavBar = ({ register, login, home, logoutButton, dashboard }) => {
   const history = useHistory();
 
   const handleNavigation = (path) => {
     return history.push(path);
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    handleNavigation("/");
-  };
+  const { logout } = useContext(UserContext);
 
   const defaultOptionsBus = {
     loop: true,
@@ -82,7 +81,7 @@ const NavBar = ({ register, login, home, logout }) => {
           </Button>
         )}
         {logout && (
-          <Button className="btn-two" onClick={() => handleLogout()}>
+          <Button className="btn-two" onClick={() => logout()}>
             Sair
           </Button>
         )}

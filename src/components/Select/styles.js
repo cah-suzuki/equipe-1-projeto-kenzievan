@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 
   span {
     font-size: 11px;
@@ -19,10 +19,10 @@ export const customStyles = {
   // INPUT BOX
   control: (base, { selectProps: { error } }) => ({
     ...base,
-    minHeight: "40px",
+    minHeight: "48px",
     background: "var(--white)",
     color: "var(--black)",
-    border: `2px solid ${
+    border: `1px solid ${
       error ? "var(--color-error) !important" : "var(--color-placeholder)"
     }`,
     borderRadius: "8px",

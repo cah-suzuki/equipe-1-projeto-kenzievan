@@ -5,8 +5,9 @@ import Input from "../../components/Input";
 import Button from "../../components/button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-import { FiUserPlus } from "react-icons/fi";
+import { FiUserPlus, FiX } from "react-icons/fi";
 
+import ButtomSmall from "../buttonSmall/index";
 import { Container, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 
@@ -14,15 +15,12 @@ import { UserContext } from "../../providers/User";
 
 import { StudentContext } from "../../providers/Students";
 
-function Register({ isRegisterActive, setIsRegisterActive }) {
+function Register({ handleModal }) {
   const { user } = useContext(UserContext);
 
   const { newStudent } = useContext(StudentContext);
 
-  const [allParents, setAllParents] = useState([]);
-
-  let selectTimerMinutes = [];
-  let selectTimerHour = [];
+  const [selectOptions, setSelectOptions] = useState([]);
 
   const formSchema = yup.object().shape({
     name: yup
@@ -38,7 +36,7 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressDistrict: yup
       .string()
-      .required("Endereço obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressNumber: yup
       .number()
@@ -46,34 +44,23 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
       .required("Número obrigatório"),
     school: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Nome da escola obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddress: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Endereço obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressDistrict: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressNumber: yup
       .number()
       .typeError("Deve ser um valor numérico")
       .required("Número obrigatório"),
 
-    selectTimeDeparture: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-    selectTimeDepartureMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-
-    selectTimeArrival: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
-    selectTimeArrivalMinutes: yup.object().shape({
-      value: yup.string().required("Selecione uma opção"),
-    }),
+    entryTime: yup.string().required("Selecione um horário"),
+    departureTime: yup.string().required("Selecione um horário"),
   });
 
   const {
@@ -88,220 +75,159 @@ function Register({ isRegisterActive, setIsRegisterActive }) {
 
   useEffect(() => {
     Api.get("/_users").then((response) => {
-      const allParents = response.data.map((user) => {
-        if (user.role === "parent") {
-          return {
-            value: user.id,
-            label: user.name,
-          };
-        }
-      });
-      setAllParents(allParents);
+      const allParents = response.data.filter((user) => user.role === "parent");
+      const selectOptions = allParents.map(({ id, name }) => ({
+        value: id,
+        label: name,
+      }));
+      setSelectOptions(selectOptions);
     });
   }, []);
 
-  const selectTimer = () => {
-    for (let i = 0; i < 60; i++) {
-      if (i < 10) {
-        selectTimerMinutes.push({ value: "0" + i, label: "0" + i });
-        selectTimerHour.push({ value: "0" + i, label: "0" + i });
-      } else if (i < 24) {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-        selectTimerHour.push({ value: i + "", label: i + "" });
-      } else {
-        selectTimerMinutes.push({ value: i + "", label: i + "" });
-      }
-    }
-  };
-
-  selectTimer();
-
-  const handleNavigation = (path) => {
-    setIsRegisterActive(false);
-  };
-
-  const handleData = (data) => {
-    let newObj = {
-      name: data.name,
-      school: data.school,
-      schoolAddress: `${data.schoolAddress} ${data.schoolAddressDistrict} ${data.schoolAddressNumber}`,
-      address: `${data.address} ${data.addressDistrict} ${data.addressNumber}`,
-      parentName: data.select.label,
-      parentId: data.select.value,
-      driverId: user.id + "",
-      entryTime: `${data.selectTimeArrival.value}:${data.selectTimeArrivalMinutes.value}`,
-      leaveTime: `${data.selectTimeDeparture.value}:${data.selectTimeDepartureMinutes.value}`,
+  const formatData = ({
+    name,
+    school,
+    schoolAddress,
+    schoolAddressDistrict,
+    schoolAddressNumber,
+    address,
+    addressDistrict,
+    addressNumber,
+    entryTime,
+    departureTime,
+    select,
+  }) => {
+    const formattedData = {
+      name,
+      school,
+      schoolAddress: `${schoolAddress}, ${schoolAddressDistrict}, ${schoolAddressNumber}`,
+      address: `${address}, ${addressDistrict}, ${addressNumber}`,
+      parentName: select.label,
+      parentId: select.value,
+      driverId: String(user.id),
+      entryTime,
+      departureTime,
       tripsList: [],
       messages: [],
     };
-    console.log(newObj);
-    return newObj;
+    return formattedData;
   };
 
   const onSubmit = (data) => {
-    let newData = handleData(data);
-    newStudent(newData);
+    const formattedData = formatData(data);
+    newStudent(formattedData);
     reset();
-    handleNavigation("/");
+    handleModal();
   };
 
-  //substituir o botão do header para um smallButton com reactIcon fiX
-  //diminuir o tamanho do box das options do select
-  //após atualização de buttonSmall trocar o button de dentro do header
   return (
-    <>
-      {isRegisterActive && (
-        <Modal>
-          <Container>
-            <header>
-              <figure>
-                <FiUserPlus />
-                <span>
-                  Registro de <span>Novo Aluno</span>
-                </span>
-              </figure>
-              <button onClick={() => handleNavigation("/")}>X</button>
-            </header>
+    <Modal>
+      <Container>
+        <header>
+          <figure>
+            <FiUserPlus />
+            <span>
+              Registro de <span>Novo Aluno</span>
+            </span>
+          </figure>
+          <button onClick={() => handleModal()}>X</button>
+        </header>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label="Nome"
+            name="name"
+            register={register}
+            error={errors?.name}
+          />
+
+          <Controller
+            control={control}
+            name="select"
+            render={({ field: { name, value, onChange } }) => (
+              <Select
+                placeholder={"Selecione nome do responsável"}
+                name={name}
+                value={value}
+                error={errors.select?.value}
+                options={selectOptions}
+                onChange={onChange}
+              />
+            )}
+          />
+
+          <Input
+            label="Endereço"
+            name="address"
+            register={register}
+            error={errors?.address}
+          />
+          <div className="flex">
+            <Input
+              label="Bairro"
+              name="addressDistrict"
+              register={register}
+              error={errors?.addressDistrict}
+            />
+            <Input
+              label="Nº"
+              name="addressNumber"
+              register={register}
+              error={errors?.addressNumber}
+            />
+          </div>
+
+          <Input
+            label="Escola"
+            name="school"
+            register={register}
+            error={errors?.school}
+          />
+
+          <Input
+            label="Endereço"
+            name="schoolAddress"
+            register={register}
+            error={errors?.schoolAddress}
+          />
+          <div className="flex">
+            <Input
+              label="Bairro"
+              name="schoolAddressDistrict"
+              register={register}
+              error={errors?.schoolAddressDistrict}
+            />
+            <Input
+              label="Nº"
+              name="schoolAddressNumber"
+              register={register}
+              error={errors?.schoolAddressNumber}
+            />
+          </div>
+          <div>
+            <div className="flex">
               <Input
-                label="Nome"
-                name="name"
+                type="time"
+                label="Entrada"
+                name="entryTime"
                 register={register}
-                error={errors?.name}
+                error={errors?.entryTime}
               />
-
-              <Controller
-                control={control}
-                name="select"
-                render={({ field: { name, value, onChange } }) => (
-                  <Select
-                    placeholder={"Selecione nome do responsável"}
-                    name={name}
-                    value={value}
-                    error={errors.select?.value}
-                    options={allParents}
-                    onChange={onChange}
-                  />
-                )}
-              />
-
               <Input
-                label="Endereço"
-                name="address"
+                type="time"
+                label="Saída"
+                name="departureTime"
                 register={register}
-                error={errors?.address}
+                error={errors?.departureTime}
               />
-              <div className="flex">
-                <Input
-                  label="Bairro"
-                  name="addressDistrict"
-                  register={register}
-                  error={errors?.addressDistrict}
-                />
-                <Input
-                  label="Nº"
-                  name="addressNumber"
-                  register={register}
-                  error={errors?.addressNumber}
-                />
-              </div>
-
-              <Input
-                label="Escola"
-                name="school"
-                register={register}
-                error={errors?.school}
-              />
-
-              <Input
-                label="Endereço"
-                name="schoolAddress"
-                register={register}
-                error={errors?.schoolAddress}
-              />
-              <div className="flex">
-                <Input
-                  label="Bairro"
-                  name="schoolAddressDistrict"
-                  register={register}
-                  error={errors?.schoolAddressDistrict}
-                />
-                <Input
-                  label="Nº"
-                  name="schoolAddressNumber"
-                  register={register}
-                  error={errors?.schoolAddressNumber}
-                />
-              </div>
-              <div>
-                <div className="flex">
-                  <Controller
-                    control={control}
-                    name="selectTimeDeparture"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDeparture?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeDepartureMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de entrada xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeDepartureMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrival"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída HH:xx"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrival?.value}
-                        options={selectTimerHour}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                  <Controller
-                    control={control}
-                    name="selectTimeArrivalMinutes"
-                    render={({ field: { name, value, onChange } }) => (
-                      <Select
-                        placeholder={"Horário de saída xx:MM"}
-                        name={name}
-                        value={value}
-                        error={errors.selectTimeArrivalMinutes?.value}
-                        options={selectTimerMinutes}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </div>
-              </div>
-              <div className="flex">
-                <Button>Confirmar</Button>
-              </div>
-            </form>
-          </Container>
-        </Modal>
-      )}
-    </>
+            </div>
+          </div>
+          <div className="flex">
+            <Button>Confirmar</Button>
+          </div>
+        </form>
+      </Container>
+    </Modal>
   );
 }
 

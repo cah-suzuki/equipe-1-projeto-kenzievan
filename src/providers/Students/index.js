@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import Api from "../../services/api";
 import { UserContext } from "../User";
 
+import { filterListById, sortListAlphabetically } from "../../utils";
+
 export const StudentContext = createContext({});
 
 export const StudentProvider = ({ children }) => {
@@ -18,9 +20,8 @@ export const StudentProvider = ({ children }) => {
       Api.get("/students", {
         headers: { Authorization: `Bearer ${token}` },
       }).then((response) => {
-        console.log(response);
-        const filteredList = filterListById(response.data);
-        const sortedList = sortListAlphabetically(filteredList);
+        const filteredList = filterListById(response.data, id);
+        const sortedList = sortListAlphabetically(filteredList, id);
         setStudents(sortedList);
       });
     } else {
@@ -28,37 +29,14 @@ export const StudentProvider = ({ children }) => {
     }
   }, [isAuth]);
 
-  const filterListById = (list) => {
-    const filteredList = list.filter((student) => {
-      return (
-        String(id) === String(student.parentId) ||
-        String(id) === String(student.driverId)
-      );
-    });
-    return filteredList;
-  };
-
-  const sortListAlphabetically = (list) => {
-    const sortedList = list.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
-    return sortedList;
-  };
-
   const newStudent = (newStudent) => {
     Api.post("/students", newStudent, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         const studentList = [...students, response.data];
-        const filteredList = filterListById(studentList);
-        const sortedList = sortListAlphabetically(filteredList);
+        const filteredList = filterListById(studentList, id);
+        const sortedList = sortListAlphabetically(filteredList, id);
         setStudents(sortedList);
         toast.success("Aluno cadastrado com sucesso");
       })
@@ -102,7 +80,9 @@ export const StudentProvider = ({ children }) => {
           );
           const updatedStudents = [...filteredStudents, response.data];
 
-          setStudents(updatedStudents);
+          const sortedList = sortListAlphabetically(updatedStudents);
+
+          setStudents(sortedList);
         });
       })
       .catch((error) => toast.error("Ocorreu um erro ao enviar a mensagem!"));
@@ -130,7 +110,9 @@ export const StudentProvider = ({ children }) => {
           );
           const updatedStudents = [...filteredStudents, response.data];
 
-          setStudents(updatedStudents);
+          const sortedList = sortListAlphabetically(updatedStudents);
+
+          setStudents(sortedList);
           clearInput();
         });
       })
@@ -139,7 +121,13 @@ export const StudentProvider = ({ children }) => {
 
   return (
     <StudentContext.Provider
-      value={{ students, newStudent, deleteStudent, updateTodayTrip, sendMessage }}
+      value={{
+        students,
+        newStudent,
+        deleteStudent,
+        updateTodayTrip,
+        sendMessage,
+      }}
     >
       {children}
     </StudentContext.Provider>

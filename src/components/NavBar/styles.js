@@ -70,7 +70,7 @@ export const Container = styled.header`
 
   button {
     font-weight: 700;
-    font-size: 14px;
+    font-size: max(2vw, 18px) !important;
     color: #fa8223;
     background-color: transparent;
     border: none;
