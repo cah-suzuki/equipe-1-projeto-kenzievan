@@ -1,21 +1,25 @@
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import NavBar from "../../components/NavBar";
 import Container from "./styles";
-import axios from "axios";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useContext } from "react";
 import React from "react";
+import Api from "../../services/api";
+import { UserContext } from "../../providers/User";
 
 const MapContainer = ({ google }) => {
   //trocar coordenadas por resposta da api get que o motorista mandou
   const [coords, setCoords] = useState();
+  const { token } = useContext(UserContext);
 
   useEffect(() => {
     let geolocation = setInterval(() => {
-      axios
-        .get("https://json-server-camila-s.herokuapp.com/coords/1")
-        .then((res) => {
-          setCoords(res.data);
-        });
+      Api.get("/driverCoords/1", {
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((res) => {
+        setCoords(res.data);
+        console.log(res);
+      });
     }, 5000);
   }, []);
 

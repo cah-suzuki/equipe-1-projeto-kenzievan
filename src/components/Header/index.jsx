@@ -9,15 +9,18 @@ import { UserContext } from "../../providers/User";
 import { useContext } from "react";
 import Button from "../Button";
 import { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { getTime } from "../../utils";
 
+import { useHistory } from "react-router-dom";
+import Api from "../../services/api";
+
 function Header() {
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [isLocationOn, setIsLocationOn] = useState(false);
   const [timerId, setTimerId] = useState();
+
   const { date } = getTime();
+
   let geolocation;
 
   function sendLocationToApi({ coords }) {
@@ -25,9 +28,11 @@ function Header() {
       lat: coords.latitude,
       lng: coords.longitude,
     };
-    axios
-      .put("https://json-server-camila-s.herokuapp.com/coords/1", newObj)
-      .then((res) => {});
+    Api.put("/driverCoords/1", newObj, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => {
+      console.log(res);
+    });
   }
 
   const handleClick = () => {
