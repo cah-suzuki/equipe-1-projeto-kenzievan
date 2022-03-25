@@ -7,17 +7,19 @@ import {
 import NavBar from "../NavBar";
 import { UserContext } from "../../providers/User";
 import { useContext } from "react";
-import Button from "../button/index";
+import Button from "../Button";
 import { useState } from "react";
+import { getTime } from "../../utils";
 
 import { useHistory } from "react-router-dom";
 import Api from "../../services/api";
 
 function Header() {
   const { user, token } = useContext(UserContext);
-  const data = new Date();
   const [isLocationOn, setIsLocationOn] = useState(false);
   const [timerId, setTimerId] = useState();
+
+  const { date } = getTime();
 
   let geolocation;
 
@@ -70,7 +72,7 @@ function Header() {
             Localizar Motorista
           </Button>
         )}
-        <DayContainer>Hoje é: {data.toLocaleDateString()} </DayContainer>
+        <DayContainer>Hoje é: {date} </DayContainer>
       </HeaderContanier>
     </Container>
   );

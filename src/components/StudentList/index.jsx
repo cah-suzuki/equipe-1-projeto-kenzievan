@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "./style";
-import Button from "../button";
+import Button from "../Button";
 import StudentCardDriver from "../StudentCardDriver";
 import StudentCardParent from "../StudentCardParent";
 import Register from "../Register";

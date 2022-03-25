@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Equipe 1 - Projeto KenzieVan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![kenzie](https://avatars.githubusercontent.com/u/56847172?s=200&v=4)](https://kenzie.com.br/ "kenzie academy brasil")
 
-## Available Scripts
+#
 
-In the project directory, you can run:
+##Projeto realizado por alunos do terceiro módulo do curso fullstack da kenzie academy brasil
 
-### `yarn start`
+### KenzieVan é uma plataforma de comunicação entre responsáveis e motoristas de vans escolares
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Com kenzieVan você pode comunicar sobre faltas e atrasos de forma simples e evitar qualquer stress durante a viagem
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#
 
-### `yarn test`
+#
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> Você conhece alguém que utiliza transporte escolar e frequentemente
+> quando está no trabalho não tem certeza se seu filho chegou na escola
+> ou chegou da escola em casa? Ou ainda o transporte escolar do seu filho
+> não chegou para buscá-lo de manhã e você não recebeu notícias?
+> Ou ainda
+> Se você é motorista de transporte escolar e precisa enviar uma informação
+> pra todos os seus clientes e não acha conveniente enviar pelos aplicativos
+> de mensagem convencionais nós podemos te ajudar. Essas e muitas outras
+> funcionalidades você encontra no KenzieVan.
 
-### `yarn build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Encontrar a van de forma rápida e fácil
+- Acesso ao histórico de viagens
+- Chat entre responsável e motorista
+- Histórico de mensagens
+- Visualização rápida de dados dos alunos
+- Layout intuitivo e amigável
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Com a nossa aplicação você pode criar uma conta e como motorista gerenciar todos os estudantes em um lugar só , no seu dashboard você vai poder cadastrar seus alunos e visualizar uma lista com todos eles além do horário de entrada e saída, endereço, e o principal um chat de mensagens para enviar uma mensagem direta ao pai ou responsável do aluno e um chat geral para enviar mensagens para todos os alunos ao mesmo tempo.além disso você pode habilitar ou desabilitar o compartilhamento da sua localização em tempo real para que os responsáveis tenham certeza de onde a van se encontra.
+E como pai ou responsável você vai poder visualizar o histórico de horários de entrada na escola e entrega do filho em casa, histórico de mensagens com o motorista e chat para passar agilizar a passagem de informações, e um mapa que pode ser renderizado na tela para acompanhar onde a van se encontra!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Tecnologias utilizadas
 
-### `yarn eject`
+![Insomnia](https://img.shields.io/badge/Insomnia-black?style=for-the-badge&logo=insomnia&logoColor=5849BE) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-     Yup
+-     React-Hook-Form
+-     Hookform/Resolvers
+-     Axios
+-     Json-Server
+-     Json-Server-Auth
+-     React-icons
+-     Toastify
+-     Google-maps-react
+-     React-dom
+-     React-select
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Como clonar e rodar a aplicação
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Essa aplicação necessita do yarn instalado
 
-## Learn More
+```sh
+git clone <git@github...>
+yarn install
+yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Ferramentas de gerenciamento de projeto utilizadas
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Ferramenta | Link                    |
+| ---------- | ----------------------- |
+| GitHub     | https://github.com/     |
+| Notion     | https://www.notion.so/  |
+| Excalidraw | https://excalidraw.com/ |
+| Figma      | https://www.figma.com/  |
+| Trello     | https://trello.com/     |
+| LinkTree   | https://linkr.bio/      |
+| Slack      | https://slack.com/      |
 
-### Code Splitting
+## Colaboradores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+|                 |                                   |     |
+| --------------- | --------------------------------- | --- |
+| Thiago Mota     | https://github.com/tiagomgm       | QA  |
+| Paulo Guarnieri | https://github.com/pauloguarnieri | QA  |
+| Márcio José     | https://github.com/marcio-tonholo | PO  |
+| Leonardo Liska  | https://github.com/leonardoliska  | TL  |
+| Daniele Calixto | https://github.com/danielecalixto | QA  |
+| Camila Suzuki   | https://github.com/cah-suzuki     | SM  |

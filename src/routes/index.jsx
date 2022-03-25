@@ -3,7 +3,7 @@ import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-import MapContainer from "../pages/MapContainer";
+import Map from "../pages/Map";
 
 const Routes = () => {
   return (
@@ -21,7 +21,7 @@ const Routes = () => {
         <Dashboard />
       </Route>
       <Route path="/map">
-        <MapContainer />
+        <Map />
       </Route>
     </Switch>
   );

@@ -50,7 +50,6 @@ const Container = styled.div`
       justify-content: center;
 
       button {
-        margin: 10px 0;
         width: 100%;
       }
 

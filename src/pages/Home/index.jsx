@@ -10,23 +10,27 @@ import tiagoIcon from "../../assets/img/tiagoIcon.png";
 // import SideBackground from "../../components/SideBackground";
 import SideImage from "../../assets/SideImage.svg";
 import NavBar from "../../components/NavBar";
+import { useHistory } from "react-router-dom";
 
 function Home() {
+  const token = localStorage.getItem("@KenzieVan:token");
+  const history = useHistory();
+  token && history.push("/dashboard");
   return (
     <Contanier>
       <NavBar login register />
       <Main>
         {/* <div> */}
-        <p>
+        <span>
           KenzieVan é uma plataforma de comunicação entre pais e responsáveis e
           motoristas de vans escolares.
-        </p>
+        </span>
         <SideBackground image={SideImage} />
-        <p>
+        <span>
           Com kenzieVan você pode comunicar sobre faltas e atrasos de forma
           simples e evitar qualquer stress durante a viagem
-        </p>
-        <p>
+        </span>
+        <span>
           Principais Recursos:
           <ol>
             <li>Encontrar a van de forma rápida e fácil</li>
@@ -36,8 +40,8 @@ function Home() {
             <li> Visualização rápida de dados dos alunos </li>
             <li> Layout intuitivo e amigável</li>
           </ol>
-        </p>
-        <p>Cadastre-se e começe a usar hoje!</p>
+        </span>
+        <span>Cadastre-se e começe a usar hoje!</span>
         {/* </div> */}
       </Main>
       <Footer>

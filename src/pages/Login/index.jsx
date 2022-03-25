@@ -6,7 +6,7 @@ import { FiLogIn } from "react-icons/fi";
 import { useHistory, Redirect } from "react-router-dom";
 
 import Container from "./styles";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
 import SideBackground from "../../components/SideBackground";
@@ -51,9 +51,6 @@ function Login() {
             <span>
               Efetue seu <span>Login</span>
             </span>
-            <p onClick={() => history.push("/signup")}>
-              Ainda não possui um login? Cadastre-se
-            </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -70,6 +67,9 @@ function Login() {
               error={errors?.password}
             />
             <Button type="submit">Login</Button>
+            <p onClick={() => history.push("/signup")}>
+              Ainda não possui um login? Cadastre-se
+            </p>
           </form>
         </section>
         <SideBackground image={SideImage} />

@@ -2,12 +2,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../components/Input";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import Select from "../../components/Select";
 import Api from "../../services/api";
-import { FiUserPlus, FiX } from "react-icons/fi";
+import { FiUserPlus } from "react-icons/fi";
 
-import ButtomSmall from "../buttonSmall/index";
 import { Container, Modal } from "./style";
 import { useEffect, useState, useContext } from "react";
 
@@ -36,7 +35,7 @@ function Register({ handleModal }) {
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressDistrict: yup
       .string()
-      .required("Endereço obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     addressNumber: yup
       .number()
@@ -44,15 +43,15 @@ function Register({ handleModal }) {
       .required("Número obrigatório"),
     school: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Nome da escola obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddress: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Endereço obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressDistrict: yup
       .string()
-      .required("Nome obrigatório")
+      .required("Bairro obrigatório")
       .matches(/[A-Za-z]/, "Apenas letras"),
     schoolAddressNumber: yup
       .number()
