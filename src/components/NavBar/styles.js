@@ -37,6 +37,40 @@ export const Container = styled.header`
   button + button {
     color: #222428;
   }
+
+  .lottie-bus {
+    display: flex;
+    width: 40px;
+    height: 20px;
+  }
+  span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 500px) {
+    span {
+      flex-direction: row;
+    }
+    .lottie-bus {
+      display: flex;
+      width: 30px;
+      height: 25px;
+      margin-top: -30px;
+    }
+  }
+  @media (min-width: 750px) {
+    .lottie-bus {
+      width: 40px;
+      height: 35px;
+    }
+  }
+  @media (min-width: 1600px) {
+    .lottie-bus {
+      width: 100px;
+      height: 60px;
+    }
+  }
 `;
 
 export const Content = styled.div``;
