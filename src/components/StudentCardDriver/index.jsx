@@ -42,18 +42,16 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+
 const getTime = () => {
   const now = new Date();
 
-  const day = now.getDate();
-  const month = now.getMonth();
-  const year = now.getFullYear();
-
-  const date = `${day}/${month}/${year}`;
+  const date = now.toLocaleDateString('pt-BR');
   const hour = now.toTimeString().substring(0, 5);
 
   return { date, hour };
 };
+
 
 const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);

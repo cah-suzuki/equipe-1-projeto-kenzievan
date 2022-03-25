@@ -19,7 +19,7 @@ function Header() {
           <p>Olá, </p>
           <p>{user.name}</p>
         </GreetingContainer>
-        <DayContainer>Hoje é: {data.toLocaleDateString()} </DayContainer>
+        <DayContainer>Hoje é: {data.toLocaleDateString('pt-BR')} </DayContainer>
       </HeaderContanier>
     </Container>
   );

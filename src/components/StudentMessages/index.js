@@ -23,17 +23,15 @@ const StudentMessages = ({ messages, studentId }) => {
 
   const clearInput = () => setInputValue("");
 
+  function addZero(i) {
+    if (i < 10) {i = "0" + i}
+    return i;
+  }  
+
   const getTime = () => {
     const now = new Date();
-
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    const date = `${day}/${month}/${year}`;
-    const hour = `${hours}:${minutes}`;
+    const date = now.toLocaleDateString('pt-BR');
+    const hour = now.toTimeString().substring(0, 5);
 
     return { date, hour };
   };
