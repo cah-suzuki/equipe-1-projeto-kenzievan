@@ -4,27 +4,13 @@ import { useContext } from "react";
 import { MessagesContext } from "../../providers/Messages";
 import { UserContext } from "../../providers/User";
 import { useState } from "react";
+import { getTime } from "../../utils";
 
 function GlobalMessagesInput() {
   const [inputValue, setInputValue] = useState();
 
   const { sendGlobalMessage } = useContext(MessagesContext);
   const { user } = useContext(UserContext);
-
-  const getTime = () => {
-    const now = new Date();
-
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    const date = `${day}/${month}/${year}`;
-    const hour = `${hours}:${minutes}`;
-
-    return { date, hour };
-  };
 
   const clearInput = () => setInputValue("");
 

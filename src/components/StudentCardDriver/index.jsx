@@ -18,6 +18,7 @@ import { AiOutlineCaretDown } from "react-icons/ai";
 
 import { StudentContext } from "../../providers/Students";
 import StudentMessages from "../StudentMessages";
+import { getTime } from "../../utils";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,23 +43,11 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const getTime = () => {
-  const now = new Date();
-
-  const day = now.getDate();
-  const month = now.getMonth();
-  const year = now.getFullYear();
-
-  const date = `${day}/${month}/${year}`;
-  const hour = now.toTimeString().substring(0, 5);
-
-  return { date, hour };
-};
-
 const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
 
   const { updateTodayTrip } = useContext(StudentContext);
+
   const { hour, date } = getTime();
 
   const todayTrip = student.tripsList.find((trip) => trip.date === date) || {};

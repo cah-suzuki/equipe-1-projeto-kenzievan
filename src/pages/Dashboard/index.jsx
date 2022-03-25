@@ -1,9 +1,9 @@
 import { Container, MessagesContainer } from "./styles";
 
-import Header from "../Header";
-import GlobalMessagesList from "../GlobalMessagesList";
-import GlobalMessagesInput from "../GlobalMessagesInput";
-import StudentList from "../StudentList";
+import Header from "../../components/Header";
+import GlobalMessagesList from "../../components/GlobalMessagesList";
+import GlobalMessagesInput from "../../components/GlobalMessagesInput";
+import StudentList from "../../components/StudentList";
 
 import { Redirect } from "react-router-dom";
 import { useContext } from "react";
