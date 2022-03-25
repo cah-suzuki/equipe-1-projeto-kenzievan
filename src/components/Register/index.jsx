@@ -208,17 +208,17 @@ function Register({ handleModal }) {
             <div className="flex">
               <Input
                 type="time"
-                label="Saída"
-                name="departureTime"
-                register={register}
-                error={errors?.departureTime}
-              />
-              <Input
-                type="time"
                 label="Entrada"
                 name="entryTime"
                 register={register}
                 error={errors?.entryTime}
+              />
+              <Input
+                type="time"
+                label="Saída"
+                name="departureTime"
+                register={register}
+                error={errors?.departureTime}
               />
             </div>
           </div>
