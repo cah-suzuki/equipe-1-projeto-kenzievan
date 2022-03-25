@@ -18,7 +18,6 @@ const MapContainer = ({ google }) => {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => {
         setCoords(res.data);
-        console.log(res);
       });
     }, 5000);
   }, []);
