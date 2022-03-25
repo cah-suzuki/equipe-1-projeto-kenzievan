@@ -15,7 +15,6 @@ const MapContainer = ({ google }) => {
         .get("https://json-server-camila-s.herokuapp.com/coords/1")
         .then((res) => {
           setCoords(res.data);
-          console.log(res);
         });
     }, 5000);
   }, []);

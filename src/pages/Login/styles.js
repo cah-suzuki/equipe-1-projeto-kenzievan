@@ -9,7 +9,7 @@ const Container = styled.div`
   gap: 40px;
 
   @media (min-width: 1024px) {
-    padding: 0 2% 2% 5%;
+    padding: 2% 2% 2% 5%;
   }
 
   section {
@@ -51,12 +51,13 @@ const Container = styled.div`
       gap: 15px;
 
       button {
-        margin-top: 30px;
+        margin-top: 10px;
       }
     }
 
     p {
       cursor: pointer;
+      margin-top: 10px;
       font-weight: bold;
       font-size: 17px;
       text-align: center;

@@ -91,9 +91,6 @@ function SignUp() {
             <h3>
               Olá! Preencha seus dados para efetuar seu <span>Cadastro</span>
             </h3>
-            <p onClick={() => history.push("/login")}>
-              Já tem uma conta? Faça login!
-            </p>
           </figure>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -145,6 +142,9 @@ function SignUp() {
               )}
             />
             <Button>Confirmar</Button>
+            <p onClick={() => history.push("/login")}>
+              Já tem uma conta? Faça login!
+            </p>
           </form>
         </section>
         <SideBackground image={SideImage} />

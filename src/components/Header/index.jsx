@@ -27,9 +27,7 @@ function Header() {
     };
     axios
       .put("https://json-server-camila-s.herokuapp.com/coords/1", newObj)
-      .then((res) => {
-        console.log(res);
-      });
+      .then((res) => {});
   }
 
   const handleClick = () => {
@@ -46,7 +44,6 @@ function Header() {
     }
   };
 
-  console.log(user);
   const history = useHistory();
 
   const handleNavigation = (path) => {
