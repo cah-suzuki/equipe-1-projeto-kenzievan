@@ -17,7 +17,7 @@ const MapContainer = ({ google }) => {
           setCoords(res.data);
           console.log(res);
         });
-    }, 1000);
+    }, 5000);
   }, []);
 
   const displayMarkers = () => {
@@ -45,15 +45,15 @@ const MapContainer = ({ google }) => {
   };
 
   const containerStyle = {
-    width: "100%",
+    width: "calc(100% - 11vw)",
     height: "70%",
     left: "calc(11vw)",
-    bottom: 0,
+    bottom: "3vh",
   };
 
   return (
     <Container>
-      <NavBar></NavBar>
+      <NavBar dashboard />
       <Map
         containerStyle={containerStyle}
         google={google}
