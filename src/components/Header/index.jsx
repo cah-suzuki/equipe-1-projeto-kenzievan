@@ -8,15 +8,17 @@ import NavBar from "../NavBar";
 import { UserContext } from "../../providers/User";
 import { useContext } from "react";
 import Button from "../button/index";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+
 import { useHistory } from "react-router-dom";
+import Api from "../../services/api";
 
 function Header() {
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const data = new Date();
   const [isLocationOn, setIsLocationOn] = useState(false);
   const [timerId, setTimerId] = useState();
+
   let geolocation;
 
   function sendLocationToApi({ coords }) {
@@ -24,11 +26,11 @@ function Header() {
       lat: coords.latitude,
       lng: coords.longitude,
     };
-    axios
-      .put("https://json-server-camila-s.herokuapp.com/coords/1", newObj)
-      .then((res) => {
-        console.log(res);
-      });
+    Api.put("/driverCoords/1", newObj, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => {
+      console.log(res);
+    });
   }
 
   const handleClick = () => {
@@ -45,7 +47,6 @@ function Header() {
     }
   };
 
-  console.log(user);
   const history = useHistory();
 
   const handleNavigation = (path) => {
