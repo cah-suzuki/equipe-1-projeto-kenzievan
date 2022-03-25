@@ -22,9 +22,6 @@ function Register({ handleModal }) {
 
   const [selectOptions, setSelectOptions] = useState([]);
 
-  let selectTimerMinutes = [];
-  let selectTimerHour = [];
-
   const formSchema = yup.object().shape({
     name: yup
       .string()
@@ -103,8 +100,8 @@ function Register({ handleModal }) {
     const formattedData = {
       name,
       school,
-      schoolAddress: `${schoolAddress} ${schoolAddressDistrict} ${schoolAddressNumber}`,
-      address: `${address} ${addressDistrict} ${addressNumber}`,
+      schoolAddress: `${schoolAddress}, ${schoolAddressDistrict}, ${schoolAddressNumber}`,
+      address: `${address}, ${addressDistrict}, ${addressNumber}`,
       parentName: select.label,
       parentId: select.value,
       driverId: String(user.id),

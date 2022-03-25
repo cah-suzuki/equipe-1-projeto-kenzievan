@@ -16,7 +16,7 @@ export const Container = styled.div`
 
   @media (min-width: 768px) {
     h3 {
-      font-size: 24px;
+      font-size: 22px;
     }
   }
 `;
